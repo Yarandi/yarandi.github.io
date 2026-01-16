@@ -1,1 +1,0 @@
-# yarandi.github.io
