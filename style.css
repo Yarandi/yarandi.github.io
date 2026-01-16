@@ -38,6 +38,19 @@ a {
   color: var(--muted);
 }
 
+.flag-container {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.iran-flag {
+  width: 240px;
+  height: 160px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .meta {
   margin-top: 0.5rem;
   color: var(--muted);
