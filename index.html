@@ -1,122 +1,725 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hamed Yarandi | Senior Backend Engineer</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
+<html lang="en-US" dir="ltr" data-theme="light">
 
-<header class="hero">
-  <h1>Hamed Yarandi</h1>
-  <h2>Senior Backend Engineer</h2>
-  <p class="meta">🇮🇷 Iran, Tehran · 🇦🇹 Innsbruck, Austria · 13+ years experience</p>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <div class="actions">
-    <a href="mailto:hamed.yarandi@gmail.com">Email</a>
-    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/hamed-yarandi" target="_blank">LinkedIn</a>
-    <a href="https://stackoverflow.com/users/1257168/hamed-yarandi" target="_blank">StackOverflow</a>
-  </div>
-</header>
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Hamed Yarandi | Senior Backend Engineer</title>
 
-<section>
-  <h3>Summary</h3>
-  <p>
-    Software Engineer with over <strong>13 years of experience</strong> building scalable
-    web applications and backend systems from scratch. Strong background in
-    <strong>Golang</strong> and <strong>PHP</strong>, experienced in designing APIs, microservices,
-    and high-performance systems. Passionate about clean architecture, maintainability,
-    and solving complex technical problems.
-  </p>
-</section>
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
 
-<section class="cta-section">
-  <h3>Ready to Start Your Project</h3>
-  <p class="cta-text">
-    I'm ready to start working on your projects. Just tell me what you need, and I'll bring it to life.
-    Whether it's building a new backend system, developing APIs, or scaling existing infrastructure,
-    I'm here to help turn your ideas into reality.
-  </p>
-  <div class="actions">
-    <a href="mailto:hamed.yarandi@gmail.com">Let's Talk</a>
-    <a href="https://wa.me/989122771586" target="_blank">WhatsApp</a>
-  </div>
-</section>
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="vendors/hamburgers/hamburgers.min.css" rel="stylesheet">
+    <link href="assets/css/theme.min.css" rel="stylesheet" />
+    <link href="assets/css/user.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="vendors/iconsmind/iconsmind.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&amp;family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" />
+    <style>
+      html { scroll-behavior: smooth; }
+      .intro-portrait {
+        filter: grayscale(100%);
+        max-height: 420px;
+        width: auto;
+        object-fit: cover;
+        box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.3);
+      }
+      .hero-title-one-line { white-space: nowrap; }
+      .marquee-card-track-wrapper { padding: 0 0.5rem; }
+      .marquee-card-track-wrapper:hover .marquee-card-track { animation-play-state: paused; }
+      .marquee-card-track {
+        display: flex;
+        gap: 1rem;
+        width: max-content;
+        animation: marquee-card 45s linear infinite;
+      }
+      @keyframes marquee-card {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .theme-blocks-marquee-wrapper { overflow: hidden; padding: 0.5rem 0; }
+      .theme-blocks-marquee-wrapper:hover .theme-blocks-marquee-track { animation-play-state: paused; }
+      .theme-blocks-marquee-track {
+        display: flex;
+        gap: 1rem;
+        width: max-content;
+        animation: theme-blocks-marquee 35s linear infinite;
+      }
+      @keyframes theme-blocks-marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .theme-blocks-marquee-item { flex: 0 0 auto; width: 430px; }
+      .theme-blocks-marquee-item img { width: 100%; height: auto; display: block; }
+      #cards-carousel-section {
+        margin-top: -26rem;
+        position: relative;
+        z-index: 2;
+        background: linear-gradient(to bottom, transparent 0%, transparent 35%, #fff 65%, #fff 100%);
+      }
+      .marquee-card {
+        flex: 0 0 auto;
+        width: 430px;
+        border: 0;
+        box-shadow: var(--slick-box-shadow-lg) !important;
+        overflow: hidden;
+        position: relative;
+      }
+      .marquee-card--same-size { width: 430px; }
+      .marquee-card .marquee-card-img-wrap {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        background: #f0f0f0;
+      }
+      .marquee-card .marquee-card-img-wrap img.img-fluid {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .marquee-card .card-body { min-height: 5.5rem; }
+      #cards-carousel-section .project-card { background: #fff; }
+      #cards-carousel-section .project-card .card-body { background: #fff; color: inherit; }
+      #cards-carousel-section .card-hover-detail { position: relative; }
+      #cards-carousel-section .card-detail-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.88);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .25s ease, visibility .25s ease;
+      }
+      #cards-carousel-section .card-hover-detail:hover .card-detail-overlay { opacity: 1; visibility: visible; }
+      @media (min-width: 992px) {
+        .navbar-collapse { overflow: visible !important; }
+      }
+      .nav-item.dropdown { position: relative; }
+      .nav-item.dropdown .dropdown-menu { display: none; }
+      .nav-item.dropdown.open .dropdown-menu { display: block !important; }
+      #navbarLangDropdownMenu,
+      #navbarThemeDropdownMenu { z-index: 1060 !important; min-width: 10rem; position: absolute; }
+      #navbarLangDropdownMenu .dropdown-item,
+      #navbarThemeDropdownMenu .dropdown-item { color: #333 !important; display: block; padding: 0.5rem 1rem; cursor: pointer; }
+      [data-theme="dark"] { color-scheme: dark; }
+      [data-theme="dark"] body { background: #1a1a1f; color: #e4e4e7; }
+      [data-theme="dark"] .navbar-slick { background: rgba(20,20,24,0.95) !important; }
+      [data-theme="dark"] #cards-carousel-section { background: linear-gradient(to bottom, transparent 0%, transparent 35%, #1a1a1f 65%, #1a1a1f 100%); }
+      [data-theme="dark"] #cards-carousel-section .project-card,
+      [data-theme="dark"] #cards-carousel-section .project-card .card-body { background: #25252b !important; color: #e4e4e7 !important; }
+      [data-theme="dark"] #cards-carousel-section .card-detail-overlay { background: rgba(0,0,0,0.92); }
+      [data-theme="dark"] .text-700 { color: #a1a1aa !important; }
+      [data-theme="dark"] .bg-1100 { background: #16161a !important; }
+      [data-theme="dark"] .navbar .dropdown-menu { background: #25252b !important; border-color: #3f3f46 !important; }
+      [data-theme="dark"] #navbarLangDropdownMenu .dropdown-item,
+      [data-theme="dark"] #navbarThemeDropdownMenu .dropdown-item { color: #e4e4e7 !important; }
+      .theme-toggle-btn {
+        padding: 0.35rem 0.65rem;
+        border-radius: 0.375rem;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.3);
+        color: rgba(255,255,255,0.9);
+      }
+      .theme-toggle-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    </style>
+  </head>
 
-<section>
-  <h3>Core Technologies</h3>
-  <div class="tags">
-    <span>Golang</span><span>PHP</span><span>Laravel</span><span>Yii2</span>
-    <span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span>
-    <span>Redis</span><span>Docker</span><span>Linux</span>
-    <span>REST API</span><span>gRPC</span><span>Git</span>
-    <span>TDD</span><span>Concurrency</span>
-  </div>
-</section>
+  <body>
+    <div class="preloader" id="preloader" data-preloader>
+      <div class="preloader-wrapper big active" data-preloader>
+        <div class="spinner-layer spinner-white-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-slick navbar-expand-lg navbar-dark fixed-top py-2" data-navbar-dark-on-scroll="data-navbar-dark-on-scroll">
+      <div class="container container-wide-xl"><a class="navbar-brand ls-2 p-0 me-4 fw-semibold text-white text-decoration-none" href="index.html">Hamed Yarandi</a><button class="navbar-toggler hamburger hamburger--emphatic" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbarCollapse" aria-controls="primaryNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
+        <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#intro">Intro</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cards-carousel-section">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacts">Contacts</a></li>
+          </ul>
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle dropdown-caret-none" id="navbarThemeDropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="nav-link-text" data-theme-label><i class="fa-solid fa-sun me-1"></i> Light</span>
+                <span class="fa-solid fa-angle-down ms-1 fs--1 fw-bold"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end rounded border-0 bg-white shadow-lg py-0" id="navbarThemeDropdownMenu" aria-labelledby="navbarThemeDropdown">
+                <li><a class="dropdown-item theme-option active" href="#" data-theme="light"><i class="fa-solid fa-sun me-2"></i> Light</a></li>
+                <li><a class="dropdown-item theme-option" href="#" data-theme="dark"><i class="fa-solid fa-moon me-2"></i> Dark</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle dropdown-caret-none" id="navbarLangDropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="nav-link-text" data-i18n-lang-label>EN</span>
+                <span class="fa-solid fa-angle-down ms-1 fs--1 fw-bold"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end rounded border-0 bg-white shadow-lg py-0" id="navbarLangDropdownMenu" aria-labelledby="navbarLangDropdown">
+                <li><a class="dropdown-item lang-option active" href="#" data-lang="en">English</a></li>
+                <li><a class="dropdown-item lang-option" href="#" data-lang="de">Deutsch</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
 
-<section>
-  <h3>Experience</h3>
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="pt-7 pt-md-9 pb-0" id="intro">
+        <div class="bg-holder overlay" style="background-image:url(assets/img/header_showcase.jpg);background-position:center top;background-size:cover;"></div>
+        <!--/.bg-holder-->
+        <div class="container-fluid p-0">
+          <div class="showcase-banner-wrapper">
+          <div class="row showcase-banner align-items-center justify-content-center g-0">
+            
+            <h1 class="text-white fs-3 fs-sm-4 fs-lg-6 fw-light mb-2 text-center">
+              <span data-i18n="hero.title">Hey, I'm Hamed </span>
+              <strong class="fw-bold" data-i18n="hero.titleBold">Yarandi</strong>
+            </h1>
+            
+            <p class="text-white text-100 fs-4 mb-2 text-center" data-i18n="hero.role">Senior Backend Engineer</p>
+            <p class="text-white text-300 opacity-75 small mb-4 text-center" data-i18n="hero.location">Iran, Tehran · Innsbruck, Austria · 13+ years experience</p>
+            <div class="col-lg-8 col-md-7 px-sm-4 order-2 order-lg-2 mx-auto">
+              <p class="lead text-300 opacity-75" data-i18n="hero.subtitle">
+Software Engineer with 13+ years building scalable web applications, backend systems, and real-time dashboards from the ground up. Strong in Golang and PHP—APIs, microservices, high-performance services—with hands-on experience in AI/LLM integration and data-driven products. Passionate about clean architecture, maintainability, and solving complex technical problems.</p>
+            </div>
+          </div>
+          </div><!-- /.showcase-banner-wrapper -->
+          <div class="wave"><svg viewBox="0 0 1440 120" width="100%" height="100%" fill="#fff">
+              <path d="M1440,21.2101911 L1440,120 L0,120 L0,21.2101911 C120,35.0700637 240,42 360,42 C480,42 600,35.0700637 720,21.2101911 C808.32779,12.416393 874.573633,6.87702029 918.737528,4.59207306 C972.491685,1.8109458 1026.24584,0.420382166 1080,0.420382166 C1200,0.420382166 1320,7.35031847 1440,21.2101911 Z"></path>
+            </svg></div>
+        </div><!-- end of .container-->
+      </section><!-- <section> close ============================-->
+      <!-- ============================================-->
 
-  <div class="job">
-    <h4>Software Engineer — Freelance (Remote)</h4>
-    <span>Feb 2023 – Present</span>
-    <ul>
-      <li>Built a scalable online radio streaming platform (Nownava) using Golang and gRPC, fully Dockerized.</li>
-      <li>MVP attracted 100+ active users within 3 months.</li>
-      <li>Developed a LendTech gateway adopted by 3 major companies.</li>
-      <li>Created reusable WordPress plugins used by 60+ merchants.</li>
-    </ul>
-  </div>
 
-  <div class="job">
-    <h4>Backend Developer — Demarkelabs</h4>
-    <span>Jan 2022 – Feb 2023 (Remote, Turkey)</span>
-    <ul>
-      <li>Developed features for Mizner mobile app connecting residents and HOA.</li>
-      <li>Refactored legacy code to improve performance and UX.</li>
-      <li>Redesigned AdimAdim platform architecture for multilingual support.</li>
-    </ul>
-  </div>
+      <!-- Projects: uniform project cards (image + title + excerpt), marquee, hover for details. 5 items only. -->
+      <section class="py-5 py-lg-6 overflow-hidden" id="cards-carousel-section">
+        <div class="container container-wide-xl mb-4">
+        </div>
+        <div class="marquee-card-track-wrapper">
+          <div class="marquee-card-track" id="marqueeCardTrack">
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card1.title">Nownava</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card1.excerpt">Online Radio Platform</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card1.detail">Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 100+ active users within 3 months.</p></div>
+            </div>
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card2.title">Mizner Mobile App</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card2.excerpt">Residents &amp; HOA platform</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card2.detail">Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.</p></div>
+            </div>
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card3.title">AdimAdim</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card3.excerpt">Charity platform</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card3.detail">Redesigned platform architecture for multilingual support. Charity and community-focused application.</p></div>
+            </div>
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card4.title">LendTech Gateway</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card4.excerpt">Adopted by 3 major companies</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card4.detail">Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.</p></div>
+            </div>
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card5.title">WordPress Plugins</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card5.excerpt">Used by 60+ merchants</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card5.detail">Created reusable WordPress plugins used by 60+ merchants. E‑commerce and store extensions.</p></div>
+            </div>
+            <!-- duplicate set for seamless loop (5 items) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card1.title">Nownava</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card1.excerpt">Online Radio Platform</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card1.detail">Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 100+ active users within 3 months.</p></div>
+            </div>
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card2.title">Mizner Mobile App</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card2.excerpt">Residents &amp; HOA platform</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card2.detail">Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.</p></div>
+            </div>
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card3.title">AdimAdim</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card3.excerpt">Charity platform</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card3.detail">Redesigned platform architecture for multilingual support. Charity and community-focused application.</p></div>
+            </div>
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card4.title">LendTech Gateway</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card4.excerpt">Adopted by 3 major companies</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card4.detail">Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.</p></div>
+            </div>
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card5.title">WordPress Plugins</h5>
+                <p class="card-text text-700 small mb-0" data-i18n="card5.excerpt">Used by 60+ merchants</p>
+              </div>
+              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card5.detail">Created reusable WordPress plugins used by 60+ merchants. E‑commerce and store extensions.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <div class="job">
-    <h4>Backend Developer — Kavano</h4>
-    <span>Jun 2018 – Jan 2020 (Tehran)</span>
-    <ul>
-      <li>Developed automation product Edarito using Laravel & MySQL.</li>
-      <li>Created Laravel packages with MongoDB logging and auth separation.</li>
-      <li>Contributed to LMS system architecture and feature development.</li>
-    </ul>
-  </div>
+   
 
-  <div class="job">
-    <h4>Backend Developer — Sarir</h4>
-    <span>Oct 2013 – Jun 2018 (Tehran)</span>
-    <ul>
-      <li>Maintained After-Sales Service system using Zend & Laravel.</li>
-      <li>Developed BPMS system and online barcode generator.</li>
-    </ul>
-  </div>
-</section>
+      <div class="position-relative">
+        
 
-<section>
-  <h3>Selected Projects</h3>
-  <ul class="links">
-    <li><a href="https://nownava.com/" target="_blank">Nownava – Online Radio Platform</a></li>
-    <li><a href="https://apps.apple.com/tr/app/community-connect-mizner/id1612820110" target="_blank">Mizner Mobile App</a></li>
-    <li><a href="https://adimadim-staging.herokuapp.com/" target="_blank">AdimAdim Charity Platform</a></li>
-  </ul>
-</section>
+        <!-- ============================================-->
+        <!-- CTA section (NO RISK / NO SUBSCRIPTIONS / UNLIMITED SITES + Drag & Drop / 172 Blocks) - commented out
+        <!-- <section> begin ============================-->
+        <!--
+        <section class="mt-8 bg-black">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col">
+                <div class="border border-2 rounded-3 py-6 px-4 px-md-5 px-md-6 px-lg-8 text-center border-900">
+                  <h1 class="mb-5 fs-3 fs-md-4 fs-lg-5 fs-xl-6 fw-light text-white" data-i18n="cta.title">Create a beautiful, responsive website like this one effortlessly.</h1><a class="btn btn-primary btn-lg rounded-pill px-5 px-md-7" href="https://themewagon.com/themes/slick/" target="_blank" data-i18n="cta.button">Purchase Slick</a>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 ps-lg-4">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="d-flex pe-lg-6"><span class="icon-Dollar-Sign text-white fs-3"></span>
+                    <div class="flex-1 ms-3">
+                      <h5 class="mb-lg-3 text-uppercase text-200" data-i18n="cta.noRisk">No Risk</h5>
+                      <p class="mb-4 mb-lg-0 text-500" data-i18n="cta.noRiskDesc">We'll give your money back within a 10-day period.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="d-flex pe-lg-6"><span class="icon-Calendar-4 text-white fs-3"></span>
+                    <div class="flex-1 ms-3">
+                      <h5 class="mb-lg-3 text-uppercase text-200" data-i18n="cta.noSubs">NO SUBSCRIPTIONS</h5>
+                      <p class="mb-4 mb-lg-0 text-500" data-i18n="cta.noSubsDesc">One-time fee. Why pay monthly when you can pay once?</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="d-flex pe-lg-6"><span class="icon-Clouds text-white fs-3"></span>
+                    <div class="flex-1 ms-3">
+                      <h5 class="mb-lg-3 text-uppercase text-200" data-i18n="cta.unlimited">UNLIMITED SITES</h5>
+                      <p class="mb-4 mb-lg-0 text-500" data-i18n="cta.unlimitedDesc">Lifetime license. Build unlimited sites at no additional cost!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-6">
+              <div class="col-md-6">
+                <div class="border rounded-3 p-4 shadow-lg border-900">
+                  <div class="row align-items-center">
+                    <div class="col-sm"><img class="img-fluid rounded-3 shadow-sm" src="assets/img/screenshots/blocks/header-11.jpg" alt="About" /></div>
+                    <div class="col">
+                      <h4 class="text-200" data-i18n="cta.builder">Drag &amp; Drop Builder</h4><a class="btn btn-sm btn-outline-light" href="https://prium.github.io/slick/v2.0.0/generator.html" target="_blank" data-i18n="cta.builderBtn">Try Generator</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mt-4 mt-md-0">
+                <div class="border rounded-3 p-4 shadow-lg border-900">
+                  <div class="row align-items-center">
+                    <div class="col-sm"><img class="img-fluid rounded-3 shadow-sm" src="assets/img/screenshots/blocks/header-12.jpg" alt="About" /></div>
+                    <div class="col">
+                      <h4 class="text-200" data-i18n="cta.blocks">172 Premade Blocks</h4><a class="btn btn-sm btn-outline-light" href="all-blocks.html" data-i18n="cta.blocksBtn">Explore Blocks</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div
+        </section><!-- <section> close ============================-->
+        
+        <!-- ============================================-->
 
-<section>
-  <h3>Education</h3>
-  <p>B.Sc. in Software Engineering — Saeb University, Iran (2010)</p>
-</section>
+      </div>
+    </main><!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
 
-<footer>
-  © 2026 Hamed Yarandi
-</footer>
 
-</body>
+
+    <!--===============================================-->
+    <!--    Footer-->
+    <!--===============================================-->
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section class="py-7 py-lg-8 bg-1100" id="contacts">
+      <div class="container">
+        <h2 class="fs-2 text-white fw-semibold mb-5 text-center" data-i18n="contact.heading">Get in touch</h2>
+
+        <div class="row align-items-center g-5 g-lg-6 mb-5">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <h3 class="fs-2 text-white fs-md-3 fw-semibold mb-4" data-i18n="ctaProject.title">Ready to Start Your Project</h3>
+            <p class="lead text-300 opacity-90 mb-4" data-i18n="ctaProject.body">I'm ready to start working on your projects. Just tell me what you need, and I'll bring it to life. Whether it's building a new backend system, developing APIs, or scaling existing infrastructure, I'm here to help turn your ideas into reality.</p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2" id="contact-form">
+            <!-- Replace YOUR_FORM_ID with your Formspree form ID from https://formspree.io -->
+            <form class="text-start" action="https://formspree.io/f/xrbpdyow" method="POST">
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true">
+              <div class="mb-3">
+                <label for="contact-name" class="form-label text-700 small" data-i18n="contact.formName">Name</label>
+                <input type="text" class="form-control form-control-sm bg-1000 border-800 text-100" id="contact-name" name="name" required placeholder=" " autocomplete="name">
+              </div>
+              <div class="mb-3">
+                <label for="contact-email" class="form-label text-700 small" data-i18n="contact.formEmail">Email</label>
+                <input type="email" class="form-control form-control-sm bg-1000 border-800 text-100" id="contact-email" name="email" required placeholder=" " autocomplete="email">
+              </div>
+              <div class="mb-4">
+                <label for="contact-message" class="form-label text-700 small" data-i18n="contact.formMessage">Message</label>
+                <textarea class="form-control form-control-sm bg-1000 border-800 text-100" id="contact-message" name="message" rows="4" required placeholder=" "></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm rounded-pill px-4 px-md-5" data-i18n="contact.formSubmit">Send message</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8">
+            
+            <p class="mb-2">
+              <a class="link-400 text-decoration-none d-inline-flex align-items-center gap-2 me-3" href="https://github.com/yarandi" target="_blank" rel="noopener noreferrer">
+                <span class="fa-brands fa-github"></span>
+                <span>GitHub</span>
+              </a>
+              <a class="link-400 text-decoration-none d-inline-flex align-items-center gap-2 me-3" href="https://www.linkedin.com/in/hamedyarandi" target="_blank" rel="noopener noreferrer">
+                <span class="fa-brands fa-linkedin-in"></span>
+                <span data-i18n="contact.linkedIn">LinkedIn</span>
+              </a>
+              <a class="link-400 text-decoration-none d-inline-flex align-items-center gap-2 me-3" href="https://stackoverflow.com/users/story/yarandi" target="_blank" rel="noopener noreferrer">
+                <span class="fa-brands fa-stack-overflow"></span>
+                <span>StackOverflow</span>
+              </a>
+             
+            </p>
+            <p class="text-700 mt-4 mb-0 small" data-i18n="footer.copyright">&copy; 2026 Hamed Yarandi.</p>
+          </div>
+        </div>
+      </div>
+    </section><!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/popper/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/anchorjs/anchor.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="vendors/prism/prism.js"></script>
+    <script src="vendors/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="vendors/isotope-packery/packery-mode.pkgd.min.js"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="vendors/lodash/lodash.min.js"></script>
+    <script src="vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="vendors/gsap/gsap.js"></script>
+    <script src="vendors/gsap/customEase.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script>
+      (function () {
+        var themeToggle = document.getElementById('navbarThemeDropdown');
+        var langToggle = document.getElementById('navbarLangDropdown');
+        function closeAllDropdowns() {
+          document.querySelectorAll('.nav-item.dropdown.open').forEach(function (el) { el.classList.remove('open'); });
+        }
+        if (themeToggle) {
+          themeToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var parent = themeToggle.closest('.nav-item.dropdown');
+            if (langToggle) langToggle.closest('.nav-item.dropdown').classList.remove('open');
+            if (parent) parent.classList.toggle('open');
+          });
+        }
+        if (langToggle) {
+          langToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var parent = langToggle.closest('.nav-item.dropdown');
+            if (themeToggle) themeToggle.closest('.nav-item.dropdown').classList.remove('open');
+            if (parent) parent.classList.toggle('open');
+          });
+        }
+        document.addEventListener('click', closeAllDropdowns);
+        [document.getElementById('navbarThemeDropdownMenu'), document.getElementById('navbarLangDropdownMenu')].forEach(function (menu) {
+          if (menu) menu.addEventListener('click', function (e) { e.stopPropagation(); });
+        });
+      })();
+
+      (function () {
+        var THEME_KEY = 'preferred-theme';
+        var html = document.documentElement;
+        var themeLabel = document.querySelector('[data-theme-label]');
+        var themeOptions = document.querySelectorAll('.theme-option');
+        var themeLabels = { light: '<i class=\"fa-solid fa-sun me-1\"></i> Light', dark: '<i class=\"fa-solid fa-moon me-1\"></i> Dark' };
+
+        function setTheme(theme) {
+          if (theme !== 'light' && theme !== 'dark') return;
+          html.setAttribute('data-theme', theme);
+          if (themeLabel) themeLabel.innerHTML = themeLabels[theme];
+          themeOptions.forEach(function (o) {
+            o.classList.toggle('active', o.getAttribute('data-theme') === theme);
+          });
+          try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+          var parent = document.getElementById('navbarThemeDropdown');
+          if (parent) parent.closest('.nav-item.dropdown').classList.remove('open');
+        }
+
+        themeOptions.forEach(function (o) {
+          o.addEventListener('click', function (e) {
+            e.preventDefault();
+            setTheme(o.getAttribute('data-theme'));
+          });
+        });
+
+        var savedTheme = null;
+        try { savedTheme = localStorage.getItem(THEME_KEY); } catch (e) {}
+        if (savedTheme === 'light' || savedTheme === 'dark') setTheme(savedTheme);
+      })();
+
+      (function () {
+        var STORAGE_KEY = 'preferred-lang';
+        var labelEl = document.querySelector('[data-i18n-lang-label]');
+        var options = document.querySelectorAll('.lang-option');
+        var langMap = { en: 'EN', de: 'DE' };
+
+        var t = {
+          en: {
+            'hero.title': 'Hey, I\'m Hamed ',
+            'hero.titleBold': 'Yarandi',
+            'hero.role': 'Senior Backend Engineer',
+            'hero.location': 'based on Innsbruck, Austria · 13+ years experience',
+            'hero.subtitle': 'Software Engineer with 13+ years building scalable web applications, backend systems, and real-time dashboards from the ground up. Strong in Golang and PHP—APIs, microservices, high-performance services—with hands-on experience in AI/LLM integration and data-driven products. Passionate about clean architecture, maintainability, and solving complex technical problems.',
+            'nav.pages': 'Pages',
+            'nav.blocks': 'All Blocks',
+            'nav.sitemap': 'Sitemap',
+            'card1.title': 'Nownava',
+            'card1.excerpt': 'Online Radio Platform',
+            'card1.detail': 'Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 100+ active users within 3 months.',
+            'card2.title': 'Mizner Mobile App',
+            'card2.excerpt': 'Residents & HOA platform',
+            'card2.detail': 'Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.',
+            'card3.title': 'AdimAdim',
+            'card3.excerpt': 'Charity platform',
+            'card3.detail': 'Redesigned platform architecture for multilingual support. Charity and community-focused application.',
+            'card4.title': 'LendTech Gateway',
+            'card4.excerpt': 'Adopted by 3 major companies',
+            'card4.detail': 'Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.',
+            'card5.title': 'WordPress Plugins',
+            'card5.excerpt': 'Used by 60+ merchants',
+            'card5.detail': 'Created reusable WordPress plugins used by 60+ merchants. E‑commerce and store extensions.',
+            'ctaProject.title': 'Ready to Start Your Project',
+            'ctaProject.body': "I'm ready to start working on your projects. Just tell me what you need, and I'll bring it to life. Whether it's building a new backend system, developing APIs, or scaling existing infrastructure, I'm here to help turn your ideas into reality.",
+            'ctaProject.button': 'Get in touch',
+            'cta.title': 'Create a beautiful, responsive website like this one effortlessly.',
+            'cta.button': 'Purchase Slick',
+            'cta.noRisk': 'No Risk',
+            'cta.noRiskDesc': "We'll give your money back within a 10-day period.",
+            'cta.noSubs': 'NO SUBSCRIPTIONS',
+            'cta.noSubsDesc': 'One-time fee. Why pay monthly when you can pay once?',
+            'cta.unlimited': 'UNLIMITED SITES',
+            'cta.unlimitedDesc': 'Lifetime license. Build unlimited sites at no additional cost!',
+            'cta.builder': 'Drag & Drop Builder',
+            'cta.builderBtn': 'Try Generator',
+            'cta.blocks': '172 Premade Blocks',
+            'cta.blocksBtn': 'Explore Blocks',
+            'contact.heading': 'Get in touch',
+            'contact.formName': 'Name',
+            'contact.formEmail': 'Email',
+            'contact.formMessage': 'Message',
+            'contact.formSubmit': 'Send message',
+            'contact.email': 'Email',
+            'contact.linkedIn': 'LinkedIn',
+            'footer.pages': 'Pages',
+            'footer.blocks': 'All Blocks',
+            'footer.components': 'Components',
+            'footer.sitemap': 'Sitemap',
+            'footer.generator': 'Generator',
+            'footer.purchase': 'Purchase',
+            'footer.copyright': '© 2026 Hamed Yarandi.'
+          },
+          de: {
+            'hero.title': 'Hey, ich bin Hamed ',
+            'hero.titleBold': 'Yarandi',
+            'hero.role': 'Senior Backend Engineer',
+            'hero.location': 'Ansässig in Innsbruck, Österreich · 13+ Jahre Erfahrung',
+            'hero.subtitle': 'Software-Ingenieur mit 13+ Jahren Erfahrung im Aufbau skalierbarer Webanwendungen, Backend-Systeme und Echtzeit-Dashboards von Grund auf. Stärken in Golang und PHP—APIs, Microservices, hochperformante Dienste—sowie praktische Erfahrung mit AI/LLM-Integration und datengetriebenen Produkten. Leidenschaft für saubere Architektur, Wartbarkeit und die Lösung komplexer technischer Probleme.',
+            'nav.pages': 'Seiten',
+            'nav.blocks': 'Alle Blöcke',
+            'nav.sitemap': 'Sitemap',
+            'card1.title': 'Nownava',
+            'card1.excerpt': 'Online-Radio-Plattform',
+            'card1.detail': 'Skalierbare Radio-Streaming-Plattform mit Golang und gRPC, vollständig mit Docker. MVP zog innerhalb von 3 Monaten 100+ aktive Nutzer an.',
+            'card2.title': 'Mizner Mobile App',
+            'card2.excerpt': 'Plattform für Bewohner & HOA',
+            'card2.detail': 'Features für die Mobile App zur Verbindung von Bewohnern und HOA entwickelt. Legacy-Code refaktoriert für bessere Performance und UX.',
+            'card3.title': 'AdimAdim',
+            'card3.excerpt': 'Spendenplattform',
+            'card3.detail': 'Plattformarchitektur für mehrsprachige Unterstützung überarbeitet. Spenden- und Community-orientierte Anwendung.',
+            'card4.title': 'LendTech Gateway',
+            'card4.excerpt': 'Von 3 großen Unternehmen übernommen',
+            'card4.detail': 'LendTech-Gateway entwickelt, der von 3 großen Unternehmen übernommen wurde. Zahlungs- und Kreditintegration.',
+            'card5.title': 'WordPress-Plugins',
+            'card5.excerpt': 'Von 60+ Händlern genutzt',
+            'card5.detail': 'Wiederverwendbare WordPress-Plugins erstellt, die von 60+ Händlern genutzt werden. E-Commerce- und Shop-Erweiterungen.',
+            'ctaProject.title': 'Bereit für Ihr Projekt',
+            'ctaProject.body': "Ich bin bereit, an Ihren Projekten zu arbeiten. Sagen Sie mir einfach, was Sie brauchen – ich setze es um. Ob neues Backend-System, API-Entwicklung oder Skalierung bestehender Infrastruktur: Ich helfe dabei, Ihre Ideen in die Tat umzusetzen.",
+            'ctaProject.button': 'Kontakt aufnehmen',
+            'cta.title': 'Erstelle mühelos eine schöne, responsive Website wie diese.',
+            'cta.button': 'Slick kaufen',
+            'cta.noRisk': 'Kein Risiko',
+            'cta.noRiskDesc': 'Wir erstatten Ihr Geld innerhalb von 10 Tagen.',
+            'cta.noSubs': 'Keine Abos',
+            'cta.noSubsDesc': 'Einmalige Gebühr. Warum monatlich zahlen, wenn du einmal zahlen kannst?',
+            'cta.unlimited': 'Unbegrenzte Websites',
+            'cta.unlimitedDesc': 'Lizenz auf Lebenszeit. Erstelle unbegrenzt viele Websites ohne Aufpreis!',
+            'cta.builder': 'Drag-&-Drop-Builder',
+            'cta.builderBtn': 'Generator ausprobieren',
+            'cta.blocks': '172 vorgefertigte Blöcke',
+            'cta.blocksBtn': 'Blöcke erkunden',
+            'contact.heading': 'Kontakt',
+            'contact.formName': 'Name',
+            'contact.formEmail': 'E-Mail',
+            'contact.formMessage': 'Nachricht',
+            'contact.formSubmit': 'Nachricht senden',
+            'contact.email': 'E-Mail',
+            'contact.linkedIn': 'LinkedIn',
+            'footer.pages': 'Seiten',
+            'footer.blocks': 'Alle Blöcke',
+            'footer.components': 'Komponenten',
+            'footer.sitemap': 'Sitemap',
+            'footer.generator': 'Generator',
+            'footer.purchase': 'Kaufen',
+            'footer.copyright': '© 2026 Hamed Yarandi.'
+          }
+        };
+
+        function applyLang(lang) {
+          var strings = t[lang] || t.en;
+          document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n');
+            if (strings[key] !== undefined) el.textContent = strings[key];
+          });
+          document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n-html');
+            if (strings[key] !== undefined) el.innerHTML = strings[key];
+          });
+        }
+
+        function setLang(lang) {
+          if (!labelEl || !langMap[lang]) return;
+          document.documentElement.lang = lang === 'de' ? 'de' : 'en-US';
+          document.documentElement.setAttribute('dir', 'ltr');
+          labelEl.textContent = langMap[lang];
+          options.forEach(function (opt) {
+            opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+          });
+          try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+          applyLang(lang);
+          var langParent = document.getElementById('navbarLangDropdown');
+          if (langParent) langParent.closest('.nav-item.dropdown').classList.remove('open');
+        }
+
+        options.forEach(function (opt) {
+          opt.addEventListener('click', function (e) {
+            e.preventDefault();
+            setLang(opt.getAttribute('data-lang'));
+          });
+        });
+
+        var saved = null;
+        try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+        if (saved && langMap[saved]) setLang(saved);
+        else applyLang('en');
+      })();
+    </script>
+  </body>
+
 </html>
