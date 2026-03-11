@@ -615,6 +615,8 @@ Software Engineer with 13+ years building scalable web applications, backend sys
             'contact.formEmail': 'Email',
             'contact.formMessage': 'Message',
             'contact.formSubmit': 'Send message',
+            'contact.formSuccess': 'Thanks for your submission!',
+            'contact.formError': 'Oops! There was a problem submitting your form.',
             'contact.email': 'Email',
             'contact.linkedIn': 'LinkedIn',
             'footer.pages': 'Pages',
@@ -669,6 +671,8 @@ Software Engineer with 13+ years building scalable web applications, backend sys
             'contact.formEmail': 'E-Mail',
             'contact.formMessage': 'Nachricht',
             'contact.formSubmit': 'Nachricht senden',
+            'contact.formSuccess': 'Vielen Dank für Ihre Nachricht!',
+            'contact.formError': 'Beim Absenden des Formulars ist ein Fehler aufgetreten.',
             'contact.email': 'E-Mail',
             'contact.linkedIn': 'LinkedIn',
             'footer.pages': 'Seiten',
@@ -718,12 +722,22 @@ Software Engineer with 13+ years building scalable web applications, backend sys
         try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
         if (saved && langMap[saved]) setLang(saved);
         else applyLang('en');
+
+        window.i18nGet = function (key) {
+          try {
+            var lang = localStorage.getItem(STORAGE_KEY) || 'en';
+            return (t[lang] && t[lang][key] != null) ? t[lang][key] : (t.en[key] != null ? t.en[key] : key);
+          } catch (e) { return key; }
+        };
       })();
     </script>
     <script>
       (function () {
         var form = document.getElementById('my-form');
         if (!form) return;
+        function getMsg(key) {
+          return (typeof window.i18nGet === 'function' ? window.i18nGet(key) : key);
+        }
         function handleSubmit(event) {
           event.preventDefault();
           var status = document.getElementById('my-form-status');
@@ -734,7 +748,7 @@ Software Engineer with 13+ years building scalable web applications, backend sys
             headers: { 'Accept': 'application/json' }
           }).then(function (response) {
             if (response.ok) {
-              status.innerHTML = 'Thanks for your submission!';
+              status.innerHTML = getMsg('contact.formSuccess');
               status.classList.remove('text-danger');
               status.classList.add('text-success');
               form.reset();
@@ -743,13 +757,13 @@ Software Engineer with 13+ years building scalable web applications, backend sys
                 if (Object.hasOwn(data, 'errors')) {
                   status.innerHTML = data.errors.map(function (err) { return err.message; }).join(', ');
                 } else {
-                  status.innerHTML = 'Oops! There was a problem submitting your form.';
+                  status.innerHTML = getMsg('contact.formError');
                 }
                 status.classList.add('text-danger');
               });
             }
           }).catch(function () {
-            status.innerHTML = 'Oops! There was a problem submitting your form.';
+            status.innerHTML = getMsg('contact.formError');
             status.classList.add('text-danger');
           });
         }
