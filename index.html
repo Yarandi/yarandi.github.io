@@ -89,13 +89,21 @@
       .marquee-card .marquee-card-img-wrap {
         aspect-ratio: 16/10;
         overflow: hidden;
-        background: #f0f0f0;
+        background: #050505;
+        position: relative;
       }
-      .marquee-card .marquee-card-img-wrap img.img-fluid {
+      .marquee-card .marquee-card-img-wrap img {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         display: block;
+        transition: opacity .35s ease;
+        opacity: 0;
+      }
+      .marquee-card .marquee-card-img-wrap img.is-active {
+        opacity: 1;
       }
       .marquee-card .card-body { min-height: 5.5rem; }
       #cards-carousel-section .project-card { background: #fff; }
@@ -661,28 +669,28 @@ Software Engineer with 13+ years building scalable web applications, backend sys
             'nav.sitemap': 'Sitemap',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online Radio Platform',
-            'card1.detail': 'Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 100+ active users within 3 months.',
+            'card1.detail': 'Cloud-native online radio platform built with Golang, gRPC and Docker. Designed for 24/7 streaming, horizontal scaling and low‑latency audio delivery; MVP reached 100+ active listeners within 3 months.',
             'card2.title': 'Mizner Mobile App',
             'card2.excerpt': 'Residents & HOA platform',
-            'card2.detail': 'Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.',
+            'card2.detail': 'Backend and integration work for a residents–HOA mobile app: secure auth, notifications and data APIs. Modernized legacy PHP code to improve performance, remove duplication and simplify future feature work.',
             'card3.title': 'AdimAdim',
             'card3.excerpt': 'Charity platform',
-            'card3.detail': 'Redesigned platform architecture for multilingual support. Charity and community-focused application.',
+            'card3.detail': 'Architected a multilingual donation platform for a non‑profit, with clean separation of core domain logic, payment flows and content. Focus on reliability, auditability and transparent reporting for donors and admins.',
             'card4.title': 'LendTech Gateway',
             'card4.excerpt': 'Adopted by 3 major companies',
-            'card4.detail': 'Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.',
+            'card4.detail': 'Designed and implemented a LendTech integration gateway used by banks and lenders: unified APIs for KYC, credit checks and payouts, robust error handling and observability so new partners can be onboarded with minimal friction.',
             'card5.title': 'WordPress Plugins',
             'card5.excerpt': 'Used by 60+ merchants',
-            'card5.detail': 'Created reusable WordPress plugins used by 60+ merchants. E‑commerce and store extensions.',
+            'card5.detail': 'Engineered reusable, configuration‑driven WordPress plugins that power e‑commerce features for dozens of merchants, with careful attention to performance, upgrade safety and compatibility across hosting environments.',
             'card6.title': 'Rehabilitation Analytics',
             'card6.excerpt': 'AI-driven rehab dashboards & prediction',
-            'card6.detail': 'Empowering healthcare professionals with AI-driven insights and data science for rehabilitation management. Rehab admission prediction (IRF, SNF, Home Health); AI clinical summaries; strategic dashboards unifying CMS, claims, and market data; LLM-powered automation for summarization and insights.',
+            'card6.detail': 'AI‑driven analytics platform for rehabilitation leadership teams: admission prediction (IRF, SNF, Home Health), clinical‑note summarization with LLMs, and unified dashboards over CMS, claims and market data so executives can make faster, data‑backed decisions.',
             'card7.title': 'Restaurant Management System',
             'card7.excerpt': 'Laravel · Menu, reservations, QR menu',
-            'card7.detail': 'Full-stack Laravel restaurant management system with a customer-facing website (menu, reservations, reviews, multi-language) and an admin panel for menu, orders, reservations, and promotions, including a QR code for the digital menu.',
+            'card7.detail': 'Full‑stack Laravel system for restaurants: public site with SEO‑friendly menu, reservations and reviews, plus an admin dashboard for menus, reservations, orders, promos and QR‑based digital menus, all built with multi‑language support in mind.',
             'card8.title': 'Booking & Business Platform',
             'card8.excerpt': 'DACH · Barbers, salons, gyms · Multilingual',
-            'card8.detail': 'Multilingual booking and business-management platform for immigrant-run service businesses (barbers, gyms, salons) in Austria/DACH. Owners: profile, hours, services, prices, bookings, invoices, wallet; public storefront /b/{subdomain}. Customers: discover, book, cancel via signed link, invoices, ratings. Admins: users, businesses, locales (incl. RTL e.g. Persian). EN, DE, TR, RO, Serbian, FA; role-based access (customer, owner, superadmin).',
+            'card8.detail': 'Multilingual booking and business platform for barbers, salons and gyms in the DACH region. Owners manage services, pricing, hours, bookings, invoices and wallets; customers discover and book online; admins oversee tenants and locales (incl. RTL) via a role‑based, multi‑language backend.',
             'ctaProject.title': 'Ready to Start Your Project',
             'ctaProject.body': "I'm ready to start working on your projects. Just tell me what you need, and I'll bring it to life. Whether it's building a new backend system, developing APIs, or scaling existing infrastructure, I'm here to help turn your ideas into reality.",
             'ctaProject.button': 'Get in touch',
@@ -726,28 +734,28 @@ Software Engineer with 13+ years building scalable web applications, backend sys
             'nav.sitemap': 'Sitemap',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online-Radio-Plattform',
-            'card1.detail': 'Skalierbare Radio-Streaming-Plattform mit Golang und gRPC, vollständig mit Docker. MVP zog innerhalb von 3 Monaten 100+ aktive Nutzer an.',
+            'card1.detail': 'Cloud-native Radio-Streaming-Plattform mit Golang, gRPC und Docker. Ausgelegt auf 24/7-Betrieb, horizontale Skalierung und niedrige Latenz; das MVP erreichte innerhalb von 3 Monaten über 100 aktive Hörer.',
             'card2.title': 'Mizner Mobile App',
             'card2.excerpt': 'Plattform für Bewohner & HOA',
-            'card2.detail': 'Features für die Mobile App zur Verbindung von Bewohnern und HOA entwickelt. Legacy-Code refaktoriert für bessere Performance und UX.',
+            'card2.detail': 'Backend- und Integrationsarbeit für eine App, die Bewohner und HOA verbindet: sichere Authentifizierung, Benachrichtigungen und Daten-APIs. Legacy-PHP-Code modernisiert, um Performance, Wartbarkeit und künftige Erweiterbarkeit zu verbessern.',
             'card3.title': 'AdimAdim',
             'card3.excerpt': 'Spendenplattform',
-            'card3.detail': 'Plattformarchitektur für mehrsprachige Unterstützung überarbeitet. Spenden- und Community-orientierte Anwendung.',
+            'card3.detail': 'Mehrsprachige Spendenplattform für eine gemeinnützige Organisation entworfen – mit klarer Trennung von Domainlogik, Zahlungsabläufen und Inhalten sowie Fokus auf Zuverlässigkeit, Transparenz und nachvollziehbare Reports.',
             'card4.title': 'LendTech Gateway',
             'card4.excerpt': 'Von 3 großen Unternehmen übernommen',
-            'card4.detail': 'LendTech-Gateway entwickelt, der von 3 großen Unternehmen übernommen wurde. Zahlungs- und Kreditintegration.',
+            'card4.detail': 'LendTech-Integrations-Gateway für Banken und Kreditgeber konzipiert und umgesetzt: vereinheitlichte APIs für KYC, Bonitätsprüfung und Auszahlungen mit robuster Fehlertoleranz und Observability, damit neue Partner schnell angebunden werden können.',
             'card5.title': 'WordPress-Plugins',
             'card5.excerpt': 'Von 60+ Händlern genutzt',
-            'card5.detail': 'Wiederverwendbare WordPress-Plugins erstellt, die von 60+ Händlern genutzt werden. E-Commerce- und Shop-Erweiterungen.',
+            'card5.detail': 'Wiederverwendbare, konfigurationsgetriebene WordPress-Plugins entwickelt, die E-Commerce-Funktionalität für Dutzende Händler bereitstellen – mit Fokus auf Performance, Update-Sicherheit und breite Hosting-Kompatibilität.',
             'card6.title': 'Rehabilitation Analytics',
             'card6.excerpt': 'KI-gestützte Reha-Dashboards & Vorhersage',
-            'card6.detail': 'KI-gestützte Einblicke und Data Science für modernes Reha-Management und optimierte Patientenversorgung. Reha-Aufnahmevorhersage (IRF, SNF, Home Health); KI-Clinical Summaries; strategische Dashboards; LLM-Automatisierung.',
+            'card6.detail': 'KI-gestützte Analytics-Plattform für Führungskräfte im Reha-Bereich: Vorhersage von Aufnahmen (IRF, SNF, Home Health), klinische Zusammenfassungen mit LLMs und strategische Dashboards auf Basis von CMS-, Claims- und Marktdaten für schnellere, datenbasierte Entscheidungen.',
             'card7.title': 'Restaurant-Managementsystem',
             'card7.excerpt': 'Laravel · Menü, Reservierungen, QR-Menü',
-            'card7.detail': 'Vollständiges Laravel-Restaurant-Managementsystem mit kundenorientierter Website (Menü, Reservierungen, Bewertungen, Mehrsprachigkeit) und Admin-Bereich für Menü, Bestellungen, Reservierungen und Aktionen inkl. QR-Code für das digitale Menü.',
+            'card7.detail': 'Vollständiges Laravel-Restaurant-Managementsystem mit öffentlicher Website (Speisekarte, Reservierungen, Bewertungen, Mehrsprachigkeit) sowie Admin-Panel für Speisekarten, Reservierungen, Bestellungen, Aktionen und QR-basierte digitale Menüs.',
             'card8.title': 'Buchungs- & Geschäftsplattform',
             'card8.excerpt': 'DACH · Friseure, Salons, Fitness · Mehrsprachig',
-            'card8.detail': 'Mehrsprachige Buchungs- und Geschäftsplattform für von Migranten geführte Dienstleister (Friseure, Fitnessstudios, Salons) in Österreich/DACH. Inhaber: Profil, Öffnungszeiten, Leistungen, Preise, Buchungen, Rechnungen, Wallet; öffentliche Storefront /b/{subdomain}. Kunden: suchen, buchen, per Link stornieren, Rechnungen, Bewertungen. Admins: Nutzer, Unternehmen, Locales (inkl. RTL z. B. Persisch). EN, DE, TR, RO, Serbisch, FA; rollenbasierter Zugriff (Kunde, Inhaber, Superadmin).',
+            'card8.detail': 'Mehrsprachige Buchungs- und Geschäftsplattform für Friseure, Salons und Fitnessstudios im DACH-Raum. Inhaber verwalten Leistungen, Preise, Öffnungszeiten, Buchungen, Rechnungen und Wallets; Kunden entdecken und buchen online; Admins steuern Mandanten, Sprachen (inkl. RTL) und Rollen über ein mehrsprachiges Backend.',
             'ctaProject.title': 'Bereit für Ihr Projekt',
             'ctaProject.body': "Ich bin bereit, an Ihren Projekten zu arbeiten. Sagen Sie mir einfach, was Sie brauchen – ich setze es um. Ob neues Backend-System, API-Entwicklung oder Skalierung bestehender Infrastruktur: Ich helfe dabei, Ihre Ideen in die Tat umzusetzen.",
             'ctaProject.button': 'Kontakt aufnehmen',
@@ -826,6 +834,21 @@ Software Engineer with 13+ years building scalable web applications, backend sys
             return (t[lang] && t[lang][key] != null) ? t[lang][key] : (t.en[key] != null ? t.en[key] : key);
           } catch (e) { return key; }
         };
+      })();
+      (function () {
+        var galleries = document.querySelectorAll('.marquee-card .marquee-card-img-wrap');
+        galleries.forEach(function (wrap) {
+          var imgs = wrap.querySelectorAll('img');
+          if (!imgs.length) return;
+          var current = 0;
+          imgs[current].classList.add('is-active');
+          if (imgs.length < 2) return;
+          wrap.addEventListener('click', function () {
+            imgs[current].classList.remove('is-active');
+            current = (current + 1) % imgs.length;
+            imgs[current].classList.add('is-active');
+          });
+        });
       })();
     </script>
     <script>
