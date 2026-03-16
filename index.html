@@ -105,24 +105,69 @@
       .marquee-card .marquee-card-img-wrap img.is-active {
         opacity: 1;
       }
-      .marquee-card .card-body { min-height: 5.5rem; }
-      #cards-carousel-section .project-card { background: #fff; }
-      #cards-carousel-section .project-card .card-body { background: #fff; color: inherit; }
-      #cards-carousel-section .card-hover-detail { position: relative; }
-      #cards-carousel-section .card-detail-overlay {
+      .marquee-card .marquee-card-img-wrap.has-multi .carousel-nav {
         position: absolute;
         inset: 0;
-        background: rgba(0,0,0,0.88);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+        opacity: 0;
+        transition: opacity .25s ease;
+        pointer-events: none;
+      }
+      .marquee-card .marquee-card-img-wrap.has-multi:hover .carousel-nav {
+        opacity: 1;
+        pointer-events: none;
+      }
+      .marquee-card .marquee-card-img-wrap.has-multi .carousel-nav-btn {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        border: 0;
+        background: rgba(0,0,0,0.6);
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1.25rem;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity .25s ease, visibility .25s ease;
+        font-size: 0.8rem;
+        cursor: pointer;
+        pointer-events: auto;
       }
-      #cards-carousel-section .card-hover-detail:hover .card-detail-overlay { opacity: 1; visibility: visible; }
+      .marquee-card .marquee-card-img-wrap.has-multi .carousel-nav-btn:focus {
+        outline: 2px solid rgba(255,255,255,0.75);
+        outline-offset: 1px;
+      }
+      .marquee-card .card-body .carousel-dots {
+        display: flex;
+        gap: 0.45rem;
+        justify-content: center;
+        margin-bottom: 0.25rem;
+        align-items: center;
+      }
+      .marquee-card .card-body .carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #d1d5db;
+        opacity: 0.5;
+        cursor: pointer;
+      }
+      .marquee-card .card-body .carousel-dot.is-active {
+        opacity: 1;
+        background: #4b5563;
+      }
+      .marquee-card .card-body { min-height: 5.5rem; }
+      #cards-carousel-section .project-card { background: #fff; }
+      #cards-carousel-section .project-card .card-body { background: #fff; color: inherit; }
+      #cards-carousel-section .project-card .card-title { color: #111827; }
+      #cards-carousel-section .project-card .card-text.text-700 {
+        color: #4b5563;
+        font-weight: 500;
+      }
+      #cards-carousel-section .card-hover-detail { position: relative; }
+      /* Hide text overlay; hover will now be used for image carousel instead */
+      #cards-carousel-section .card-detail-overlay { display: none !important; }
       @media (min-width: 992px) {
         .navbar-collapse { overflow: visible !important; }
       }
@@ -139,7 +184,11 @@
       [data-theme="dark"] #cards-carousel-section { background: linear-gradient(to bottom, transparent 0%, transparent 35%, #1a1a1f 65%, #1a1a1f 100%); }
       [data-theme="dark"] #cards-carousel-section .project-card,
       [data-theme="dark"] #cards-carousel-section .project-card .card-body { background: #25252b !important; color: #e4e4e7 !important; }
-      [data-theme="dark"] #cards-carousel-section .card-detail-overlay { background: rgba(0,0,0,0.92); }
+      [data-theme="dark"] #cards-carousel-section .project-card .card-text.text-700 { color: #d4d4d8 !important; }
+      [data-theme="dark"] #cards-carousel-section .card-detail-overlay { display: none !important; }
+      [data-theme="dark"] .marquee-card .marquee-card-img-wrap.has-multi .carousel-nav-btn {
+        background: rgba(15,23,42,0.8);
+      }
       [data-theme="dark"] .text-700 { color: #a1a1aa !important; }
       [data-theme="dark"] .bg-1100 { background: #16161a !important; }
       [data-theme="dark"] .navbar .dropdown-menu { background: #25252b !important; border-color: #3f3f46 !important; }
@@ -254,175 +303,196 @@
       <!-- ============================================-->
 
 
-      <!-- Projects: uniform project cards (image + title + excerpt), marquee, hover for details. 5 items only. -->
+      <!-- ============================================-->
+      <!--  PROJECTS SECTION                            -->
+      <!--  Horizontal marquee of project cards.         -->
+      <!--  - Each card: image(s), title, short excerpt.  -->
+      <!--  - Hover shows full description overlay.      -->
+      <!--  - Multiple images: click to cycle (JS).      -->
+      <!--  - i18n: use data-i18n="cardN.title|excerpt|detail". -->
+      <!--  - Add translations in the t.en / t.de objects.   -->
+      <!-- ============================================-->
+      <!--
+        TEMPLATE — To add a new project:
+        1. Copy one block below (from <!-- Project N: ... to </div>).
+        2. Give it the next card number (card9, card10, …).
+        3. Add one or more <img> in marquee-card-img-wrap (first = default).
+        4. Add cardN.title, cardN.excerpt, cardN.detail to t.en and t.de in <script>.
+        5. Duplicate the same block again after "duplicate set" for seamless marquee loop.
+      -->
       <section class="py-5 py-lg-6 overflow-hidden" id="cards-carousel-section">
         <div class="container container-wide-xl mb-4">
         </div>
         <div class="marquee-card-track-wrapper">
           <div class="marquee-card-track" id="marqueeCardTrack">
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/nownava.jpg" alt="Nownava" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card1.title">Nownava</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card1.excerpt">Online Radio Platform</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card1.detail">Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 100+ active users within 3 months.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/mizner.jpeg" alt="Mizner Mobile App" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card2.title">Mizner Mobile App</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card2.excerpt">Residents &amp; HOA platform</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card2.detail">Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/adimadim.jpeg" alt="AdimAdim" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card3.title">AdimAdim</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card3.excerpt">Charity platform</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card3.detail">Redesigned platform architecture for multilingual support. Charity and community-focused application.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/lendtech.png" alt="LendTech Gateway" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card4.title">LendTech Gateway</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card4.excerpt">Adopted by 6 major companies</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card4.detail">Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/project-placeholder.svg" alt="Project" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card5.title">WordPress Plugins</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card5.excerpt">Used by 75+ merchants</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card5.detail">Created reusable WordPress plugins used by 75+ merchants. E‑commerce and store extensions.</p></div>
-            </div>
+
+
+
+            <!-- Project 6: Rehabilitation Analytics (BEGIN) -->
             <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
               <div class="marquee-card-img-wrap">
                 <img src="assets/img/projects/rehab-dashboard.png" alt="Rehabilitation Leadership Dashboard" class="img-fluid">
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card6.title">Rehabilitation Analytics</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card6.excerpt">AI-driven rehab dashboards &amp; prediction</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card6.excerpt">AI-driven rehab dashboards &amp; prediction</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card6.detail">
+                  Empowering healthcare professionals with AI-driven insights and data science for rehabilitation management. Rehab admission prediction (IRF, SNF, Home Health); AI clinical summaries; strategic dashboards unifying CMS, claims, and market data; LLM-powered automation for summarization and insights.
+                </p>
               </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card6.detail">Empowering healthcare professionals with AI-driven insights and data science for rehabilitation management. Rehab admission prediction (IRF, SNF, Home Health); AI clinical summaries; strategic dashboards unifying CMS, claims, and market data; LLM-powered automation for summarization and insights.</p></div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card6.detail">Empowering healthcare professionals with AI-driven insights and data science for rehabilitation management. Rehab admission prediction (IRF, SNF, Home Health); AI clinical summaries; strategic dashboards unifying CMS, claims, and market data; LLM-powered automation for summarization and insights.</p>
+              </div>
             </div>
+            <!-- Project 6: Rehabilitation Analytics (END) -->
+
+            <!-- Project 7: Restaurant Management System (multi-image hover carousel) (BEGIN) -->
             <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
               <div class="marquee-card-img-wrap">
                 <img src="assets/img/projects/resturant-cms-management-dashboard.png" alt="Restaurant Management System" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card7.title">Restaurant Management System</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card7.excerpt">Laravel · Menu, reservations, QR menu</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card7.detail">Full-stack Laravel restaurant management system with a customer-facing website (menu, reservations, reviews, multi-language) and an admin panel for menu, orders, reservations, and promotions, including a QR code for the digital menu.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/booking-SaaS.png" alt="Multilingual Booking & Business Platform" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card8.title">Booking & Business Platform</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card8.excerpt">DACH · Barbers, salons, gyms · Multilingual</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card8.detail">Multilingual booking and business-management platform for immigrant-run service businesses (barbers, gyms, salons) in Austria/DACH. Owners: profile, hours, services, prices, bookings, invoices, wallet; public storefront /b/{subdomain}. Customers: discover, book, cancel via signed link, invoices, ratings. Admins: users, businesses, locales (incl. RTL e.g. Persian). EN, DE, TR, RO, Serbian, FA; role-based access (customer, owner, superadmin).</p></div>
-            </div>
-            <!-- duplicate set for seamless loop (8 items) -->
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/nownava.jpg" alt="Nownava" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card1.title">Nownava</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card1.excerpt">Online Radio Platform</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card1.detail">Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 100+ active users within 3 months.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/mizner.jpeg" alt="Mizner Mobile App" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card2.title">Mizner Mobile App</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card2.excerpt">Residents &amp; HOA platform</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card2.detail">Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/adimadim.jpeg" alt="AdimAdim" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card3.title">AdimAdim</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card3.excerpt">Charity platform</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card3.detail">Redesigned platform architecture for multilingual support. Charity and community-focused application.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/lendtech.png" alt="LendTech Gateway" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card4.title">LendTech Gateway</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card4.excerpt">Adopted by 3 major companies</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card4.detail">Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/project-placeholder.svg" alt="Project" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card5.title">WordPress Plugins</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card5.excerpt">Used by 60+ merchants</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card5.detail">Created reusable WordPress plugins used by 60+ merchants. E‑commerce and store extensions.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/rehab-dashboard.png" alt="Rehabilitation Leadership Dashboard" class="img-fluid">
-              </div>
-              <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card6.title">Rehabilitation Analytics</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card6.excerpt">AI-driven rehab dashboards &amp; prediction</p>
-              </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card6.detail">Empowering healthcare professionals with AI-driven insights and data science for rehabilitation management. Rehab admission prediction (IRF, SNF, Home Health); AI clinical summaries; strategic dashboards unifying CMS, claims, and market data; LLM-powered automation for summarization and insights.</p></div>
-            </div>
-            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
-              <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/resturant-cms-management-dashboard.png" alt="Restaurant Management System" class="img-fluid">
-                <img src="assets/img/projects/resturant-website.png" alt="Restaurant Management System" class="img-fluid">
+                <img src="assets/img/projects/resturant-cms-management-website.jpeg" alt="Restaurant Management System" class="img-fluid">
                 <img src="assets/img/projects/resturant-management-01.jpeg" alt="Restaurant Management System" class="img-fluid">
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card7.title">Restaurant Management System</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card7.excerpt">Laravel · Menu, reservations, QR menu</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card7.excerpt">Laravel · Menu, reservations, QR menu</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card7.detail">
+                  Full-stack Laravel restaurant management system with a customer-facing website (menu, reservations, reviews, multi-language) and an admin panel for menu, orders, reservations, and promotions, including a QR code for the digital menu.
+                </p>
               </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card7.detail">Full-stack Laravel restaurant management system with a customer-facing website (menu, reservations, reviews, multi-language) and an admin panel for menu, orders, reservations, and promotions, including a QR code for the digital menu.</p></div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card7.detail">Full-stack Laravel restaurant management system with a customer-facing website (menu, reservations, reviews, multi-language) and an admin panel for menu, orders, reservations, and promotions, including a QR code for the digital menu.</p>
+              </div>
             </div>
+            <!-- Project 7: Restaurant Management System (multi-image: click to cycle) (END) -->
+
+            <!-- Project 8: Booking & Business Platform (BEGIN) -->
             <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
               <div class="marquee-card-img-wrap">
                 <img src="assets/img/projects/booking-SaaS.png" alt="Multilingual Booking & Business Platform" class="img-fluid">
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card8.title">Booking & Business Platform</h5>
-                <p class="card-text text-700 small mb-0" data-i18n="card8.excerpt">DACH · Barbers, salons, gyms · Multilingual</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card8.excerpt">DACH · Barbers, salons, gyms · Multilingual</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card8.detail">
+                  Multilingual booking and business-management platform for immigrant-run service businesses (barbers, gyms, salons) in Austria/DACH. Owners: profile, hours, services, prices, bookings, invoices, wallet; public storefront /b/{subdomain}. Customers: discover, book, cancel via signed link, invoices, ratings. Admins: users, businesses, locales (incl. RTL e.g. Persian). EN, DE, TR, RO, Serbian, FA; role-based access (customer, owner, superadmin).
+                </p>
               </div>
-              <div class="card-detail-overlay"><p class="mb-0 small" data-i18n="card8.detail">Multilingual booking and business-management platform for immigrant-run service businesses (barbers, gyms, salons) in Austria/DACH. Owners: profile, hours, services, prices, bookings, invoices, wallet; public storefront /b/{subdomain}. Customers: discover, book, cancel via signed link, invoices, ratings. Admins: users, businesses, locales (incl. RTL e.g. Persian). EN, DE, TR, RO, Serbian, FA; role-based access (customer, owner, superadmin).</p></div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card8.detail">Multilingual booking and business-management platform for immigrant-run service businesses (barbers, gyms, salons) in Austria/DACH. Owners: profile, hours, services, prices, bookings, invoices, wallet; public storefront /b/{subdomain}. Customers: discover, book, cancel via signed link, invoices, ratings. Admins: users, businesses, locales (incl. RTL e.g. Persian). EN, DE, TR, RO, Serbian, FA; role-based access (customer, owner, superadmin).</p>
+              </div>
             </div>
+            <!-- Project 8: Booking & Business Platform (END) -->
+
+            <!-- Project 9: Multilingual Ecommerce (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/ecmmerce-front.jpeg" alt="Multilingual Ecommerce – Storefront" class="img-fluid">
+                <img src="assets/img/projects/ecommerce-back-panel.png" alt="Multilingual Ecommerce – Back Panel" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card9.title">Multilingual Ecommerce</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card9.excerpt">Multi-language store & admin</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card9.detail">
+                  Full-stack multilingual e-commerce platform built with Laravel 10, PHP 8.1+ and MySQL, using Blade views, CoreUI-powered admin and a Cozastore-based storefront. Architecture follows MVC with Repository and Service layers, pluggable payment gateways behind a PaymentManager, view composers and custom helpers (breadcrumbs, currency, dates, captchas). Features include products with variants and soft deletes, categories, brands, multi-vendor orders, cart and checkout with coupons and refunds, plus Yajra DataTables, translatable entities, banners, menus, promotions, attributes, customer/vendor auth (incl. OTP), wishlist, reviews, search, multi-language and multi-currency (incl. Toman/IRR, Jalali dates and exchange handling).
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card9.detail">Full-stack multilingual e-commerce platform built with Laravel 10, PHP 8.1+ and MySQL, using Blade views, CoreUI-powered admin and a Cozastore-based storefront. Architecture follows MVC with Repository and Service layers, pluggable payment gateways behind a PaymentManager, view composers and custom helpers (breadcrumbs, currency, dates, captchas). Features include products with variants and soft deletes, categories, brands, multi-vendor orders, cart and checkout with coupons and refunds, plus Yajra DataTables, translatable entities, banners, menus, promotions, attributes, customer/vendor auth (incl. OTP), wishlist, reviews, search, multi-language and multi-currency (incl. Toman/IRR, Jalali dates and exchange handling).</p>
+              </div>
+            </div>
+            <!-- Project 9: Multilingual Ecommerce (END) -->
+
+                        <!-- Project 1: Nownava (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/nownava.jpg" alt="Nownava" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card1.title">Nownava</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card1.excerpt">Online Radio Platform</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card1.detail">
+                  Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 400+ active users within 2 months.
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card1.detail">Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 400+ active users within 2 months.</p>
+              </div>
+            </div>
+            <!-- Project 1: Nownava (END) -->
+
+            <!-- Project 2: Mizner Mobile App (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/mizner.jpeg" alt="Mizner Mobile App" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card2.title">Mizner Mobile App</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card2.excerpt">Residents &amp; HOA platform</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card2.detail">
+                  Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card2.detail">Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.</p>
+              </div>
+            </div>
+            <!-- Project 2: Mizner Mobile App (END) -->
+
+            <!-- Project 3: AdimAdim (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/adimadim.jpeg" alt="AdimAdim" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card3.title">AdimAdim</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card3.excerpt">Charity platform</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card3.detail">
+                  Redesigned platform architecture for multilingual support. Charity and community-focused application.
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card3.detail">Redesigned platform architecture for multilingual support. Charity and community-focused application.</p>
+              </div>
+            </div>
+            <!-- Project 3: AdimAdim (END) -->
+
+            <!-- Project 4: LendTech Gateway (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/lendtech.png" alt="LendTech Gateway" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card4.title">LendTech Gateway</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card4.excerpt">Adopted by 6 major companies</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card4.detail">
+                  Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card4.detail">Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.</p>
+              </div>
+            </div>
+            <!-- Project 4: LendTech Gateway (END) -->
+
+            <!-- Project 5: WordPress Plugins (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/project-placeholder.svg" alt="Project" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card5.title">WordPress Plugins</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card5.excerpt">Used by 75+ merchants</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card5.detail">
+                  Created reusable WordPress plugins used by 75+ merchants. E‑commerce and store extensions.
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card5.detail">Created reusable WordPress plugins used by 75+ merchants. E‑commerce and store extensions.</p>
+              </div>
+            </div>
+            <!-- Project 5: WordPress Plugins (END) -->
+
           </div>
         </div>
       </section>
@@ -660,6 +730,7 @@
         var options = document.querySelectorAll('.lang-option');
         var langMap = { en: 'EN', de: 'DE' };
 
+        // i18n strings. For each new project card add: cardN.title, cardN.excerpt, cardN.detail in both en and de.
         var t = {
           en: {
             'hero.title': 'Hey, I\'m Hamed ',
@@ -672,7 +743,7 @@
             'nav.sitemap': 'Sitemap',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online Radio Platform',
-            'card1.detail': 'Cloud-native online radio platform built with Golang, gRPC and Docker. Designed for 24/7 streaming, horizontal scaling and low‑latency audio delivery; MVP reached 100+ active listeners within 3 months.',
+            'card1.detail': 'Cloud-native online radio platform built with Golang, gRPC and Docker. Designed for 24/7 streaming, horizontal scaling and low‑latency audio delivery; MVP reached 400+ active listeners within 2 months.',
             'card2.title': 'Mizner Mobile App',
             'card2.excerpt': 'Residents & HOA platform',
             'card2.detail': 'Backend and integration work for a residents–HOA mobile app: secure auth, notifications and data APIs. Modernized legacy PHP code to improve performance, remove duplication and simplify future feature work.',
@@ -694,6 +765,9 @@
             'card8.title': 'Booking & Business Platform',
             'card8.excerpt': 'DACH · Barbers, salons, gyms · Multilingual',
             'card8.detail': 'Multilingual booking and business platform for barbers, salons and gyms in the DACH region. Owners manage services, pricing, hours, bookings, invoices and wallets; customers discover and book online; admins oversee tenants and locales (incl. RTL) via a role‑based, multi‑language backend.',
+            'card9.title': 'Multilingual Ecommerce',
+            'card9.excerpt': 'Multi-language store & admin',
+            'card9.detail': 'Full-stack multilingual e-commerce platform built with Laravel 10, PHP 8.1+ and MySQL, using Blade views, CoreUI-powered admin and a Cozastore-based storefront. Architecture follows MVC with Repository and Service layers, pluggable payment gateways behind a PaymentManager, view composers and custom helpers (breadcrumbs, currency, dates, captchas). Features include products with variants and soft deletes, categories, brands, multi-vendor orders, cart and checkout with coupons and refunds, plus Yajra DataTables, translatable entities, banners, menus, promotions, attributes, customer/vendor auth (incl. OTP), wishlist, reviews, search, multi-language and multi-currency (incl. Toman/IRR, Jalali dates and exchange handling).',
             'ctaProject.title': 'Ready to Start Your Project',
             'ctaProject.body': "I'm ready to start working on your projects. Just tell me what you need, and I'll bring it to life. Whether it's building a new backend system, developing APIs, or scaling existing infrastructure, I'm here to help turn your ideas into reality.",
             'ctaProject.button': 'Get in touch',
@@ -726,6 +800,7 @@
             'footer.purchase': 'Purchase',
             'footer.copyright': '© 2026 Hamed Yarandi.'
           },
+          // German (same keys as en; add cardN.title, cardN.excerpt, cardN.detail for new projects)
           de: {
             'hero.title': 'Hey, ich bin Hamed ',
             'hero.titleBold': 'Yarandi',
@@ -759,6 +834,9 @@
             'card8.title': 'Buchungs- & Geschäftsplattform',
             'card8.excerpt': 'DACH · Friseure, Salons, Fitness · Mehrsprachig',
             'card8.detail': 'Mehrsprachige Buchungs- und Geschäftsplattform für Friseure, Salons und Fitnessstudios im DACH-Raum. Inhaber verwalten Leistungen, Preise, Öffnungszeiten, Buchungen, Rechnungen und Wallets; Kunden entdecken und buchen online; Admins steuern Mandanten, Sprachen (inkl. RTL) und Rollen über ein mehrsprachiges Backend.',
+            'card9.title': 'Mehrsprachiger E-Commerce',
+            'card9.excerpt': 'Mehrsprachiger Shop & Admin',
+            'card9.detail': 'Vollständige mehrsprachige E-Commerce-Plattform mit kundenorientiertem Shop (Produktkatalog, Warenkorb, Checkout) und Admin-Panel für Produkte, Kategorien, Bestellungen und mehrsprachige Inhalte (z. B. EN, DE). Unterstützt Varianten, Preise und sprachspezifische SEO-Slugs.',
             'ctaProject.title': 'Bereit für Ihr Projekt',
             'ctaProject.body': "Ich bin bereit, an Ihren Projekten zu arbeiten. Sagen Sie mir einfach, was Sie brauchen – ich setze es um. Ob neues Backend-System, API-Entwicklung oder Skalierung bestehender Infrastruktur: Ich helfe dabei, Ihre Ideen in die Tat umzusetzen.",
             'ctaProject.button': 'Kontakt aufnehmen',
@@ -846,10 +924,86 @@
           var current = 0;
           imgs[current].classList.add('is-active');
           if (imgs.length < 2) return;
-          wrap.addEventListener('click', function () {
+
+          wrap.classList.add('has-multi');
+
+          // dots container in card body
+          var card = wrap.closest('.marquee-card');
+          var body = card ? card.querySelector('.card-body') : null;
+          var dotsWrap = null;
+          var dots = [];
+          if (body) {
+            dotsWrap = document.createElement('div');
+            dotsWrap.className = 'carousel-dots';
+            imgs.forEach(function (_, idx) {
+              var d = document.createElement('div');
+              d.className = 'carousel-dot' + (idx === 0 ? ' is-active' : '');
+              d.setAttribute('aria-label', 'Go to image ' + (idx + 1));
+              d.addEventListener('click', function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                showAt(idx);
+              });
+              dotsWrap.appendChild(d);
+              dots.push(d);
+            });
+            body.insertBefore(dotsWrap, body.firstChild);
+          }
+
+          var nav = document.createElement('div');
+          nav.className = 'carousel-nav';
+          var prevBtn = document.createElement('button');
+          prevBtn.type = 'button';
+          prevBtn.className = 'carousel-nav-btn carousel-nav-btn-prev';
+          prevBtn.setAttribute('aria-label', 'Previous image');
+          prevBtn.innerHTML = '&#10094;';
+          var nextBtn = document.createElement('button');
+          nextBtn.type = 'button';
+          nextBtn.className = 'carousel-nav-btn carousel-nav-btn-next';
+          nextBtn.setAttribute('aria-label', 'Next image');
+          nextBtn.innerHTML = '&#10095;';
+          nav.appendChild(prevBtn);
+          nav.appendChild(nextBtn);
+          wrap.appendChild(nav);
+
+          var intervalId = null;
+
+          function showAt(index) {
             imgs[current].classList.remove('is-active');
-            current = (current + 1) % imgs.length;
+            if (dots[current]) dots[current].classList.remove('is-active');
+            current = (index + imgs.length) % imgs.length;
             imgs[current].classList.add('is-active');
+            if (dots[current]) dots[current].classList.add('is-active');
+          }
+
+          function startCarousel() {
+            if (intervalId) return;
+            intervalId = setInterval(function () {
+              showAt(current + 1);
+            }, 1200);
+          }
+
+          function stopCarousel() {
+            if (intervalId) {
+              clearInterval(intervalId);
+              intervalId = null;
+            }
+            showAt(0);
+          }
+
+          wrap.addEventListener('mouseenter', startCarousel);
+          wrap.addEventListener('mouseleave', stopCarousel);
+
+          prevBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            showAt(current - 1);
+          });
+
+          nextBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            showAt(current + 1);
           });
         });
       })();
