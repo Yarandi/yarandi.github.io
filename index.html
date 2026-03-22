@@ -99,11 +99,23 @@
         height: 100%;
         object-fit: contain;
         display: block;
-        transition: opacity .35s ease;
+        transition: opacity .35s ease, filter 0.45s ease;
         opacity: 0;
+        filter: grayscale(1);
       }
       .marquee-card .marquee-card-img-wrap img.is-active {
         opacity: 1;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .marquee-card:hover .marquee-card-img-wrap img,
+        .marquee-card:focus-within .marquee-card-img-wrap img {
+          filter: grayscale(0);
+        }
+      }
+      @media (hover: none) {
+        .marquee-card .marquee-card-img-wrap img {
+          filter: none;
+        }
       }
       .marquee-card .marquee-card-img-wrap.has-multi .carousel-nav {
         position: absolute;
@@ -251,7 +263,7 @@
       .value-proposition-strip .value-prop-title {
         color: #fff;
         letter-spacing: 0.04em;
-        font-size: 0.7rem;
+        font-size: 0.9rem;
         text-transform: uppercase;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 12px rgba(0, 0, 0, 0.45);
       }
@@ -319,7 +331,7 @@
       <div class="container container-wide-xl"><a class="navbar-brand ls-2 p-0 me-4 fw-semibold text-white text-decoration-none" href="index.html">Hamed Yarandi</a><button class="navbar-toggler hamburger hamburger--emphatic" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbarCollapse" aria-controls="primaryNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
         <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
           <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="#intro" data-i18n="nav.intro">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#intro" data-i18n="nav.intro">Services</a></li>
             <li class="nav-item"><a class="nav-link" href="#cards-carousel-section" data-i18n="nav.work">Work</a></li>
             <li class="nav-item"><a class="nav-link" href="#why-choose-me" data-i18n="nav.whyChoose">Why me</a></li>
             <li class="nav-item"><a class="nav-link" href="#contacts" data-i18n="nav.contact">Contact</a></li>
@@ -368,7 +380,7 @@
               <strong class="fw-bold" data-i18n="hero.titleBold">Grow.</strong>
             </h1>
             
-            <p class="text-white text-100 fs-4 mb-2 text-center" data-i18n="hero.role">Independent builder · products, platforms &amp; operations</p>
+            <p class="text-white text-100 fs-4 mb-2 text-center" data-i18n="hero.role">Powering your business online</p>
             <!--<p class="text-white text-300 opacity-75 small mb-4 text-center" data-i18n="hero.location">Innsbruck, Austria · 13+ years turning business problems into live systems</p>-->
             <div class="col-lg-10 col-md-7 px-sm-4 order-2 order-lg-2 mx-auto">
               <!--<p class="lead text-300 opacity-75" data-i18n="hero.subtitle">
@@ -406,17 +418,21 @@
         <div class="container container-wide-xl mb-4">
           <div class="value-proposition-strip pt-3">
             <div class="row g-4 justify-content-center text-center text-lg-start">
-              <div class="col-lg-4 col-md-6">
-                <h3 class="value-prop-title fw-semibold mb-2" data-i18n="value.1.title">Ship what customers pay for</h3>
+              <div class="col-lg-3 col-md-6">
+                <h3 class="value-prop-title fw-bold mb-2" data-i18n="value.1.title">Ship what customers pay for</h3>
                 <p class="value-prop-body mb-0" data-i18n="value.1.body">I take you from unclear requirements to a working product—priorities, scope, and a path to production your team can own.</p>
               </div>
-              <div class="col-lg-4 col-md-6">
-                <h3 class="value-prop-title fw-semibold mb-2" data-i18n="value.2.title">Automate operations &amp; revenue</h3>
+              <div class="col-lg-3 col-md-6">
+                <h3 class="value-prop-title fw-bold mb-2" data-i18n="value.2.title">Automate operations &amp; revenue</h3>
                 <p class="value-prop-body mb-0" data-i18n="value.2.body">Booking, billing, multi-language storefronts, and internal tools that cut admin time and revenue leakage—not slide decks about frameworks.</p>
               </div>
-              <div class="col-lg-4 col-md-6">
-                <h3 class="value-prop-title fw-semibold mb-2" data-i18n="value.3.title">Decisions backed by data</h3>
+              <div class="col-lg-3 col-md-6">
+                <h3 class="value-prop-title fw-bold mb-2" data-i18n="value.3.title">Decisions backed by data</h3>
                 <p class="value-prop-body mb-0" data-i18n="value.3.body">Dashboards, integrations, and AI-assisted workflows when the goal is faster, defensible decisions—not tech for its own sake.</p>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <h3 class="value-prop-title fw-bold mb-2" data-i18n="value.4.title">Support for customer projects</h3>
+                <p class="value-prop-body mb-0" data-i18n="value.4.body">Beyond greenfield builds, I work with your team or own key areas—backends, APIs, integrations, and performance—to keep projects on track and deliver reliably.</p>
               </div>
             </div>
           </div>
@@ -708,7 +724,7 @@
           </div>
           <div class="col-md-7 col-lg-8">
             <p class="why-choose-text mb-3 mb-lg-4" data-i18n="whyChoose.p1">I help organizations replace manual processes, scattered spreadsheets, and fragile tools with software people actually enjoy using—so you can serve customers faster, gain real visibility into your operations, and scale without constant firefighting. My focus is on building practical, reliable systems that simplify how your business runs day to day.</p>
-            <p class="why-choose-text mb-0" data-i18n="whyChoose.p2">With 13+ years of experience as a software engineer, I’ve built scalable web applications, backend systems, and real-time dashboards from the ground up. I specialize in Golang and PHP—developing APIs, microservices, and high-performance services—along with hands-on experience in AI/LLM integration and data-driven products. I prioritize clean architecture, maintainability, and solving complex technical challenges. Across industries like healthcare, hospitality, professional services, lending, and e-commerce, I’ve delivered end-to-end solutions for systems involving bookings, payments, compliance, and data.</p>
+            <p class="why-choose-text mb-0" data-i18n="whyChoose.p2">With 13+ years of experience as a software engineer, I’ve built scalable web applications, backend systems, and real-time dashboards from the ground up. I specialize in Golang and PHP—developing APIs, microservices, and high-performance services—along with hands-on experience in AI/LLM integration and data-driven products. I prioritize clean architecture, maintainability, and solving complex technical challenges. Across industries like healthcare, hospitality, professional services, lending, and e-commerce, I’ve delivered end-to-end solutions for systems involving bookings, payments, compliance, and data. Beyond greenfield work, I support customer projects with this same skill set—embedded with your team or owning a technical slice so roadmaps and client commitments stay on track.</p>
           </div>
         </div>
       </div>
@@ -764,7 +780,7 @@
                 <span class="fa-brands fa-github"></span>
                 <span>GitHub</span>
               </a>
-              <a class="link-400 text-decoration-none d-inline-flex align-items-center gap-2 me-3" href="https://www.linkedin.com/in/hamedyarandi" target="_blank" rel="noopener noreferrer">
+              <a class="link-400 text-decoration-none d-inline-flex align-items-center gap-2 me-3" href="https://www.linkedin.com/in/hamed-yarandi" target="_blank" rel="noopener noreferrer">
                 <span class="fa-brands fa-linkedin-in"></span>
                 <span data-i18n="contact.linkedIn">LinkedIn</span>
               </a>
@@ -872,10 +888,10 @@
           en: {
             'hero.title': 'Simplify. Automate. ',
             'hero.titleBold': 'Grow.',
-            'hero.role': 'Independent builder · products, platforms & operations',
+            'hero.role': 'Powering your business online',
             'hero.location': 'Innsbruck, Austria · 13+ years turning business problems into live systems',
             'hero.subtitle': 'I help organizations replace manual work, scattered spreadsheets, and brittle tools with software people actually use—so you can serve customers faster, see what is happening in the business, and scale without firefighting. Healthcare, hospitality, professional services, lending, e-commerce: if it touches bookings, money, compliance, or data, I have likely shipped something similar end to end.',
-            'nav.intro': 'About',
+            'nav.intro': 'Services',
             'nav.work': 'Work',
             'nav.whyChoose': 'Why me',
             'nav.contact': 'Contact',
@@ -888,9 +904,11 @@
             'value.2.body': 'Booking, billing, multi-language storefronts, and internal tools that cut admin time and revenue leakage—not slide decks about frameworks.',
             'value.3.title': 'Decisions backed by data',
             'value.3.body': 'Dashboards, integrations, and AI-assisted workflows when the goal is faster, defensible decisions—not tech for its own sake.',
+            'value.4.title': 'Support for customer projects',
+            'value.4.body': 'Beyond greenfield builds, I work with your team or own key areas—backends, APIs, integrations, and performance—to keep projects on track and deliver reliably.',
             'whyChoose.heading': 'Why choose me',
             'whyChoose.p1': 'I help organizations replace manual processes, scattered spreadsheets, and fragile tools with software people actually enjoy using—so you can serve customers faster, gain real visibility into your operations, and scale without constant firefighting. My focus is on building practical, reliable systems that simplify how your business runs day to day.',
-            'whyChoose.p2': 'With 13+ years of experience as a software engineer, I\'ve built scalable web applications, backend systems, and real-time dashboards from the ground up. I specialize in Golang and PHP—developing APIs, microservices, and high-performance services—along with hands-on experience in AI/LLM integration and data-driven products. I prioritize clean architecture, maintainability, and solving complex technical challenges. Across industries like healthcare, hospitality, professional services, lending, and e-commerce, I\'ve delivered end-to-end solutions for systems involving bookings, payments, compliance, and data.',
+            'whyChoose.p2': 'With 13+ years of experience as a software engineer, I\'ve built scalable web applications, backend systems, and real-time dashboards from the ground up. I specialize in Golang and PHP—developing APIs, microservices, and high-performance services—along with hands-on experience in AI/LLM integration and data-driven products. I prioritize clean architecture, maintainability, and solving complex technical challenges. Across industries like healthcare, hospitality, professional services, lending, and e-commerce, I\'ve delivered end-to-end solutions for systems involving bookings, payments, compliance, and data. Beyond greenfield work, I support customer projects with this same skill set—embedded with your team or owning a technical slice so roadmaps and client commitments stay on track.',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online Radio Platform',
             'card1.detail': 'Streaming platform built for reliability and growth: the MVP reached 400+ active listeners in two months, with architecture aimed at 24/7 uptime and smooth scaling as audiences grow.',
@@ -959,10 +977,10 @@
           de: {
             'hero.title': 'Vereinfachen. Automatisieren. ',
             'hero.titleBold': 'Wachsen.',
-            'hero.role': 'Unabhängiger Umsetzer · Produkte, Plattformen & Betrieb',
+            'hero.role': 'Bringt Ihr Unternehmen online voran',
             'hero.location': 'Innsbruck, Österreich · 13+ Jahre Geschäftsprobleme in laufende Systeme übersetzt',
             'hero.subtitle': 'Ich helfe Organisationen, manuelle Arbeit, verstreute Tabellen und fragile Tools durch Software zu ersetzen, die Menschen wirklich nutzen—damit Sie Kund:innen schneller bedienen, sehen, was im Geschäft passiert, und wachsen können, ohne ständig Brände zu löschen. Gesundheitswesen, Gastronomie, Dienstleister, Kreditwesen, E-Commerce: Wenn es Buchungen, Geld, Compliance oder Daten berührt, habe ich vermutlich schon etwas Ähnliches Ende-zu-Ende geliefert.',
-            'nav.intro': 'Über mich',
+            'nav.intro': 'Leistungen',
             'nav.work': 'Referenzen',
             'nav.whyChoose': 'Warum ich?',
             'nav.contact': 'Kontakt',
@@ -975,9 +993,11 @@
             'value.2.body': 'Buchung, Abrechnung, mehrsprachige Shops und interne Tools, die Verwaltungsaufwand und Umsatzverluste reduzieren—ohne Folien zu Frameworks.',
             'value.3.title': 'Entscheidungen mit Datenfundament',
             'value.3.body': 'Dashboards, Integrationen und KI-unterstützte Abläufe, wenn es um schnellere, nachvollziehbare Entscheidungen geht—nicht um Technik um der Technik willen.',
+            'value.4.title': 'Unterstützung bei Kundenprojekten',
+            'value.4.body': 'Neben Greenfield-Projekten arbeite ich mit Ihrem Team oder übernehme zentrale Bereiche—Backend, APIs, Integrationen und Performance—damit Projekte im Plan bleiben und zuverlässig ausgeliefert werden.',
             'whyChoose.heading': 'Warum mich wählen?',
             'whyChoose.p1': 'Ich helfe Organisationen, manuelle Prozesse, verstreute Tabellen und fragile Tools durch Software zu ersetzen, die Menschen gerne nutzen—damit Sie Kund:innen schneller bedienen, echte Transparenz in Ihren Abläufen gewinnen und skalieren können, ohne ständig Brände zu löschen. Mein Schwerpunkt liegt auf praktischen, zuverlässigen Systemen, die den täglichen Geschäftsalltag Ihres Unternehmens vereinfachen.',
-            'whyChoose.p2': 'Mit über 13 Jahren Erfahrung als Software-Ingenieur habe ich skalierbare Webanwendungen, Backend-Systeme und Echtzeit-Dashboards von Grund auf gebaut. Ich spezialisiere mich auf Golang und PHP—APIs, Microservices und leistungsfähige Dienste—dazu praktische Erfahrung mit KI/LLM-Integration und datengetriebenen Produkten. Saubere Architektur, Wartbarkeit und die Lösung komplexer technischer Herausforderungen haben für mich Priorität. In Branchen wie Gesundheitswesen, Gastronomie, Dienstleistungen, Kreditwesen und E-Commerce habe ich Ende-zu-Ende-Lösungen für Systeme mit Buchungen, Zahlungen, Compliance und Daten geliefert.',
+            'whyChoose.p2': 'Mit über 13 Jahren Erfahrung als Software-Ingenieur habe ich skalierbare Webanwendungen, Backend-Systeme und Echtzeit-Dashboards von Grund auf gebaut. Ich spezialisiere mich auf Golang und PHP—APIs, Microservices und leistungsfähige Dienste—dazu praktische Erfahrung mit KI/LLM-Integration und datengetriebenen Produkten. Saubere Architektur, Wartbarkeit und die Lösung komplexer technischer Herausforderungen haben für mich Priorität. In Branchen wie Gesundheitswesen, Gastronomie, Dienstleistungen, Kreditwesen und E-Commerce habe ich Ende-zu-Ende-Lösungen für Systeme mit Buchungen, Zahlungen, Compliance und Daten geliefert. Neben Greenfield-Projekten unterstütze ich Kundenprojekte mit demselben Profil—eingebunden ins Team oder mit klarer technischer Verantwortung, damit Roadmaps und Zusagen gegenüber Kund:innen tragfähig bleiben.',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online-Radio-Plattform',
             'card1.detail': 'Streaming-Plattform für Verfügbarkeit und Wachstum: Das MVP erreichte in zwei Monaten 400+ aktive Hörerinnen und Hörer; die Architektur ist auf 24/7-Betrieb und sanftes Skalieren bei wachsender Reichweite ausgelegt.',
