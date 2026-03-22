@@ -10,7 +10,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>Hamed Yarandi | Software Engineer</title>
+    <title>Hamed Yarandi | Business-Critical Software &amp; Platforms</title>
 
     <!-- ===============================================-->
     <!--    Favicons-->
@@ -72,7 +72,7 @@
       .theme-blocks-marquee-item { flex: 0 0 auto; width: 430px; }
       .theme-blocks-marquee-item img { width: 100%; height: auto; display: block; }
       #cards-carousel-section {
-        margin-top: -26rem;
+        margin-top: -29rem;
         position: relative;
         z-index: 2;
         background: linear-gradient(to bottom, transparent 0%, transparent 35%, #fff 65%, #fff 100%);
@@ -215,6 +215,87 @@
         min-height: 160px;
         resize: vertical;
       }
+      .btn-whatsapp-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: #25d366;
+        border: 0;
+        color: #fff !important;
+        font-weight: 600;
+        padding: 0.55rem 1.35rem;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: background-color 0.2s ease, transform 0.15s ease;
+      }
+      .btn-whatsapp-cta:hover {
+        background-color: #1ebe57;
+        color: #fff !important;
+        transform: translateY(-1px);
+      }
+      .btn-whatsapp-cta:focus-visible {
+        outline: 2px solid #25d366;
+        outline-offset: 3px;
+      }
+      .btn-whatsapp-cta .fa-brands.fa-whatsapp {
+        font-size: 1.4rem;
+        line-height: 1;
+        color: #fff;
+      }
+      /* Value strip sits over hero (negative margin + transparent gradient) — light text + shadow, no panel fill */
+      .value-proposition-strip {
+        position: relative;
+        z-index: 3;
+        margin-bottom: 5rem;
+      }
+      .value-proposition-strip .value-prop-title {
+        color: #fff;
+        letter-spacing: 0.04em;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 12px rgba(0, 0, 0, 0.45);
+      }
+      .value-proposition-strip .value-prop-body {
+        color: rgba(255, 255, 255, 0.94);
+        font-size: 0.9375rem;
+        line-height: 1.55;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 1px rgba(0, 0, 0, 1);
+      }
+      .why-choose-section {
+        scroll-margin-top: 5.5rem;
+        background: #f1f5f9;
+        border-top: 1px solid rgba(15, 23, 42, 0.06);
+      }
+      .why-choose-section .why-choose-heading {
+        color: #0f172a;
+      }
+      .why-choose-section .why-choose-text {
+        color: #334155;
+        font-size: 1.0625rem;
+        line-height: 1.65;
+      }
+      [data-theme="dark"] .why-choose-section {
+        background: #141418;
+        border-top-color: rgba(255, 255, 255, 0.06);
+      }
+      [data-theme="dark"] .why-choose-section .why-choose-heading {
+        color: #f4f4f5;
+      }
+      [data-theme="dark"] .why-choose-section .why-choose-text {
+        color: #cbd5e1;
+      }
+      .why-choose-portrait {
+        max-height: min(420px, 70vh);
+        width: auto;
+        max-width: 100%;
+        border-radius: 0.75rem;
+        object-fit: cover;
+        aspect-ratio: 3 / 4;
+        box-shadow: 0 0.5rem 1.5rem rgba(15, 23, 42, 0.12);
+      }
+      [data-theme="dark"] .why-choose-portrait {
+        box-shadow: 0 0.5rem 1.75rem rgba(0, 0, 0, 0.45);
+      }
     </style>
   </head>
 
@@ -238,9 +319,10 @@
       <div class="container container-wide-xl"><a class="navbar-brand ls-2 p-0 me-4 fw-semibold text-white text-decoration-none" href="index.html">Hamed Yarandi</a><button class="navbar-toggler hamburger hamburger--emphatic" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbarCollapse" aria-controls="primaryNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
         <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
           <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="#intro">Intro</a></li>
-            <li class="nav-item"><a class="nav-link" href="#cards-carousel-section">Projects</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contacts">Contacts</a></li>
+            <li class="nav-item"><a class="nav-link" href="#intro" data-i18n="nav.intro">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cards-carousel-section" data-i18n="nav.work">Work</a></li>
+            <li class="nav-item"><a class="nav-link" href="#why-choose-me" data-i18n="nav.whyChoose">Why me</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacts" data-i18n="nav.contact">Contact</a></li>
           </ul>
           <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item dropdown">
@@ -282,16 +364,16 @@
           <div class="row showcase-banner align-items-center justify-content-center g-0">
             
             <h1 class="text-white fs-3 fs-sm-4 fs-lg-6 fw-light mb-2 text-center">
-              <span data-i18n="hero.title">Hey, I'm Hamed </span>
-              <strong class="fw-bold" data-i18n="hero.titleBold">Yarandi</strong>
+              <span data-i18n="hero.title">Simplify. Automate. </span>
+              <strong class="fw-bold" data-i18n="hero.titleBold">Grow.</strong>
             </h1>
             
-            <p class="text-white text-100 fs-4 mb-2 text-center" data-i18n="hero.role">Software Engineer</p>
-            <p class="text-white text-300 opacity-75 small mb-4 text-center" data-i18n="hero.location">Iran, Tehran · Innsbruck, Austria · 13+ years experience</p>
+            <p class="text-white text-100 fs-4 mb-2 text-center" data-i18n="hero.role">Independent builder · products, platforms &amp; operations</p>
+            <!--<p class="text-white text-300 opacity-75 small mb-4 text-center" data-i18n="hero.location">Innsbruck, Austria · 13+ years turning business problems into live systems</p>-->
             <div class="col-lg-10 col-md-7 px-sm-4 order-2 order-lg-2 mx-auto">
-              <p class="lead text-300 opacity-75" data-i18n="hero.subtitle">
-              Software Engineer with 13+ years building scalable web applications, backend systems, and real-time dashboards from the ground up. Strong in Golang and PHP—APIs, microservices, high-performance services—with hands-on experience in AI/LLM integration, data-driven products, and AI-driven systems. Skilled in designing multi-layered, modular architectures that prioritize clean code, maintainability, and solving complex technical problems.
-              </p>
+              <!--<p class="lead text-300 opacity-75" data-i18n="hero.subtitle">
+              I help organizations replace manual work, scattered spreadsheets, and brittle tools with software people actually use—so you can serve customers faster, see what is happening in the business, and scale without firefighting. Healthcare, hospitality, professional services, lending, e‑commerce: if it touches bookings, money, compliance, or data, I have likely shipped something similar end to end.
+              </p>-->
             </div>
           </div>
           </div><!-- /.showcase-banner-wrapper -->
@@ -322,6 +404,22 @@
       -->
       <section class="py-5 py-lg-6 overflow-hidden" id="cards-carousel-section">
         <div class="container container-wide-xl mb-4">
+          <div class="value-proposition-strip pt-3">
+            <div class="row g-4 justify-content-center text-center text-lg-start">
+              <div class="col-lg-4 col-md-6">
+                <h3 class="value-prop-title fw-semibold mb-2" data-i18n="value.1.title">Ship what customers pay for</h3>
+                <p class="value-prop-body mb-0" data-i18n="value.1.body">I take you from unclear requirements to a working product—priorities, scope, and a path to production your team can own.</p>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <h3 class="value-prop-title fw-semibold mb-2" data-i18n="value.2.title">Automate operations &amp; revenue</h3>
+                <p class="value-prop-body mb-0" data-i18n="value.2.body">Booking, billing, multi-language storefronts, and internal tools that cut admin time and revenue leakage—not slide decks about frameworks.</p>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <h3 class="value-prop-title fw-semibold mb-2" data-i18n="value.3.title">Decisions backed by data</h3>
+                <p class="value-prop-body mb-0" data-i18n="value.3.body">Dashboards, integrations, and AI-assisted workflows when the goal is faster, defensible decisions—not tech for its own sake.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="marquee-card-track-wrapper">
           <div class="marquee-card-track" id="marqueeCardTrack">
@@ -335,13 +433,13 @@
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card6.title">Rehabilitation Analytics</h5>
-                <p class="card-text text-700 small mb-1" data-i18n="card6.excerpt">AI-driven rehab dashboards &amp; prediction</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card6.excerpt">Faster decisions for rehab leadership</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card6.detail">
-                  Empowering healthcare professionals with AI-driven insights and data science for rehabilitation management. Rehab admission prediction (IRF, SNF, Home Health); AI clinical summaries; strategic dashboards unifying CMS, claims, and market data; LLM-powered automation for summarization and insights.
+                  Executive-facing analytics for rehabilitation: clearer view of demand and capacity, admission forecasting, and summarized clinical context—so leaders spend less time reconciling spreadsheets and more time planning care and growth.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card6.detail">Empowering healthcare professionals with AI-driven insights and data science for rehabilitation management. Rehab admission prediction (IRF, SNF, Home Health); AI clinical summaries; strategic dashboards unifying CMS, claims, and market data; LLM-powered automation for summarization and insights.</p>
+                <p class="mb-0 small" data-i18n="card6.detail">Executive-facing analytics for rehabilitation: clearer view of demand and capacity, admission forecasting, and summarized clinical context—so leaders spend less time reconciling spreadsheets and more time planning care and growth.</p>
               </div>
             </div>
             <!-- Project 6: Rehabilitation Analytics (END) -->
@@ -355,13 +453,13 @@
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card7.title">Restaurant Management System</h5>
-                <p class="card-text text-700 small mb-1" data-i18n="card7.excerpt">Laravel · Menu, reservations, QR menu</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card7.excerpt">Menus, reservations &amp; QR ordering</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card7.detail">
-                  Full-stack Laravel restaurant management system with a customer-facing website (menu, reservations, reviews, multi-language) and an admin panel for menu, orders, reservations, and promotions, including a QR code for the digital menu.
+                  One system for the guest-facing site and the back office: digital menu, reservations and reviews, plus staff tools for menus, orders, promos and QR-based ordering—fewer phone calls and order errors during service.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card7.detail">Full-stack Laravel restaurant management system with a customer-facing website (menu, reservations, reviews, multi-language) and an admin panel for menu, orders, reservations, and promotions, including a QR code for the digital menu.</p>
+                <p class="mb-0 small" data-i18n="card7.detail">One system for the guest-facing site and the back office: digital menu, reservations and reviews, plus staff tools for menus, orders, promos and QR-based ordering—fewer phone calls and order errors during service.</p>
               </div>
             </div>
             <!-- Project 7: Restaurant Management System (multi-image: click to cycle) (END) -->
@@ -373,13 +471,13 @@
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card8.title">Booking & Business Platform</h5>
-                <p class="card-text text-700 small mb-1" data-i18n="card8.excerpt">DACH · Barbers, salons, gyms · Multilingual</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card8.excerpt">Online booking &amp; billing for service businesses</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card8.detail">
-                  Multilingual booking and business-management platform for immigrant-run service businesses (barbers, gyms, salons) in Austria/DACH. Owners: profile, hours, services, prices, bookings, invoices, wallet; public storefront /b/{subdomain}. Customers: discover, book, cancel via signed link, invoices, ratings. Admins: users, businesses, locales (incl. RTL e.g. Persian). EN, DE, TR, RO, Serbian, FA; role-based access (customer, owner, superadmin).
+                  Built for barbers, salons and gyms in the DACH region: each business gets its own public booking page, while owners run services, pricing, calendars, invoices and payouts in one place—customers book in their language; you reduce no-shows and admin overhead.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card8.detail">Multilingual booking and business-management platform for immigrant-run service businesses (barbers, gyms, salons) in Austria/DACH. Owners: profile, hours, services, prices, bookings, invoices, wallet; public storefront /b/{subdomain}. Customers: discover, book, cancel via signed link, invoices, ratings. Admins: users, businesses, locales (incl. RTL e.g. Persian). EN, DE, TR, RO, Serbian, FA; role-based access (customer, owner, superadmin).</p>
+                <p class="mb-0 small" data-i18n="card8.detail">Built for barbers, salons and gyms in the DACH region: each business gets its own public booking page, while owners run services, pricing, calendars, invoices and payouts in one place—customers book in their language; you reduce no-shows and admin overhead.</p>
               </div>
             </div>
             <!-- Project 8: Booking & Business Platform (END) -->
@@ -392,13 +490,13 @@
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card9.title">Multilingual Ecommerce</h5>
-                <p class="card-text text-700 small mb-1" data-i18n="card9.excerpt">Multi-language store & admin</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card9.excerpt">Sell in many languages &amp; currencies</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card9.detail">
-                  Full-stack multilingual e-commerce platform built with Laravel 10, PHP 8.1+ and MySQL, using Blade views, CoreUI-powered admin and a Cozastore-based storefront. Architecture follows MVC with Repository and Service layers, pluggable payment gateways behind a PaymentManager, view composers and custom helpers (breadcrumbs, currency, dates, captchas). Features include products with variants and soft deletes, categories, brands, multi-vendor orders, cart and checkout with coupons and refunds, plus Yajra DataTables, translatable entities, banners, menus, promotions, attributes, customer/vendor auth (incl. OTP), wishlist, reviews, search, multi-language and multi-currency (incl. Toman/IRR, Jalali dates and exchange handling).
+                  End-to-end commerce for teams that sell across regions: storefront, cart and checkout, vendor and customer accounts, promotions, refunds, and reporting—with multi-currency pricing and localized content so finance and marketing stay aligned.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card9.detail">Full-stack multilingual e-commerce platform built with Laravel 10, PHP 8.1+ and MySQL, using Blade views, CoreUI-powered admin and a Cozastore-based storefront. Architecture follows MVC with Repository and Service layers, pluggable payment gateways behind a PaymentManager, view composers and custom helpers (breadcrumbs, currency, dates, captchas). Features include products with variants and soft deletes, categories, brands, multi-vendor orders, cart and checkout with coupons and refunds, plus Yajra DataTables, translatable entities, banners, menus, promotions, attributes, customer/vendor auth (incl. OTP), wishlist, reviews, search, multi-language and multi-currency (incl. Toman/IRR, Jalali dates and exchange handling).</p>
+                <p class="mb-0 small" data-i18n="card9.detail">End-to-end commerce for teams that sell across regions: storefront, cart and checkout, vendor and customer accounts, promotions, refunds, and reporting—with multi-currency pricing and localized content so finance and marketing stay aligned.</p>
               </div>
             </div>
             <!-- Project 9: Multilingual Ecommerce (END) -->
@@ -412,13 +510,13 @@
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card10.title">Medical Office Manager</h5>
-                <p class="card-text text-700 small mb-1" data-i18n="card10.excerpt">Laravel 12 · Practice, patients, doctors, admin</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card10.excerpt">Practice site, patient &amp; doctor portals</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card10.detail">
-                  Laravel 12 application(PHP 8.2, Vite, Tailwind, Alpine.js) with a public practice website (services, doctors, booking, blog, contact, AI assistant), patient portal (appointments, records, prescriptions, documents, profile, notifications), doctor panel (schedule, patients, records, prescriptions, lab requests, documents), and admin panel (appointments, doctors, patients, services, medicines, prescriptions, records, articles, FAQs, documents, notifications, assistant logs, reports, settings). Role-based access and policy-based authorization; optional Ollama/Gemini-powered assistant with practice-specific context; background/scheduled tasks for reminders and queues.
+                  A single platform for the public practice site, patient self-service (appointments, records, prescriptions, documents), clinician workflows (schedules, labs, documentation), and admin operations—with role-based access, reminders, and an optional assistant trained on practice-specific content.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card10.detail">Laravel 12 application (PHP 8.2, Vite, Tailwind, Alpine.js) with a public practice website (services, doctors, booking, blog, contact, AI assistant), patient portal (appointments, records, prescriptions, documents, profile, notifications), doctor panel (schedule, patients, records, prescriptions, lab requests, documents), and admin panel (appointments, doctors, patients, services, medicines, prescriptions, records, articles, FAQs, documents, notifications, assistant logs, reports, settings). Role-based access and policy-based authorization; optional Ollama/Gemini-powered assistant with practice-specific context; background/scheduled tasks for reminders and queues.</p>
+                <p class="mb-0 small" data-i18n="card10.detail">A single platform for the public practice site, patient self-service (appointments, records, prescriptions, documents), clinician workflows (schedules, labs, documentation), and admin operations—with role-based access, reminders, and an optional assistant trained on practice-specific content.</p>
               </div>
             </div>
             <!-- Project 10: Medical Office Manager (END) -->
@@ -432,11 +530,11 @@
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card1.title">Nownava</h5>
                 <p class="card-text text-700 small mb-1" data-i18n="card1.excerpt">Online Radio Platform</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card1.detail">
-                  Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 400+ active users within 2 months.
+                  Streaming platform built for reliability and growth: the MVP reached 400+ active listeners in two months, with architecture aimed at 24/7 uptime and smooth scaling as audiences grow.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card1.detail">Scalable online radio streaming platform using Golang and gRPC, fully Dockerized. MVP attracted 400+ active users within 2 months.</p>
+                <p class="mb-0 small" data-i18n="card1.detail">Streaming platform built for reliability and growth: the MVP reached 400+ active listeners in two months, with architecture aimed at 24/7 uptime and smooth scaling as audiences grow.</p>
               </div>
             </div>
             <!-- Project 1: Nownava (END) -->
@@ -450,11 +548,11 @@
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card2.title">Mizner Mobile App</h5>
                 <p class="card-text text-700 small mb-1" data-i18n="card2.excerpt">Residents &amp; HOA platform</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card2.detail">
-                  Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.
+                  Features and integrations for a residents–HOA app: faster screens and fewer failures after untangling legacy backend code—so property managers and residents get timely notifications and trustworthy data.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card2.detail">Developed features for mobile app connecting residents and HOA. Refactored legacy code to improve performance and UX.</p>
+                <p class="mb-0 small" data-i18n="card2.detail">Features and integrations for a residents–HOA app: faster screens and fewer failures after untangling legacy backend code—so property managers and residents get timely notifications and trustworthy data.</p>
               </div>
             </div>
             <!-- Project 2: Mizner Mobile App (END) -->
@@ -468,11 +566,11 @@
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card3.title">AdimAdim</h5>
                 <p class="card-text text-700 small mb-1" data-i18n="card3.excerpt">Charity platform</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card3.detail">
-                  Redesigned platform architecture for multilingual support. Charity and community-focused application.
+                  Non-profit donation flows rebuilt for multiple languages and clearer separation of payments, content, and reporting—donors and staff see consistent, auditable outcomes.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card3.detail">Redesigned platform architecture for multilingual support. Charity and community-focused application.</p>
+                <p class="mb-0 small" data-i18n="card3.detail">Non-profit donation flows rebuilt for multiple languages and clearer separation of payments, content, and reporting—donors and staff see consistent, auditable outcomes.</p>
               </div>
             </div>
             <!-- Project 3: AdimAdim (END) -->
@@ -484,13 +582,13 @@
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card4.title">LendTech Gateway</h5>
-                <p class="card-text text-700 small mb-1" data-i18n="card4.excerpt">Adopted by 6 major companies</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card4.excerpt">Faster partner onboarding for lenders</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card4.detail">
-                  Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.
+                  Integration layer between lenders and partners: one place for checks, payouts, and error handling—so new partners go live with less custom work and fewer production incidents.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card4.detail">Developed a LendTech gateway adopted by 3 major companies. Payment and lending integration.</p>
+                <p class="mb-0 small" data-i18n="card4.detail">Integration layer between lenders and partners: one place for checks, payouts, and error handling—so new partners go live with less custom work and fewer production incidents.</p>
               </div>
             </div>
             <!-- Project 4: LendTech Gateway (END) -->
@@ -502,13 +600,13 @@
               </div>
               <div class="card-body position-relative p-3">
                 <h5 class="card-title fw-semibold mb-1 small" data-i18n="card5.title">WordPress Plugins</h5>
-                <p class="card-text text-700 small mb-1" data-i18n="card5.excerpt">Used by 75+ merchants</p>
+                <p class="card-text text-700 small mb-1" data-i18n="card5.excerpt">Store features rolled out to many merchants</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card5.detail">
-                  Created reusable WordPress plugins used by 75+ merchants. E‑commerce and store extensions.
+                  Packaged e‑commerce capabilities as configurable plugins so dozens of merchants could turn on features without one-off builds—faster launches and safer upgrades across different hosts.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card5.detail">Created reusable WordPress plugins used by 75+ merchants. E‑commerce and store extensions.</p>
+                <p class="mb-0 small" data-i18n="card5.detail">Packaged e‑commerce capabilities as configurable plugins so dozens of merchants could turn on features without one-off builds—faster launches and safer upgrades across different hosts.</p>
               </div>
             </div>
             <!-- Project 5: WordPress Plugins (END) -->
@@ -601,16 +699,35 @@
     <!--    Footer-->
     <!--===============================================-->
 
+    <section class="why-choose-section py-6 py-lg-7" id="why-choose-me" aria-labelledby="why-choose-heading">
+      <div class="container container-wide-xl">
+        <h1 class="fs-4 fw-semibold mb-5 text-center why-choose-heading" id="why-choose-heading" data-i18n="whyChoose.heading">Why choose me</h1>
+        <div class="row align-items-center g-4 g-lg-5 justify-content-lg-start">
+          <div class="col-md-5 col-lg-4 text-center text-md-start mb-2 mb-md-0">
+            <img class="why-choose-portrait img-fluid" src="assets/img/hamed-yarandi-portrait.png" alt="Hamed Yarandi" width="640" height="853" loading="lazy" decoding="async">
+          </div>
+          <div class="col-md-7 col-lg-8">
+            <p class="why-choose-text mb-3 mb-lg-4" data-i18n="whyChoose.p1">I help organizations replace manual processes, scattered spreadsheets, and fragile tools with software people actually enjoy using—so you can serve customers faster, gain real visibility into your operations, and scale without constant firefighting. My focus is on building practical, reliable systems that simplify how your business runs day to day.</p>
+            <p class="why-choose-text mb-0" data-i18n="whyChoose.p2">With 13+ years of experience as a software engineer, I’ve built scalable web applications, backend systems, and real-time dashboards from the ground up. I specialize in Golang and PHP—developing APIs, microservices, and high-performance services—along with hands-on experience in AI/LLM integration and data-driven products. I prioritize clean architecture, maintainability, and solving complex technical challenges. Across industries like healthcare, hospitality, professional services, lending, and e-commerce, I’ve delivered end-to-end solutions for systems involving bookings, payments, compliance, and data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============================================-->
     <!-- <section> begin ============================-->
     <section class="py-7 py-lg-8 bg-1100" id="contacts">
       <div class="container">
-        <h2 class="fs-4 text-white fw-semibold mb-5 text-center" data-i18n="contact.heading">Get in touch</h2>
+        <h2 class="fs-4 text-white fw-semibold mb-5 text-center" data-i18n="contact.heading">Let’s talk about your problem</h2>
 
         <div class="row align-items-center g-5 g-lg-6 mb-5">
           <div class="col-lg-6 order-2 order-lg-1">
-            <h3 class="fs-2 text-white fs-md-3 fw-semibold mb-4" data-i18n="ctaProject.title">Ready to Start Your Project</h3>
-            <p class="lead text-300 opacity-90 mb-4" data-i18n="ctaProject.body">I'm ready to start working on your projects. Just tell me what you need, and I'll bring it to life. Whether it's building a new backend system, developing APIs, or scaling existing infrastructure, I'm here to help turn your ideas into reality.</p>
+            <h3 class="fs-2 text-white fs-md-3 fw-semibold mb-4" data-i18n="ctaProject.title">Describe the outcome, not the stack</h3>
+            <p class="lead text-300 opacity-90 mb-3" data-i18n="ctaProject.body">In a short note: what is broken or missing today, who it affects (customers, staff, partners), and what “done” looks like—timeline, volume, or a metric you want to move. I’ll reply with a straight answer on fit, rough approach, and sensible next steps.</p>
+            <a class="btn btn-whatsapp-cta rounded-pill px-4" href="https://wa.me/4367762930943" target="_blank" rel="noopener noreferrer">
+              <span class="fa-brands fa-whatsapp" aria-hidden="true"></span>
+              <span data-i18n="ctaProject.whatsappCta">Message on WhatsApp</span>
+            </a>
           </div>
           <div class="col-lg-6 order-1 order-lg-2" id="contact-form">
             <form id="my-form" class="text-start" action="https://formspree.io/f/xrbpdyow" method="POST">
@@ -622,16 +739,16 @@
                 <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off">
               </div>
               <div class="mb-3">
-                <label for="contact-name" class="form-label text-700 small"><span data-i18n="contact.formName">Name</span></label>
-                <input type="text" class="form-control form-control-sm bg-1000 border-800 text-100" id="contact-name" name="name" required placeholder=" " autocomplete="name">
+                <label for="contact-name" class="form-label text-700 small"><span data-i18n="contact.formName">Name</span><span class="text-danger" aria-hidden="true"> *</span></label>
+                <input type="text" class="form-control form-control-sm bg-1000 border-800 text-100" id="contact-name" name="name" required aria-required="true" placeholder=" " autocomplete="name">
               </div>
               <div class="mb-3">
-                <label for="contact-email" class="form-label text-700 small"><span data-i18n="contact.formEmail">Email</span></label>
-                <input type="email" class="form-control form-control-sm bg-1000 border-800 text-100" id="contact-email" name="email" required placeholder=" " autocomplete="email">
+                <label for="contact-email" class="form-label text-700 small"><span data-i18n="contact.formEmail">Email</span><span class="text-danger" aria-hidden="true"> *</span></label>
+                <input type="email" class="form-control form-control-sm bg-1000 border-800 text-100" id="contact-email" name="email" required aria-required="true" placeholder=" " autocomplete="email">
               </div>
               <div class="mb-4">
-                <label for="contact-message" class="form-label text-700 small"><span data-i18n="contact.formMessage">Message</span></label>
-                <textarea class="form-control form-control-sm bg-1000 border-800 text-100 contact-message-textarea" id="contact-message" name="message" rows="8" required placeholder=" "></textarea>
+                <label for="contact-message" class="form-label text-700 small"><span data-i18n="contact.formMessage">Message</span><span class="text-danger" aria-hidden="true"> *</span></label>
+                <textarea class="form-control form-control-sm bg-1000 border-800 text-100 contact-message-textarea" id="contact-message" name="message" rows="8" required aria-required="true" placeholder=" "></textarea>
               </div>
               <button type="submit" id="my-form-button" class="btn btn-primary btn-sm rounded-pill px-4 px-md-5" data-i18n="contact.formSubmit">Send message</button>
               <p id="my-form-status" class="mt-3 mb-0 text-300"></p>
@@ -651,9 +768,9 @@
                 <span class="fa-brands fa-linkedin-in"></span>
                 <span data-i18n="contact.linkedIn">LinkedIn</span>
               </a>
-              <a class="link-400 text-decoration-none d-inline-flex align-items-center gap-2 me-3" href="https://stackoverflow.com/users/story/yarandi" target="_blank" rel="noopener noreferrer">
-                <span class="fa-brands fa-stack-overflow"></span>
-                <span>StackOverflow</span>
+              <a class="link-400 text-decoration-none d-inline-flex align-items-center gap-2 me-3" href="https://wa.me/4367762930943" target="_blank" rel="noopener noreferrer">
+                <span class="fa-brands fa-whatsapp"></span>
+                <span data-i18n="contact.whatsapp">WhatsApp</span>
               </a>
              
             </p>
@@ -753,46 +870,60 @@
         // i18n strings. For each new project card add: cardN.title, cardN.excerpt, cardN.detail in both en and de.
         var t = {
           en: {
-            'hero.title': 'Hey, I\'m Hamed ',
-            'hero.titleBold': 'Yarandi',
-            'hero.role': 'Software Engineer',
-            'hero.location': 'based on Innsbruck, Austria · 13+ years experience',
-            'hero.subtitle': 'Software Engineer with 13+ years building scalable web applications, backend systems, and real-time dashboards from the ground up. Strong in Golang and PHP—APIs, microservices, high-performance services—with hands-on experience in AI/LLM integration and data-driven products. Passionate about clean architecture, maintainability, and solving complex technical problems.',
+            'hero.title': 'Simplify. Automate. ',
+            'hero.titleBold': 'Grow.',
+            'hero.role': 'Independent builder · products, platforms & operations',
+            'hero.location': 'Innsbruck, Austria · 13+ years turning business problems into live systems',
+            'hero.subtitle': 'I help organizations replace manual work, scattered spreadsheets, and brittle tools with software people actually use—so you can serve customers faster, see what is happening in the business, and scale without firefighting. Healthcare, hospitality, professional services, lending, e-commerce: if it touches bookings, money, compliance, or data, I have likely shipped something similar end to end.',
+            'nav.intro': 'About',
+            'nav.work': 'Work',
+            'nav.whyChoose': 'Why me',
+            'nav.contact': 'Contact',
             'nav.pages': 'Pages',
             'nav.blocks': 'All Blocks',
             'nav.sitemap': 'Sitemap',
+            'value.1.title': 'Ship what customers pay for',
+            'value.1.body': 'I take you from unclear requirements to a working product—priorities, scope, and a path to production your team can own.',
+            'value.2.title': 'Automate operations & revenue',
+            'value.2.body': 'Booking, billing, multi-language storefronts, and internal tools that cut admin time and revenue leakage—not slide decks about frameworks.',
+            'value.3.title': 'Decisions backed by data',
+            'value.3.body': 'Dashboards, integrations, and AI-assisted workflows when the goal is faster, defensible decisions—not tech for its own sake.',
+            'whyChoose.heading': 'Why choose me',
+            'whyChoose.p1': 'I help organizations replace manual processes, scattered spreadsheets, and fragile tools with software people actually enjoy using—so you can serve customers faster, gain real visibility into your operations, and scale without constant firefighting. My focus is on building practical, reliable systems that simplify how your business runs day to day.',
+            'whyChoose.p2': 'With 13+ years of experience as a software engineer, I\'ve built scalable web applications, backend systems, and real-time dashboards from the ground up. I specialize in Golang and PHP—developing APIs, microservices, and high-performance services—along with hands-on experience in AI/LLM integration and data-driven products. I prioritize clean architecture, maintainability, and solving complex technical challenges. Across industries like healthcare, hospitality, professional services, lending, and e-commerce, I\'ve delivered end-to-end solutions for systems involving bookings, payments, compliance, and data.',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online Radio Platform',
-            'card1.detail': 'Cloud-native online radio platform built with Golang, gRPC and Docker. Designed for 24/7 streaming, horizontal scaling and low‑latency audio delivery; MVP reached 400+ active listeners within 2 months.',
+            'card1.detail': 'Streaming platform built for reliability and growth: the MVP reached 400+ active listeners in two months, with architecture aimed at 24/7 uptime and smooth scaling as audiences grow.',
             'card2.title': 'Mizner Mobile App',
             'card2.excerpt': 'Residents & HOA platform',
-            'card2.detail': 'Backend and integration work for a residents–HOA mobile app: secure auth, notifications and data APIs. Modernized legacy PHP code to improve performance, remove duplication and simplify future feature work.',
+            'card2.detail': 'Features and integrations for a residents–HOA app: faster screens and fewer failures after untangling legacy backend code—so property managers and residents get timely notifications and trustworthy data.',
             'card3.title': 'AdimAdim',
             'card3.excerpt': 'Charity platform',
-            'card3.detail': 'Architected a multilingual donation platform for a non‑profit, with clean separation of core domain logic, payment flows and content. Focus on reliability, auditability and transparent reporting for donors and admins.',
+            'card3.detail': 'Non-profit donation flows rebuilt for multiple languages and clearer separation of payments, content, and reporting—donors and staff see consistent, auditable outcomes.',
             'card4.title': 'LendTech Gateway',
-            'card4.excerpt': 'Adopted by 3 major companies',
-            'card4.detail': 'Designed and implemented a LendTech integration gateway used by banks and lenders: unified APIs for KYC, credit checks and payouts, robust error handling and observability so new partners can be onboarded with minimal friction.',
+            'card4.excerpt': 'Faster partner onboarding for lenders',
+            'card4.detail': 'Integration layer between lenders and partners: one place for checks, payouts, and error handling—so new partners go live with less custom work and fewer production incidents.',
             'card5.title': 'WordPress Plugins',
-            'card5.excerpt': 'Used by 60+ merchants',
-            'card5.detail': 'Engineered reusable, configuration‑driven WordPress plugins that power e‑commerce features for dozens of merchants, with careful attention to performance, upgrade safety and compatibility across hosting environments.',
+            'card5.excerpt': 'Store features rolled out to many merchants',
+            'card5.detail': 'Packaged e-commerce capabilities as configurable plugins so dozens of merchants could turn on features without one-off builds—faster launches and safer upgrades across different hosts.',
             'card6.title': 'Rehabilitation Analytics',
-            'card6.excerpt': 'AI-driven rehab dashboards & prediction',
-            'card6.detail': 'AI‑driven analytics platform for rehabilitation leadership teams: admission prediction (IRF, SNF, Home Health), clinical‑note summarization with LLMs, and unified dashboards over CMS, claims and market data so executives can make faster, data‑backed decisions.',
+            'card6.excerpt': 'Faster decisions for rehab leadership',
+            'card6.detail': 'Executive-facing analytics for rehabilitation: clearer view of demand and capacity, admission forecasting, and summarized clinical context—so leaders spend less time reconciling spreadsheets and more time planning care and growth.',
             'card7.title': 'Restaurant Management System',
-            'card7.excerpt': 'Laravel · Menu, reservations, QR menu',
-            'card7.detail': 'Full‑stack Laravel system for restaurants: public site with SEO‑friendly menu, reservations and reviews, plus an admin dashboard for menus, reservations, orders, promos and QR‑based digital menus, all built with multi‑language support in mind.',
+            'card7.excerpt': 'Menus, reservations & QR ordering',
+            'card7.detail': 'One system for the guest-facing site and the back office: digital menu, reservations and reviews, plus staff tools for menus, orders, promos and QR-based ordering—fewer phone calls and order errors during service.',
             'card8.title': 'Booking & Business Platform',
-            'card8.excerpt': 'DACH · Barbers, salons, gyms · Multilingual',
-            'card8.detail': 'Multilingual booking and business platform for barbers, salons and gyms in the DACH region. Owners manage services, pricing, hours, bookings, invoices and wallets; customers discover and book online; admins oversee tenants and locales (incl. RTL) via a role‑based, multi‑language backend.',
+            'card8.excerpt': 'Online booking & billing for service businesses',
+            'card8.detail': 'Built for barbers, salons and gyms in the DACH region: each business gets its own public booking page, while owners run services, pricing, calendars, invoices and payouts in one place—customers book in their language; you reduce no-shows and admin overhead.',
             'card9.title': 'Multilingual Ecommerce',
-            'card9.excerpt': 'Multi-language store & admin',
-            'card9.detail': 'Full-stack multilingual e-commerce platform built with Laravel 10, PHP 8.1+ and MySQL, using Blade views, CoreUI-powered admin and a Cozastore-based storefront. Architecture follows MVC with Repository and Service layers, pluggable payment gateways behind a PaymentManager, view composers and custom helpers (breadcrumbs, currency, dates, captchas). Features include products with variants and soft deletes, categories, brands, multi-vendor orders, cart and checkout with coupons and refunds, plus Yajra DataTables, translatable entities, banners, menus, promotions, attributes, customer/vendor auth (incl. OTP), wishlist, reviews, search, multi-language and multi-currency (incl. Toman/IRR, Jalali dates and exchange handling).',
+            'card9.excerpt': 'Sell in many languages & currencies',
+            'card9.detail': 'End-to-end commerce for teams that sell across regions: storefront, cart and checkout, vendor and customer accounts, promotions, refunds, and reporting—with multi-currency pricing and localized content so finance and marketing stay aligned.',
             'card10.title': 'Medical Office Manager',
-            'card10.excerpt': 'Laravel 12 · Practice, patients, doctors, admin',
-            'card10.detail': 'Laravel 12 application (PHP 8.2, Vite, Tailwind, Alpine.js) with a public practice website (services, doctors, booking, blog, contact, AI assistant), patient portal (appointments, records, prescriptions, documents, profile, notifications), doctor panel (schedule, patients, records, prescriptions, lab requests, documents), and admin panel (appointments, doctors, patients, services, medicines, prescriptions, records, articles, FAQs, documents, notifications, assistant logs, reports, settings). Role-based access and policy-based authorization; optional Ollama/Gemini-powered assistant with practice-specific context; background/scheduled tasks for reminders and queues.',
-            'ctaProject.title': 'Ready to Start Your Project',
-            'ctaProject.body': "I'm ready to start working on your projects. Just tell me what you need, and I'll bring it to life. Whether it's building a new backend system, developing APIs, or scaling existing infrastructure, I'm here to help turn your ideas into reality.",
+            'card10.excerpt': 'Practice site, patient & doctor portals',
+            'card10.detail': 'A single platform for the public practice site, patient self-service (appointments, records, prescriptions, documents), clinician workflows (schedules, labs, documentation), and admin operations—with role-based access, reminders, and an optional assistant trained on practice-specific content.',
+            'ctaProject.title': 'Describe the outcome, not the stack',
+            'ctaProject.body': 'In a short note: what is broken or missing today, who it affects (customers, staff, partners), and what “done” looks like—timeline, volume, or a metric you want to move. I’ll reply with a straight answer on fit, rough approach, and sensible next steps.',
+            'ctaProject.whatsappCta': 'Message on WhatsApp',
             'ctaProject.button': 'Get in touch',
             'cta.title': 'Create a beautiful, responsive website like this one effortlessly.',
             'cta.button': 'Purchase Slick',
@@ -806,7 +937,7 @@
             'cta.builderBtn': 'Try Generator',
             'cta.blocks': '172 Premade Blocks',
             'cta.blocksBtn': 'Explore Blocks',
-            'contact.heading': 'Get in touch',
+            'contact.heading': 'Let’s talk about your problem',
             'contact.formName': 'Name',
             'contact.formEmail': 'Email',
             'contact.formMessage': 'Message',
@@ -815,6 +946,7 @@
             'contact.formError': 'Oops! There was a problem submitting your form.',
             'contact.email': 'Email',
             'contact.linkedIn': 'LinkedIn',
+            'contact.whatsapp': 'WhatsApp',
             'footer.pages': 'Pages',
             'footer.blocks': 'All Blocks',
             'footer.components': 'Components',
@@ -825,46 +957,60 @@
           },
           // German (same keys as en; add cardN.title, cardN.excerpt, cardN.detail for new projects)
           de: {
-            'hero.title': 'Hey, ich bin Hamed ',
-            'hero.titleBold': 'Yarandi',
-            'hero.role': 'Software Engineer',
-            'hero.location': 'Ansässig in Innsbruck, Österreich · 13+ Jahre Erfahrung',
-            'hero.subtitle': 'Software-Ingenieur mit 13+ Jahren Erfahrung im Aufbau skalierbarer Webanwendungen, Backend-Systeme und Echtzeit-Dashboards von Grund auf. Stärken in Golang und PHP—APIs, Microservices, hochperformante Dienste—sowie praktische Erfahrung mit AI/LLM-Integration und datengetriebenen Produkten. Leidenschaft für saubere Architektur, Wartbarkeit und die Lösung komplexer technischer Probleme.',
+            'hero.title': 'Vereinfachen. Automatisieren. ',
+            'hero.titleBold': 'Wachsen.',
+            'hero.role': 'Unabhängiger Umsetzer · Produkte, Plattformen & Betrieb',
+            'hero.location': 'Innsbruck, Österreich · 13+ Jahre Geschäftsprobleme in laufende Systeme übersetzt',
+            'hero.subtitle': 'Ich helfe Organisationen, manuelle Arbeit, verstreute Tabellen und fragile Tools durch Software zu ersetzen, die Menschen wirklich nutzen—damit Sie Kund:innen schneller bedienen, sehen, was im Geschäft passiert, und wachsen können, ohne ständig Brände zu löschen. Gesundheitswesen, Gastronomie, Dienstleister, Kreditwesen, E-Commerce: Wenn es Buchungen, Geld, Compliance oder Daten berührt, habe ich vermutlich schon etwas Ähnliches Ende-zu-Ende geliefert.',
+            'nav.intro': 'Über mich',
+            'nav.work': 'Referenzen',
+            'nav.whyChoose': 'Warum ich?',
+            'nav.contact': 'Kontakt',
             'nav.pages': 'Seiten',
             'nav.blocks': 'Alle Blöcke',
             'nav.sitemap': 'Sitemap',
+            'value.1.title': 'Vom Problem zum auslieferbaren Produkt',
+            'value.1.body': 'Von unklaren Anforderungen bis zu einer lauffähigen Lösung—Prioritäten, Scope und ein Weg in den Betrieb, den Ihr Team tragen kann.',
+            'value.2.title': 'Abläufe & Umsatz automatisieren',
+            'value.2.body': 'Buchung, Abrechnung, mehrsprachige Shops und interne Tools, die Verwaltungsaufwand und Umsatzverluste reduzieren—ohne Folien zu Frameworks.',
+            'value.3.title': 'Entscheidungen mit Datenfundament',
+            'value.3.body': 'Dashboards, Integrationen und KI-unterstützte Abläufe, wenn es um schnellere, nachvollziehbare Entscheidungen geht—nicht um Technik um der Technik willen.',
+            'whyChoose.heading': 'Warum mich wählen?',
+            'whyChoose.p1': 'Ich helfe Organisationen, manuelle Prozesse, verstreute Tabellen und fragile Tools durch Software zu ersetzen, die Menschen gerne nutzen—damit Sie Kund:innen schneller bedienen, echte Transparenz in Ihren Abläufen gewinnen und skalieren können, ohne ständig Brände zu löschen. Mein Schwerpunkt liegt auf praktischen, zuverlässigen Systemen, die den täglichen Geschäftsalltag Ihres Unternehmens vereinfachen.',
+            'whyChoose.p2': 'Mit über 13 Jahren Erfahrung als Software-Ingenieur habe ich skalierbare Webanwendungen, Backend-Systeme und Echtzeit-Dashboards von Grund auf gebaut. Ich spezialisiere mich auf Golang und PHP—APIs, Microservices und leistungsfähige Dienste—dazu praktische Erfahrung mit KI/LLM-Integration und datengetriebenen Produkten. Saubere Architektur, Wartbarkeit und die Lösung komplexer technischer Herausforderungen haben für mich Priorität. In Branchen wie Gesundheitswesen, Gastronomie, Dienstleistungen, Kreditwesen und E-Commerce habe ich Ende-zu-Ende-Lösungen für Systeme mit Buchungen, Zahlungen, Compliance und Daten geliefert.',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online-Radio-Plattform',
-            'card1.detail': 'Cloud-native Radio-Streaming-Plattform mit Golang, gRPC und Docker. Ausgelegt auf 24/7-Betrieb, horizontale Skalierung und niedrige Latenz; das MVP erreichte innerhalb von 3 Monaten über 100 aktive Hörer.',
+            'card1.detail': 'Streaming-Plattform für Verfügbarkeit und Wachstum: Das MVP erreichte in zwei Monaten 400+ aktive Hörerinnen und Hörer; die Architektur ist auf 24/7-Betrieb und sanftes Skalieren bei wachsender Reichweite ausgelegt.',
             'card2.title': 'Mizner Mobile App',
             'card2.excerpt': 'Plattform für Bewohner & HOA',
-            'card2.detail': 'Backend- und Integrationsarbeit für eine App, die Bewohner und HOA verbindet: sichere Authentifizierung, Benachrichtigungen und Daten-APIs. Legacy-PHP-Code modernisiert, um Performance, Wartbarkeit und künftige Erweiterbarkeit zu verbessern.',
+            'card2.detail': 'Funktionen und Anbindungen für eine Bewohner–HOA-App: schnellere Oberflächen und weniger Ausfälle nach Bereinigung des Legacy-Backends—Verwaltung und Bewohner erhalten zuverlässige Daten und Benachrichtigungen.',
             'card3.title': 'AdimAdim',
             'card3.excerpt': 'Spendenplattform',
-            'card3.detail': 'Mehrsprachige Spendenplattform für eine gemeinnützige Organisation entworfen – mit klarer Trennung von Domainlogik, Zahlungsabläufen und Inhalten sowie Fokus auf Zuverlässigkeit, Transparenz und nachvollziehbare Reports.',
+            'card3.detail': 'Spendenprozesse für eine Non-Profit-Organisation neu aufgesetzt: mehrere Sprachen, klar getrennte Zahlungen, Inhalte und Reporting—für Spender:innen und Team nachvollziehbare Ergebnisse.',
             'card4.title': 'LendTech Gateway',
-            'card4.excerpt': 'Von 3 großen Unternehmen übernommen',
-            'card4.detail': 'LendTech-Integrations-Gateway für Banken und Kreditgeber konzipiert und umgesetzt: vereinheitlichte APIs für KYC, Bonitätsprüfung und Auszahlungen mit robuster Fehlertoleranz und Observability, damit neue Partner schnell angebunden werden können.',
+            'card4.excerpt': 'Schnellere Partneranbindung für Kreditgeber',
+            'card4.detail': 'Integrationsschicht zwischen Kreditgebern und Partnern: ein Ort für Prüfungen, Auszahlungen und Fehlerbehandlung—Partner gehen mit weniger Sonderbau und weniger Produktionsvorfällen live.',
             'card5.title': 'WordPress-Plugins',
-            'card5.excerpt': 'Von 60+ Händlern genutzt',
-            'card5.detail': 'Wiederverwendbare, konfigurationsgetriebene WordPress-Plugins entwickelt, die E-Commerce-Funktionalität für Dutzende Händler bereitstellen – mit Fokus auf Performance, Update-Sicherheit und breite Hosting-Kompatibilität.',
+            'card5.excerpt': 'Shop-Funktionen für viele Händler ausgerollt',
+            'card5.detail': 'E-Commerce-Funktionen als konfigurierbare Plugins gebündelt, damit Dutzende Händler Features ohne Einzelprojekte aktivieren können—schnellere Live-Gänge und sicherere Updates über verschiedene Hosting-Umgebungen.',
             'card6.title': 'Rehabilitation Analytics',
-            'card6.excerpt': 'KI-gestützte Reha-Dashboards & Vorhersage',
-            'card6.detail': 'KI-gestützte Analytics-Plattform für Führungskräfte im Reha-Bereich: Vorhersage von Aufnahmen (IRF, SNF, Home Health), klinische Zusammenfassungen mit LLMs und strategische Dashboards auf Basis von CMS-, Claims- und Marktdaten für schnellere, datenbasierte Entscheidungen.',
+            'card6.excerpt': 'Schnellere Entscheidungen für Reha-Führung',
+            'card6.detail': 'Analytics für Führungskräfte in der Rehabilitation: klarere Sicht auf Nachfrage und Kapazität, Aufnahmeprognosen und zusammengefasster klinischer Kontext—weniger Zeit für Excel-Abgleich, mehr Zeit für Versorgung und Wachstum.',
             'card7.title': 'Restaurant-Managementsystem',
-            'card7.excerpt': 'Laravel · Menü, Reservierungen, QR-Menü',
-            'card7.detail': 'Vollständiges Laravel-Restaurant-Managementsystem mit öffentlicher Website (Speisekarte, Reservierungen, Bewertungen, Mehrsprachigkeit) sowie Admin-Panel für Speisekarten, Reservierungen, Bestellungen, Aktionen und QR-basierte digitale Menüs.',
+            'card7.excerpt': 'Speisekarte, Reservierungen & QR-Bestellung',
+            'card7.detail': 'Ein System für Gästeseite und Backoffice: digitale Karte, Reservierungen und Bewertungen plus Werkzeuge für Karten, Bestellungen, Aktionen und QR-Bestellung—weniger Telefonchaos und Bestellfehler im Service.',
             'card8.title': 'Buchungs- & Geschäftsplattform',
-            'card8.excerpt': 'DACH · Friseure, Salons, Fitness · Mehrsprachig',
-            'card8.detail': 'Mehrsprachige Buchungs- und Geschäftsplattform für Friseure, Salons und Fitnessstudios im DACH-Raum. Inhaber verwalten Leistungen, Preise, Öffnungszeiten, Buchungen, Rechnungen und Wallets; Kunden entdecken und buchen online; Admins steuern Mandanten, Sprachen (inkl. RTL) und Rollen über ein mehrsprachiges Backend.',
+            'card8.excerpt': 'Online-Buchung & Abrechnung für Dienstleister',
+            'card8.detail': 'Für Friseure, Salons und Fitness im DACH-Raum: jede Betriebstätte erhält eine öffentliche Buchungsseite; Inhaber steuern Leistungen, Preise, Kalender, Rechnungen und Auszahlungen zentral—Kund:innen buchen in ihrer Sprache, Sie reduzieren Nichterscheinen und Büroarbeit.',
             'card9.title': 'Mehrsprachiger E-Commerce',
-            'card9.excerpt': 'Mehrsprachiger Shop & Admin',
-            'card9.detail': 'Vollständige mehrsprachige E-Commerce-Plattform mit kundenorientiertem Shop (Produktkatalog, Warenkorb, Checkout) und Admin-Panel für Produkte, Kategorien, Bestellungen und mehrsprachige Inhalte (z. B. EN, DE). Unterstützt Varianten, Preise und sprachspezifische SEO-Slugs.',
+            'card9.excerpt': 'Verkauf in mehreren Sprachen & Währungen',
+            'card9.detail': 'E-Commerce Ende-zu-Ende für Teams mit regionalem Vertrieb: Shop, Warenkorb und Checkout, Händler- und Kundenkonten, Aktionen, Erstattungen und Reporting—mit Multi-Currency und lokalisierten Inhalten, damit Finance und Marketing zusammenpassen.',
             'card10.title': 'Medical Office Manager',
-            'card10.excerpt': 'Laravel 12 · Praxis, Patienten, Ärzte, Admin',
-            'card10.detail': 'Laravel-12-Anwendung (PHP 8.2, Vite, Tailwind, Alpine.js) mit öffentlicher Praxis-Website (Leistungen, Ärzte, Buchung, Blog, Kontakt, KI-Assistent), Patientenportal (Termine, Akten, Rezepte, Dokumente, Profil, Benachrichtigungen), Arzt-Panel (Plan, Patienten, Akten, Rezepte, Laboranfragen, Dokumente) und Admin-Panel (Termine, Ärzte, Patienten, Leistungen, Medikamente, Rezepte, Akten, Artikel, FAQs, Dokumente, Benachrichtigungen, Assistenten-Logs, Berichte, Einstellungen). Rollenbasierter Zugriff und policy-basierte Autorisierung; optionaler Ollama/Gemini-Assistent mit praxisspezifischem Kontext; Hintergrund- und geplante Tasks für Erinnerungen und Warteschlangen.',
-            'ctaProject.title': 'Bereit für Ihr Projekt',
-            'ctaProject.body': "Ich bin bereit, an Ihren Projekten zu arbeiten. Sagen Sie mir einfach, was Sie brauchen – ich setze es um. Ob neues Backend-System, API-Entwicklung oder Skalierung bestehender Infrastruktur: Ich helfe dabei, Ihre Ideen in die Tat umzusetzen.",
+            'card10.excerpt': 'Praxis-Webseite, Patienten- & Ärzteportale',
+            'card10.detail': 'Eine Plattform für die öffentliche Praxis-Website, Patientenselbstbedienung (Termine, Akten, Rezepte, Dokumente), klinische Abläufe (Pläne, Labor, Dokumentation) und Verwaltung—mit rollenbasiertem Zugriff, Erinnerungen und optional einem Assistenten mit praxisspezifischem Kontext.',
+            'ctaProject.title': 'Beschreiben Sie das Ergebnis, nicht den Stack',
+            'ctaProject.body': 'Kurz: Was fehlt oder funktioniert heute nicht, wen betrifft es (Kund:innen, Team, Partner), und wann sind Sie „fertig“—Zeitrahmen, Volumen oder eine Kennzahl. Ich antworte mit einer ehrlichen Einschätzung zu Fit, grobem Vorgehen und sinnvollen nächsten Schritten.',
+            'ctaProject.whatsappCta': 'Nachricht per WhatsApp',
             'ctaProject.button': 'Kontakt aufnehmen',
             'cta.title': 'Erstelle mühelos eine schöne, responsive Website wie diese.',
             'cta.button': 'Slick kaufen',
@@ -878,7 +1024,7 @@
             'cta.builderBtn': 'Generator ausprobieren',
             'cta.blocks': '172 vorgefertigte Blöcke',
             'cta.blocksBtn': 'Blöcke erkunden',
-            'contact.heading': 'Kontakt',
+            'contact.heading': 'Sprechen wir über Ihr Problem',
             'contact.formName': 'Name',
             'contact.formEmail': 'E-Mail',
             'contact.formMessage': 'Nachricht',
@@ -887,6 +1033,7 @@
             'contact.formError': 'Beim Absenden des Formulars ist ein Fehler aufgetreten.',
             'contact.email': 'E-Mail',
             'contact.linkedIn': 'LinkedIn',
+            'contact.whatsapp': 'WhatsApp',
             'footer.pages': 'Seiten',
             'footer.blocks': 'Alle Blöcke',
             'footer.components': 'Komponenten',
@@ -1045,6 +1192,10 @@
         }
         function handleSubmit(event) {
           event.preventDefault();
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
           var status = document.getElementById('my-form-status');
           status.classList.remove('text-success', 'text-danger');
           var websiteField = document.getElementById('contact-website');
