@@ -6,6 +6,40 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      /* Early lang hint (before paint): saved choice, Farsi browser, or Asia/Tehran → fa/RTL */
+      (function () {
+        try {
+          var saved = localStorage.getItem('preferred-lang');
+          if (saved === 'fa' || saved === 'de' || saved === 'en') {
+            if (saved === 'fa') {
+              document.documentElement.lang = 'fa';
+              document.documentElement.setAttribute('dir', 'rtl');
+            } else if (saved === 'de') {
+              document.documentElement.lang = 'de';
+              document.documentElement.setAttribute('dir', 'ltr');
+            }
+            return;
+          }
+          var langs = (navigator.languages && navigator.languages.length)
+            ? navigator.languages
+            : (navigator.language ? [navigator.language] : []);
+          var isFa = false;
+          for (var i = 0; i < langs.length; i++) {
+            if (String(langs[i] || '').toLowerCase().indexOf('fa') === 0) { isFa = true; break; }
+          }
+          if (!isFa) {
+            try {
+              isFa = Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Tehran';
+            } catch (e) {}
+          }
+          if (isFa) {
+            document.documentElement.lang = 'fa';
+            document.documentElement.setAttribute('dir', 'rtl');
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- ===============================================-->
     <!--    Document Title-->
@@ -1643,14 +1677,63 @@
           return 'en';
         }
 
-        // No geo-IP lookups: they do not gate access, and external country APIs
-        // often hang or fail from filtered networks. Language = saved choice or browser.
+        function isIranTimezone() {
+          try {
+            return Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Tehran';
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function detectLangSync() {
+          // 1) Browser language (fa / de)
+          var fromBrowser = browserPrefersLang();
+          if (fromBrowser === 'fa' || fromBrowser === 'de') return fromBrowser;
+          // 2) Iran timezone — works offline and when geo-IP APIs are blocked
+          if (isIranTimezone()) return 'fa';
+          return 'en';
+        }
+
+        function detectIranByIp(timeoutMs) {
+          // Lightweight country lookup; aborted quickly so it never hangs the page.
+          // Used only when sync signals did not already pick fa/de.
+          var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+          var timer = setTimeout(function () {
+            if (ctrl) ctrl.abort();
+          }, timeoutMs || 2000);
+          var opts = ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' };
+          return fetch('https://get.geojs.io/v1/ip/country.json', opts)
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (data) {
+              clearTimeout(timer);
+              var code = data && (data.country || data.country_code || data);
+              if (typeof code === 'string' && code.toUpperCase() === 'IR') return true;
+              return false;
+            })
+            .catch(function () {
+              clearTimeout(timer);
+              return false;
+            });
+        }
+
+        // Priority: explicit saved choice > sync signals (browser / Tehran TZ) > geo-IP (IR → fa)
         var saved = null;
         try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
         if (saved && langMap[saved]) {
           setLang(saved, true);
         } else {
-          setLang(browserPrefersLang(), false);
+          var syncLang = detectLangSync();
+          setLang(syncLang, false);
+          // If still English, try IP country as a last resort (VPN users, etc.)
+          if (syncLang === 'en') {
+            detectIranByIp(2000).then(function (isIran) {
+              if (!isIran) return;
+              var stillSaved = null;
+              try { stillSaved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+              if (stillSaved && langMap[stillSaved]) return;
+              setLang('fa', false);
+            });
+          }
         }
 
         window.i18nGet = function (key) {
