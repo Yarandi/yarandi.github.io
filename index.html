@@ -1626,7 +1626,7 @@
           });
         });
 
-        function browserPrefersPersian() {
+        function browserPrefersLang() {
           var langs = [];
           try {
             if (navigator.languages && navigator.languages.length) {
@@ -1635,74 +1635,22 @@
               langs = [navigator.language];
             }
           } catch (e) {}
-          return langs.some(function (l) {
-            return String(l || '').toLowerCase().indexOf('fa') === 0;
-          });
+          for (var i = 0; i < langs.length; i++) {
+            var code = String(langs[i] || '').toLowerCase();
+            if (code.indexOf('fa') === 0) return 'fa';
+            if (code.indexOf('de') === 0) return 'de';
+          }
+          return 'en';
         }
 
-        function detectIranAndApply() {
-          var done = false;
-          var pending = 0;
-          var confirmedNonIr = false;
-
-          function finish(lang) {
-            if (done) return;
-            done = true;
-            setLang(lang, false);
-          }
-
-          function settleIfIdle() {
-            if (done || pending > 0) return;
-            if (confirmedNonIr) finish('en');
-            else finish(browserPrefersPersian() ? 'fa' : 'en');
-          }
-
-          function tryEndpoint(url, parseCountry) {
-            pending += 1;
-            var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-            var timer = setTimeout(function () {
-              if (controller) try { controller.abort(); } catch (e) {}
-            }, 3500);
-            fetch(url, {
-              method: 'GET',
-              credentials: 'omit',
-              signal: controller ? controller.signal : undefined
-            }).then(function (res) {
-              clearTimeout(timer);
-              if (!res.ok) throw new Error('geo failed');
-              return res.json();
-            }).then(function (data) {
-              pending -= 1;
-              var code = String(parseCountry(data) || '').toUpperCase();
-              if (code === 'IR') {
-                finish('fa');
-                return;
-              }
-              confirmedNonIr = true;
-              settleIfIdle();
-            }).catch(function () {
-              clearTimeout(timer);
-              pending -= 1;
-              settleIfIdle();
-            });
-          }
-
-          tryEndpoint('https://api.country.is/', function (d) { return d && d.country; });
-          tryEndpoint('https://get.geojs.io/v1/ip/country.json', function (d) { return d && d.country; });
-          tryEndpoint('https://ipapi.co/json/', function (d) { return d && d.country_code; });
-
-          setTimeout(function () {
-            if (!done) finish(confirmedNonIr ? 'en' : (browserPrefersPersian() ? 'fa' : 'en'));
-          }, 4000);
-        }
-
+        // No geo-IP lookups: they do not gate access, and external country APIs
+        // often hang or fail from filtered networks. Language = saved choice or browser.
         var saved = null;
         try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
         if (saved && langMap[saved]) {
           setLang(saved, true);
         } else {
-          applyLang('en');
-          detectIranAndApply();
+          setLang(browserPrefersLang(), false);
         }
 
         window.i18nGet = function (key) {
