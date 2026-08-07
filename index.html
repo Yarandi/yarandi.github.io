@@ -37,7 +37,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&amp;family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" />
     <style>
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; overflow-x: hidden; }
+      body { overflow-x: hidden; max-width: 100%; }
       .intro-portrait {
         filter: grayscale(100%);
         max-height: 420px;
@@ -46,18 +47,31 @@
         box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.3);
       }
       .hero-title-one-line { white-space: nowrap; }
-      .marquee-card-track-wrapper { padding: 0 0.5rem; }
+      .marquee-card-track-wrapper {
+        padding: 0 0.5rem;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+      }
       .marquee-card-track-wrapper:hover .marquee-card-track { animation-play-state: paused; }
       .marquee-card-track {
         display: flex;
         gap: 1rem;
         width: max-content;
-        animation: marquee-card 160s linear infinite;
-        animation-delay: 15s;
+        animation: marquee-card 60s linear infinite;
       }
       @keyframes marquee-card {
         0% { transform: translateX(0); }
         100% { transform: translateX(-50%); }
+      }
+      /* Keep marquee mechanics LTR so RTL page dir does not expand scroll width */
+      html[dir="rtl"] .marquee-card-track-wrapper,
+      html[dir="rtl"] .theme-blocks-marquee-wrapper {
+        direction: ltr;
+      }
+      html[dir="rtl"] .marquee-card,
+      html[dir="rtl"] .theme-blocks-marquee-item {
+        direction: rtl;
       }
       .theme-blocks-marquee-wrapper { overflow: hidden; padding: 0.5rem 0; }
       .theme-blocks-marquee-wrapper:hover .theme-blocks-marquee-track { animation-play-state: paused; }
@@ -275,6 +289,63 @@
         line-height: 1.55;
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 1px rgba(0, 0, 0, 1);
       }
+      /* Persian: readable RTL value props (Bootstrap text-start stays LTR without RTL CSS) */
+      html[lang="fa"] .value-proposition-strip,
+      html[dir="rtl"] .value-proposition-strip {
+        direction: rtl;
+      }
+      html[lang="fa"] .value-proposition-strip .row,
+      html[dir="rtl"] .value-proposition-strip .row {
+        text-align: right !important;
+      }
+      html[lang="fa"] .value-proposition-strip .col-lg-3,
+      html[dir="rtl"] .value-proposition-strip .col-lg-3,
+      html[lang="fa"] .value-proposition-strip .col-md-6,
+      html[dir="rtl"] .value-proposition-strip .col-md-6 {
+        text-align: right !important;
+      }
+      html[lang="fa"] .value-proposition-strip .value-prop-title,
+      html[dir="rtl"] .value-proposition-strip .value-prop-title {
+        font-family: Gandom, Shabnam, sans-serif;
+        font-size: clamp(1.05rem, 1.1vw, 1.2rem);
+        font-weight: 400;
+        letter-spacing: 0;
+        text-transform: none;
+        line-height: 1.55;
+        text-align: right !important;
+        margin-bottom: 0.65rem !important;
+      }
+      html[lang="fa"] .value-proposition-strip .value-prop-body,
+      html[dir="rtl"] .value-proposition-strip .value-prop-body {
+        font-family: Shabnam, sans-serif;
+        font-size: clamp(0.82rem, 0.85vw, 0.92rem);
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 1.85;
+        text-align: right !important;
+        max-width: 28rem;
+        margin-right: 0;
+        margin-left: auto;
+      }
+      @media (max-width: 767.98px) {
+        html[lang="fa"] .value-proposition-strip .row,
+        html[dir="rtl"] .value-proposition-strip .row,
+        html[lang="fa"] .value-proposition-strip .col-lg-3,
+        html[dir="rtl"] .value-proposition-strip .col-lg-3,
+        html[lang="fa"] .value-proposition-strip .col-md-6,
+        html[dir="rtl"] .value-proposition-strip .col-md-6,
+        html[lang="fa"] .value-proposition-strip .value-prop-title,
+        html[dir="rtl"] .value-proposition-strip .value-prop-title,
+        html[lang="fa"] .value-proposition-strip .value-prop-body,
+        html[dir="rtl"] .value-proposition-strip .value-prop-body {
+          text-align: center !important;
+        }
+        html[lang="fa"] .value-proposition-strip .value-prop-body,
+        html[dir="rtl"] .value-proposition-strip .value-prop-body {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
       .why-choose-section {
         scroll-margin-top: 5.5rem;
         background: #f1f5f9;
@@ -288,6 +359,87 @@
         font-size: 1.0625rem;
         line-height: 1.65;
       }
+      /* Persian why-choose body: clearer Shabnam + proper RTL */
+      html[lang="fa"] .why-choose-section .why-choose-heading,
+      html[dir="rtl"] .why-choose-section .why-choose-heading {
+        font-family: Gandom, Shabnam, sans-serif;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+      html[lang="fa"] .why-choose-section .why-choose-text,
+      html[dir="rtl"] .why-choose-section .why-choose-text {
+        font-family: Shabnam, sans-serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.85;
+        letter-spacing: 0;
+        text-align: right;
+        color: #334155;
+      }
+      html[lang="fa"][data-theme="dark"] .why-choose-section .why-choose-text,
+      html[dir="rtl"][data-theme="dark"] .why-choose-section .why-choose-text {
+        color: #e2e8f0;
+      }
+      /* Contact form: Persian font + RTL */
+      html[lang="fa"] #my-form,
+      html[dir="rtl"] #my-form {
+        text-align: right !important;
+        direction: rtl;
+      }
+      html[lang="fa"] #my-form .form-label,
+      html[dir="rtl"] #my-form .form-label,
+      html[lang="fa"] #my-form label,
+      html[dir="rtl"] #my-form label,
+      html[lang="fa"] #my-form .btn,
+      html[dir="rtl"] #my-form .btn,
+      html[lang="fa"] #my-form-button,
+      html[dir="rtl"] #my-form-button,
+      html[lang="fa"] #my-form-status,
+      html[dir="rtl"] #my-form-status {
+        font-family: Shabnam, sans-serif;
+        letter-spacing: 0;
+      }
+      html[lang="fa"] #my-form .form-label,
+      html[dir="rtl"] #my-form .form-label {
+        text-align: right;
+        display: block;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+      html[lang="fa"] #my-form .form-control,
+      html[dir="rtl"] #my-form .form-control,
+      html[lang="fa"] #my-form textarea,
+      html[dir="rtl"] #my-form textarea {
+        font-family: Shabnam, sans-serif;
+        direction: rtl;
+        text-align: right;
+      }
+      html[lang="fa"] #my-form #contact-email,
+      html[dir="rtl"] #my-form #contact-email {
+        direction: ltr;
+        text-align: left;
+      }
+      html[lang="fa"] #contacts .btn-whatsapp-cta,
+      html[dir="rtl"] #contacts .btn-whatsapp-cta,
+      html[lang="fa"] #contacts [data-i18n],
+      html[dir="rtl"] #contacts h2,
+      html[dir="rtl"] #contacts h3,
+      html[lang="fa"] #contacts h2,
+      html[lang="fa"] #contacts h3 {
+        font-family: Shabnam, sans-serif;
+        letter-spacing: 0;
+      }
+      html[lang="fa"] #contacts h2,
+      html[lang="fa"] #contacts h3,
+      html[dir="rtl"] #contacts h2,
+      html[dir="rtl"] #contacts h3 {
+        font-family: Gandom, Shabnam, sans-serif;
+        font-weight: 400;
+      }
+      html[lang="fa"] #contacts .col-lg-6.order-2,
+      html[dir="rtl"] #contacts .col-lg-6.order-2 {
+        text-align: right;
+      }
       [data-theme="dark"] .why-choose-section {
         background: #141418;
         border-top-color: rgba(255, 255, 255, 0.06);
@@ -298,6 +450,108 @@
       [data-theme="dark"] .why-choose-section .why-choose-text {
         color: #cbd5e1;
       }
+      /* Persian fonts: Shabnam (body) + Gandom (headings) */
+      @font-face {
+        font-family: Shabnam;
+        src: url('assets/fonts/shabnam/Shabnam-Light.woff2') format('woff2'),
+             url('assets/fonts/shabnam/Shabnam-Light.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Shabnam;
+        src: url('assets/fonts/shabnam/Shabnam.woff2') format('woff2'),
+             url('assets/fonts/shabnam/Shabnam.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Shabnam;
+        src: url('assets/fonts/shabnam/Shabnam-Medium.woff2') format('woff2'),
+             url('assets/fonts/shabnam/Shabnam-Medium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Shabnam;
+        src: url('assets/fonts/shabnam/Shabnam-Bold.woff2') format('woff2'),
+             url('assets/fonts/shabnam/Shabnam-Bold.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: Gandom;
+        src: url('assets/fonts/gandom/Gandom.woff2') format('woff2'),
+             url('assets/fonts/gandom/Gandom.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      /* Persian / RTL */
+      html[lang="fa"] body,
+      html[dir="rtl"] body {
+        font-family: Shabnam, "Open Sans", "Source Sans Pro", sans-serif;
+      }
+      /* Theme sets Source Sans Pro on .navbar / .btn — override for Persian */
+      html[lang="fa"] .navbar,
+      html[lang="fa"] .navbar .nav-link,
+      html[lang="fa"] .navbar-brand,
+      html[lang="fa"] .dropdown-menu,
+      html[lang="fa"] .dropdown-item,
+      html[lang="fa"] .btn,
+      html[lang="fa"] button,
+      html[lang="fa"] input,
+      html[lang="fa"] textarea,
+      html[lang="fa"] select,
+      html[dir="rtl"] .navbar,
+      html[dir="rtl"] .navbar .nav-link,
+      html[dir="rtl"] .navbar-brand,
+      html[dir="rtl"] .dropdown-menu,
+      html[dir="rtl"] .dropdown-item,
+      html[dir="rtl"] .btn,
+      html[dir="rtl"] button,
+      html[dir="rtl"] input,
+      html[dir="rtl"] textarea,
+      html[dir="rtl"] select {
+        font-family: Shabnam, "Source Sans Pro", sans-serif;
+      }
+      html[lang="fa"] h1,
+      html[lang="fa"] h2,
+      html[lang="fa"] h3,
+      html[lang="fa"] h4,
+      html[lang="fa"] h5,
+      html[lang="fa"] h6,
+      html[dir="rtl"] h1,
+      html[dir="rtl"] h2,
+      html[dir="rtl"] h3,
+      html[dir="rtl"] h4,
+      html[dir="rtl"] h5,
+      html[dir="rtl"] h6,
+      html[lang="fa"] .hero-title-one-line,
+      html[dir="rtl"] .hero-title-one-line,
+      html[lang="fa"] .value-prop-title,
+      html[dir="rtl"] .value-prop-title {
+        font-family: Gandom, Shabnam, sans-serif;
+      }
+      html[dir="rtl"] .text-md-start { text-align: right !important; }
+      html[dir="rtl"] .dropdown-menu-end { --bs-position: start; right: auto; left: 0; }
+      html[dir="rtl"] .navbar .nav-link,
+      html[dir="rtl"] .navbar-brand {
+        letter-spacing: 0 !important;
+      }
+      html[dir="rtl"] .hero-title-one-line {
+        white-space: normal;
+        max-width: 100%;
+        padding-inline: 0.5rem;
+        word-wrap: break-word;
+      }
+      html[dir="rtl"] .me-1 { margin-right: 0 !important; margin-left: 0.25rem !important; }
+      html[dir="rtl"] .me-2 { margin-right: 0 !important; margin-left: 0.5rem !important; }
+      html[dir="rtl"] .ms-auto { margin-left: 0 !important; margin-right: auto !important; }
       .why-choose-portrait {
         max-height: min(420px, 70vh);
         width: auto;
@@ -357,6 +611,7 @@
               <ul class="dropdown-menu dropdown-menu-end rounded border-0 bg-white shadow-lg py-0" id="navbarLangDropdownMenu" aria-labelledby="navbarLangDropdown">
                 <li><a class="dropdown-item lang-option active" href="#" data-lang="en">English</a></li>
                 <li><a class="dropdown-item lang-option" href="#" data-lang="de">Deutsch</a></li>
+                <li><a class="dropdown-item lang-option" href="#" data-lang="fa">فارسی</a></li>
               </ul>
             </li>
           </ul>
@@ -406,14 +661,14 @@
       <!--  - Hover shows full description overlay.      -->
       <!--  - Multiple images: click to cycle (JS).      -->
       <!--  - i18n: use data-i18n="cardN.title|excerpt|detail". -->
-      <!--  - Add translations in the t.en / t.de objects.   -->
+      <!--  - Add translations in the t.en / t.de / t.fa objects.   -->
       <!-- ============================================-->
       <!--
         TEMPLATE — To add a new project:
         1. Copy one block below (from <!-- Project N: ... to </div>).
         2. Give it the next card number (card9, card10, …).
         3. Add one or more <img> in marquee-card-img-wrap (first = default).
-        4. Add cardN.title, cardN.excerpt, cardN.detail to t.en and t.de in <script>.
+        4. Add cardN.title, cardN.excerpt, cardN.detail to t.en, t.de and t.fa in <script>.
         5. Duplicate the same block again after "duplicate set" for seamless marquee loop.
       -->
       <section class="py-5 py-lg-6 overflow-hidden" id="cards-carousel-section">
@@ -442,9 +697,25 @@
         <div class="marquee-card-track-wrapper">
           <div class="marquee-card-track" id="marqueeCardTrack">
 
-
-
-           
+            <!-- Project 11: Ronak Gold (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/ronak-gold-storefront.png" alt="Ronak Gold – Storefront" class="img-fluid">
+                <img src="assets/img/projects/ronak-gold-customer-dashboard.png" alt="Ronak Gold – Customer Dashboard" class="img-fluid">
+                <img src="assets/img/projects/ronak-gold-admin-dashboard.png" alt="Ronak Gold – Admin Dashboard" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card11.title">Ronak Gold</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card11.excerpt">Digital gold &amp; silver trading</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card11.detail">
+                  Digital gold and silver trading for the Iranian market: live pricing, cash and metal wallets, limit orders, multi-gateway payments, KYC, and physical bar delivery—with admin and branch portals for operations.
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card11.detail">Digital gold and silver trading for the Iranian market: live pricing, cash and metal wallets, limit orders, multi-gateway payments, KYC, and physical bar delivery—with admin and branch portals for operations.</p>
+              </div>
+            </div>
+            <!-- Project 11: Ronak Gold (END) -->
 
             <!-- Project 7: Restaurant Management System (multi-image hover carousel) (BEGIN) -->
             <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
@@ -502,24 +773,47 @@
             </div>
             <!-- Project 8: Booking & Business Platform (END) -->
 
-            <!-- Project 9: Multilingual Ecommerce (BEGIN) -->
+            <!-- Project 9: Multi-Vendor Ecommerce Platform (BEGIN) -->
             <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
               <div class="marquee-card-img-wrap">
-                <img src="assets/img/projects/ecmmerce-front.jpeg" alt="Multilingual Ecommerce – Storefront" class="img-fluid">
-                <img src="assets/img/projects/ecommerce-back-panel.png" alt="Multilingual Ecommerce – Back Panel" class="img-fluid">
+                <img src="assets/img/projects/ecommerce-storefront.png" alt="Multi-Vendor Ecommerce – Storefront" class="img-fluid">
+                <img src="assets/img/projects/ecommerce-admin-dashboard.png" alt="Multi-Vendor Ecommerce – Admin Dashboard" class="img-fluid">
+                <img src="assets/img/projects/ecommerce-profile.png" alt="Multi-Vendor Ecommerce – Profile" class="img-fluid">
+                <img src="assets/img/projects/ecommerce-seller-dashboard.png" alt="Multi-Vendor Ecommerce – Seller Dashboard" class="img-fluid">
+                <img src="assets/img/projects/ecommerce-sellers-list.png" alt="Multi-Vendor Ecommerce – Sellers List" class="img-fluid">
+                <img src="assets/img/projects/ecommerce-api-services.png" alt="Multi-Vendor Ecommerce – API Services" class="img-fluid">
               </div>
               <div class="card-body position-relative p-3">
-                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card9.title">Multilingual Ecommerce</h5>
-                <p class="card-text text-700 small mb-1" data-i18n="card9.excerpt">Sell in many languages &amp; currencies</p>
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card9.title">Multi-Vendor Ecommerce Platform</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card9.excerpt">Marketplace for many sellers</p>
                 <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card9.detail">
-                  End-to-end commerce for teams that sell across regions: storefront, cart and checkout, vendor and customer accounts, promotions, refunds, and reporting—with multi-currency pricing and localized content so finance and marketing stay aligned.
+                  An online marketplace where many vendors sell under one roof: storefront, cart and checkout, seller and customer accounts, promotions, refunds, and reporting—plus multi-currency and localized content so ops, finance, and marketing stay aligned.
                 </p>
               </div>
               <div class="card-detail-overlay">
-                <p class="mb-0 small" data-i18n="card9.detail">End-to-end commerce for teams that sell across regions: storefront, cart and checkout, vendor and customer accounts, promotions, refunds, and reporting—with multi-currency pricing and localized content so finance and marketing stay aligned.</p>
+                <p class="mb-0 small" data-i18n="card9.detail">An online marketplace where many vendors sell under one roof: storefront, cart and checkout, seller and customer accounts, promotions, refunds, and reporting—plus multi-currency and localized content so ops, finance, and marketing stay aligned.</p>
               </div>
             </div>
-            <!-- Project 9: Multilingual Ecommerce (END) -->
+            <!-- Project 9: Multi-Vendor Ecommerce Platform (END) -->
+
+            <!-- Project 12: Coverage / Serial Ownership Platform (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/coverage-serial-checker.png" alt="Coverage Platform – Serial Checker" class="img-fluid">
+                <img src="assets/img/projects/coverage-ownership-history.png" alt="Coverage Platform – Ownership History" class="img-fluid">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card12.title">Coverage / Serial Ownership Platform</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card12.excerpt">Serials, warranty cards &amp; ownership transfers</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card12.detail">
+                  Full-stack coverage management for product serials and ownership across a retail network: public serial verification (including RFID deep links), tools to issue and import coverage cards, ownership transfer history, lost/stolen reporting, and permission-based access for staff, distributors, and agents.
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card12.detail">Full-stack coverage management for product serials and ownership across a retail network: public serial verification (including RFID deep links), tools to issue and import coverage cards, ownership transfer history, lost/stolen reporting, and permission-based access for staff, distributors, and agents.</p>
+              </div>
+            </div>
+            <!-- Project 12: Coverage / Serial Ownership Platform (END) -->
 
             <!-- Project 10: Medical Office Manager (BEGIN) -->
             <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
@@ -727,9 +1021,9 @@
             <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="hamed-yarandi" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://at.linkedin.com/in/hamed-yarandi?trk=profile-badge"></a></div>
           </div>
           <div class="col-md-7 col-lg-8">
-            <p class="why-choose-text mb-3 mb-lg-4">I help organizations replace manual processes, scattered spreadsheets, and fragile tools with reliable software people actually enjoy using-so you can move faster, gain real visibility, and scale without constant firefighting.</p>
-            <p class="why-choose-text mb-3 mb-lg-4">With 13+ years of experience as a software engineer, I build scalable web applications, backend systems, and APIs using Golang and PHP. I focus on clean architecture, performance, and maintainability, with hands-on experience in AI/LLM integrations and data-driven products.</p>
-            <p class="why-choose-text mb-0">I've delivered end-to-end solutions across healthcare, hospitality, e-commerce, Buy Now, Pay Later (BNPL), and sales systems-covering bookings, payments, and complex workflows. I also work closely with teams or own technical parts of projects to keep delivery on track.</p>
+            <p class="why-choose-text mb-3 mb-lg-4" data-i18n="whyChoose.p1">I help organizations replace manual processes, scattered spreadsheets, and fragile tools with reliable software people actually enjoy using-so you can move faster, gain real visibility, and scale without constant firefighting.</p>
+            <p class="why-choose-text mb-3 mb-lg-4" data-i18n="whyChoose.p2">With 13+ years of experience as a software engineer, I build scalable web applications, backend systems, and APIs using Golang and PHP. I focus on clean architecture, performance, and maintainability, with hands-on experience in AI/LLM integrations and data-driven products.</p>
+            <p class="why-choose-text mb-0" data-i18n="whyChoose.p3">I've delivered end-to-end solutions across healthcare, hospitality, e-commerce, Buy Now, Pay Later (BNPL), and sales systems-covering bookings, payments, and complex workflows. I also work closely with teams or own technical parts of projects to keep delivery on track.</p>
           </div>
         </div>
       </div>
@@ -887,9 +1181,14 @@
         var STORAGE_KEY = 'preferred-lang';
         var labelEl = document.querySelector('[data-i18n-lang-label]');
         var options = document.querySelectorAll('.lang-option');
-        var langMap = { en: 'EN', de: 'DE' };
+        var langMap = { en: 'EN', de: 'DE', fa: 'FA' };
+        var langAttrs = {
+          en: { lang: 'en-US', dir: 'ltr' },
+          de: { lang: 'de', dir: 'ltr' },
+          fa: { lang: 'fa', dir: 'rtl' }
+        };
 
-        // i18n strings. For each new project card add: cardN.title, cardN.excerpt, cardN.detail in both en and de.
+        // i18n strings. For each new project card add: cardN.title, cardN.excerpt, cardN.detail in en, de, and fa.
         var t = {
           en: {
             'hero.title': 'Simplify. Automate. ',
@@ -915,6 +1214,7 @@
             'whyChoose.heading': 'Why choose me',
             'whyChoose.p1': 'I help organizations replace manual processes, scattered spreadsheets, and fragile tools with software people actually enjoy using—so you can serve customers faster, gain real visibility into your operations, and scale without constant firefighting. My focus is on building practical, reliable systems that simplify how your business runs day to day.',
             'whyChoose.p2': 'With 13+ years of experience as a software engineer, I\'ve built scalable web applications, backend systems, and real-time dashboards from the ground up. I specialize in Golang and PHP—developing APIs, microservices, and high-performance services—along with hands-on experience in AI/LLM integration and data-driven products. I prioritize clean architecture, maintainability, and solving complex technical challenges. Across industries like healthcare, hospitality, professional services, lending, and e-commerce, I\'ve delivered end-to-end solutions for systems involving bookings, payments, compliance, and data. Beyond greenfield work, I support customer projects with this same skill set—embedded with your team or owning a technical slice so roadmaps and client commitments stay on track.',
+            'whyChoose.p3': 'I\'ve delivered end-to-end solutions across healthcare, hospitality, e-commerce, Buy Now, Pay Later (BNPL), and sales systems—covering bookings, payments, and complex workflows. I also work closely with teams or own technical parts of projects to keep delivery on track.',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online Radio Platform',
             'card1.detail': 'Streaming platform built for reliability and growth: the MVP reached 400+ active listeners in two months, with architecture aimed at 24/7 uptime and smooth scaling as audiences grow.',
@@ -939,12 +1239,18 @@
             'card8.title': 'Booking & Business Platform',
             'card8.excerpt': 'Online booking & billing for service businesses',
             'card8.detail': 'Built for barbers, salons and gyms in the DACH region: each business gets its own public booking page, while owners run services, pricing, calendars, invoices and payouts in one place—customers book in their language; you reduce no-shows and admin overhead.',
-            'card9.title': 'Multilingual Ecommerce',
-            'card9.excerpt': 'Sell in many languages & currencies',
-            'card9.detail': 'End-to-end commerce for teams that sell across regions: storefront, cart and checkout, vendor and customer accounts, promotions, refunds, and reporting—with multi-currency pricing and localized content so finance and marketing stay aligned.',
+            'card9.title': 'Multi-Vendor Ecommerce Platform',
+            'card9.excerpt': 'Marketplace for many sellers',
+            'card9.detail': 'An online marketplace where many vendors sell under one roof: storefront, cart and checkout, seller and customer accounts, promotions, refunds, and reporting—plus multi-currency and localized content so ops, finance, and marketing stay aligned.',
             'card10.title': 'Medical Office Manager',
             'card10.excerpt': 'Practice site, patient & doctor portals',
             'card10.detail': 'A single platform for the public practice site, patient self-service (appointments, records, prescriptions, documents), clinician workflows (schedules, labs, documentation), and admin operations—with role-based access, reminders, and an optional assistant trained on practice-specific content.',
+            'card11.title': 'Ronak Gold',
+            'card11.excerpt': 'Digital gold & silver trading',
+            'card11.detail': 'Digital gold and silver trading for the Iranian market: live pricing, cash and metal wallets, limit orders, multi-gateway payments, KYC, and physical bar delivery—with admin and branch portals for operations.',
+            'card12.title': 'Coverage / Serial Ownership Platform',
+            'card12.excerpt': 'Serials, warranty cards & ownership transfers',
+            'card12.detail': 'Full-stack coverage management for product serials and ownership across a retail network: public serial verification (including RFID deep links), tools to issue and import coverage cards, ownership transfer history, lost/stolen reporting, and permission-based access for staff, distributors, and agents.',
             'ctaProject.title': 'Describe the outcome, not the stack',
             'ctaProject.body': 'In a short note: what is broken or missing today, who it affects (customers, staff, partners), and what “done” looks like—timeline, volume, or a metric you want to move. I’ll reply with a straight answer on fit, rough approach, and sensible next steps.',
             'ctaProject.whatsappCta': 'Message on WhatsApp',
@@ -1004,6 +1310,7 @@
             'whyChoose.heading': 'Warum mich wählen?',
             'whyChoose.p1': 'Ich helfe Organisationen, manuelle Prozesse, verstreute Tabellen und fragile Tools durch Software zu ersetzen, die Menschen gerne nutzen—damit Sie Kund:innen schneller bedienen, echte Transparenz in Ihren Abläufen gewinnen und skalieren können, ohne ständig Brände zu löschen. Mein Schwerpunkt liegt auf praktischen, zuverlässigen Systemen, die den täglichen Geschäftsalltag Ihres Unternehmens vereinfachen.',
             'whyChoose.p2': 'Mit über 13 Jahren Erfahrung als Software-Ingenieur habe ich skalierbare Webanwendungen, Backend-Systeme und Echtzeit-Dashboards von Grund auf gebaut. Ich spezialisiere mich auf Golang und PHP—APIs, Microservices und leistungsfähige Dienste—dazu praktische Erfahrung mit KI/LLM-Integration und datengetriebenen Produkten. Saubere Architektur, Wartbarkeit und die Lösung komplexer technischer Herausforderungen haben für mich Priorität. In Branchen wie Gesundheitswesen, Gastronomie, Dienstleistungen, Kreditwesen und E-Commerce habe ich Ende-zu-Ende-Lösungen für Systeme mit Buchungen, Zahlungen, Compliance und Daten geliefert. Neben Greenfield-Projekten unterstütze ich Kundenprojekte mit demselben Profil—eingebunden ins Team oder mit klarer technischer Verantwortung, damit Roadmaps und Zusagen gegenüber Kund:innen tragfähig bleiben.',
+            'whyChoose.p3': 'Ich habe Ende-zu-Ende-Lösungen in Gesundheitswesen, Gastronomie, E-Commerce, Buy Now Pay Later (BNPL) und Vertriebssystemen geliefert—von Buchungen und Zahlungen bis zu komplexen Workflows. Ich arbeite eng mit Teams zusammen oder übernehme technische Teile von Projekten, damit die Auslieferung im Plan bleibt.',
             'card1.title': 'Nownava',
             'card1.excerpt': 'Online-Radio-Plattform',
             'card1.detail': 'Streaming-Plattform für Verfügbarkeit und Wachstum: Das MVP erreichte in zwei Monaten 400+ aktive Hörerinnen und Hörer; die Architektur ist auf 24/7-Betrieb und sanftes Skalieren bei wachsender Reichweite ausgelegt.',
@@ -1028,12 +1335,18 @@
             'card8.title': 'Buchungs- & Geschäftsplattform',
             'card8.excerpt': 'Online-Buchung & Abrechnung für Dienstleister',
             'card8.detail': 'Für Friseure, Salons und Fitness im DACH-Raum: jede Betriebstätte erhält eine öffentliche Buchungsseite; Inhaber steuern Leistungen, Preise, Kalender, Rechnungen und Auszahlungen zentral—Kund:innen buchen in ihrer Sprache, Sie reduzieren Nichterscheinen und Büroarbeit.',
-            'card9.title': 'Mehrsprachiger E-Commerce',
-            'card9.excerpt': 'Verkauf in mehreren Sprachen & Währungen',
-            'card9.detail': 'E-Commerce Ende-zu-Ende für Teams mit regionalem Vertrieb: Shop, Warenkorb und Checkout, Händler- und Kundenkonten, Aktionen, Erstattungen und Reporting—mit Multi-Currency und lokalisierten Inhalten, damit Finance und Marketing zusammenpassen.',
+            'card9.title': 'Multi-Vendor E-Commerce-Plattform',
+            'card9.excerpt': 'Marktplatz für viele Verkäufer',
+            'card9.detail': 'Online-Marktplatz, auf dem viele Händler unter einem Dach verkaufen: Shop, Warenkorb und Checkout, Verkäufer- und Kundenkonten, Aktionen, Erstattungen und Reporting—plus Multi-Currency und lokalisierte Inhalte, damit Betrieb, Finance und Marketing zusammenpassen.',
             'card10.title': 'Medical Office Manager',
             'card10.excerpt': 'Praxis-Webseite, Patienten- & Ärzteportale',
             'card10.detail': 'Eine Plattform für die öffentliche Praxis-Website, Patientenselbstbedienung (Termine, Akten, Rezepte, Dokumente), klinische Abläufe (Pläne, Labor, Dokumentation) und Verwaltung—mit rollenbasiertem Zugriff, Erinnerungen und optional einem Assistenten mit praxisspezifischem Kontext.',
+            'card11.title': 'Ronak Gold',
+            'card11.excerpt': 'Digitaler Gold- & Silberhandel',
+            'card11.detail': 'Digitaler Gold- und Silberhandel für den iranischen Markt: Live-Preise, Cash- und Metall-Wallets, Limit-Orders, Multi-Gateway-Zahlungen, KYC und physische Barrenauslieferung—mit Admin- und Filialportalen für den Betrieb.',
+            'card12.title': 'Coverage- & Seriennummern-Plattform',
+            'card12.excerpt': 'Seriennummern, Garantiekarten & Eigentumsübertragung',
+            'card12.detail': 'Coverage-Management für Produkt-Seriennummern und Eigentum im Vertriebsnetz: öffentliche Serienprüfung (inkl. RFID-Deep-Links), Ausgabe und Import von Coverage-Karten, Übertragungsverlauf, Meldung verlorener/gestohlener Karten sowie rollenbasierter Zugriff für Personal, Distributoren und Agenten.',
             'ctaProject.title': 'Beschreiben Sie das Ergebnis, nicht den Stack',
             'ctaProject.body': 'Kurz: Was fehlt oder funktioniert heute nicht, wen betrifft es (Kund:innen, Team, Partner), und wann sind Sie „fertig“—Zeitrahmen, Volumen oder eine Kennzahl. Ich antworte mit einer ehrlichen Einschätzung zu Fit, grobem Vorgehen und sinnvollen nächsten Schritten.',
             'ctaProject.whatsappCta': 'Nachricht per WhatsApp',
@@ -1067,6 +1380,102 @@
             'footer.generator': 'Generator',
             'footer.purchase': 'Kaufen',
             'footer.copyright': '© 2026 Hamed Yarandi.'
+          },
+          // Persian (Farsi) — natural, conversational copy (not literal translation)
+          fa: {
+            'hero.title': 'ساده کن. خودکار کن. ',
+            'hero.titleBold': 'رشد کن.',
+            'hero.role': 'کسب‌وکارت را آنلاین جلو می‌برم',
+            'hero.location': 'اینسبروک، اتریش · بیش از ۱۳ سال ساخت سیستم‌هایی که واقعاً کار می‌کنند',
+            'hero.subtitle': 'کار دستی، اکسل‌های پراکنده و ابزارهای شکننده را کنار می‌گذاریم و جایشان را به نرم‌افزاری می‌دهیم که تیم و مشتری‌ات واقعاً از آن استفاده کنند—تا سریع‌تر سرویس بدهی، ببینی چه خبر است، و بدون آتش‌نشانی هرروزه رشد کنی.',
+            'nav.intro': 'خدمات',
+            'nav.work': 'کارها',
+            'nav.whyChoose': 'چرا من؟',
+            'nav.contact': 'حرف بزنیم',
+            'nav.pages': 'صفحات',
+            'nav.blocks': 'همه بلوک‌ها',
+            'nav.sitemap': 'نقشه سایت',
+            'value.1.title': 'چیزی بساز که مشتری بابت آن پول بدهد',
+            'value.1.body': 'از ایدهٔ مبهم تا محصولی که روی هواست—با اولویت روشن و مسیری که تیمت بتواند خودش جلو ببرد.',
+            'value.2.title': 'کارهای تکراری و درآمد را خودکار کن',
+            'value.2.body': 'رزرو، فاکتور، مارکت‌پلیس چندفروشنده و ابزارهای داخلی که وقت اداری را می‌خورند و پول از دستت درنمی‌رود.',
+            'value.3.title': 'با داده تصمیم بگیر، نه حدس',
+            'value.3.body': 'داشبورد، اتصال سیستم‌ها و کمک هوش مصنوعی—وقتی می‌خواهی سریع‌تر و مطمئن‌تر تصمیم بگیری، نه فقط «تکنولوژی داشته باشی».',
+            'value.4.title': 'کنار پروژه‌های مشتری‌ات می‌مانم',
+            'value.4.body': 'از صفر بسازیم یا وسط راه کمک کنم: بک‌اند، API و سرعت—تا کار گیر نکند و سروقت تحویل شود.',
+            'whyChoose.heading': 'چرا با من کار کنی؟',
+            'whyChoose.p1': 'کارم این است که دردسرهای روزمرهٔ کسب‌وکار را کم کنم: فرایند دستی، فایل‌های اکسل پخش‌وپلا، ابزارهایی که هی خراب می‌شوند. جایشان را نرم‌افزاری می‌گذارم که آدم‌ها واقعاً دوست داشته باشند از آن استفاده کنند—تا مشتری‌ات را سریع‌تر راه بیندازی، ببینی داخل کسب‌وکارت چه می‌گذرد، و بدون استرس مدام بزرگ شوی.',
+            'whyChoose.p2': 'بیش از ۱۳ سال است مهندسی نرم‌افزار می‌کنم؛ وب‌اپلیکیشن، بک‌اند و داشبورد لحظه‌ای را از صفر بالا آورده‌ام. با Golang و PHP راحت‌ام—API، میکروسرویس و سرویس‌های سریع—و با هوش مصنوعی و محصولات داده‌محور هم کار کرده‌ام. برام مهم است سیستم تمیز، قابل نگهداری و بی‌دردسر باشد. توی بهداشت، هتل و رستوران، خدمات، وام و فروش آنلاین، پروژه‌هایی با رزرو، پرداخت و داده را سرانجام داده‌ام. اگر پروژه از صفر نباشد هم کنار تیم شما می‌مانم یا یک تکهٔ فنی را خودم برمی‌دارم تا قول‌هایی که به مشتری داده‌اید عملی شود.',
+            'whyChoose.p3': 'از بهداشت و مهمان‌نوازی تا فروش آنلاین، خرید اقساطی (BNPL) و سیستم‌های فروش—رزرو، پرداخت و گردش‌کارهای پیچیده را از ته تا ته تحویل داده‌ام. یا کنار تیمت هستم، یا بخش فنی را می‌گیرم دستم تا کار به‌موقع برسد.',
+            'card1.title': 'Nownava',
+            'card1.excerpt': 'رادیوی آنلاین',
+            'card1.detail': 'پلتفرم پخش زنده برای وقتی که قطعی و کندی یعنی از دست دادن مخاطب. نسخهٔ اول در دو ماه به بیش از ۴۰۰ شنوندهٔ فعال رسید؛ معماری‌اش برای کار شبانه‌روزی و رشد نرم مخاطب چیده شده.',
+            'card2.title': 'Mizner Mobile App',
+            'card2.excerpt': 'اپ ساکنان و هیئت‌مدیره',
+            'card2.detail': 'برای ارتباط ساکنان و مدیریت ساختمان: بعد از سروسامان دادن بک‌اند قدیمی، صفحات تندتر شدند و خطا کمتر. اعلان‌ها و داده‌ها قابل اعتمادتر رسیدند دست مدیر و ساکن.',
+            'card3.title': 'AdimAdim',
+            'card3.excerpt': 'پلتفرم خیریه',
+            'card3.detail': 'مسیر کمک‌کردن را از نو چیدیم: چندزبانه، پرداخت و محتوا و گزارش جدا و شفاف—تا هم اهداکننده بداند پولش کجا رفته، هم تیم خیالش راحت باشد.',
+            'card4.title': 'LendTech Gateway',
+            'card4.excerpt': 'وصل کردن سریع‌تر شرکای وام',
+            'card4.detail': 'لایه‌ای بین وام‌دهنده و شریک: بررسی، پرداخت و خطایابی یک‌جا. شریک جدید با کار سفارشی کمتر و دردسر کمتر روی هوا می‌رود.',
+            'card5.title': 'افزونه‌های وردپرس',
+            'card5.excerpt': 'امکانات فروشگاه، برای خیلی‌ها',
+            'card5.detail': 'قابلیت‌های فروش آنلاین را به شکل افزونهٔ قابل تنظیم بسته‌بندی کردیم تا ده‌ها فروشنده بدون پروژهٔ جداگانه روشن‌شان کنند—لانچ سریع‌تر، آپدیت امن‌تر روی هاست‌های مختلف.',
+            'card6.title': 'آنالیتیکس توانبخشی',
+            'card6.excerpt': 'تصمیم تندتر برای مدیران کلینیک',
+            'card6.detail': 'برای مدیران توانبخشی: تقاضا و ظرفیت را روشن‌تر ببینند، پذیرش را پیش‌بینی کنند، خلاصهٔ وضعیت بالینی دم دست باشد—کمتر درگیر اکسل، بیشتر وقت برای مراقبت و رشد.',
+            'card7.title': 'مدیریت رستوران',
+            'card7.excerpt': 'منو، رزرو و سفارش با QR',
+            'card7.detail': 'یک سیستم برای مهمان و آشپزخانه و صندوق: منوی دیجیتال، رزرو، نظر، سفارش و پرومو با QR. کمتر تلفن شلوغ، کمتر سفارش اشتباه وسط سرویس.',
+            'card8.title': 'رزرو و مدیریت کسب‌وکار',
+            'card8.excerpt': 'نوبت آنلاین و صورتحساب برای خدمات',
+            'card8.detail': 'برای آرایشگاه، سالن و باشگاه در منطقهٔ DACH: هر شعبه صفحهٔ رزرو خودش را دارد؛ مالک از یک جا خدمات، قیمت، تقویم و فاکتور را می‌چرخاند. مشتری به زبان خودش نوبت می‌گیرد؛ تو کمتر با غیبت و کاغذبازی درگیر می‌شوی.',
+            'card9.title': 'پلتفرم فروش اینترنتی (چندفروشنده)',
+            'card9.excerpt': 'مارکت‌پلیس چند فروشندگی',
+            'card9.detail': 'یک پلتفرم فروش آنلاین که چند فروشنده زیر یک سقف می‌فروشند: ویترین، سبد و تسویه، حساب فروشنده و مشتری، تخفیف، مرجوعی و گزارش—با چند ارز و محتوای بومی، تا عملیات، مالی و بازاریابی یکی حرف بزنند.',
+            'card10.title': 'مدیریت مطب',
+            'card10.excerpt': 'سایت مطب + پرتال بیمار و پزشک',
+            'card10.detail': 'همه‌چیز یک‌جا: سایت مطب، نوبت و پرونده و نسخه برای بیمار، برنامه و آزمایشگاه برای پزشک، کار اداری با دسترسی نقش‌محور، یادآوری، و در صورت نیاز دستیار هوشمند مخصوص همان مطب.',
+            'card11.title': 'روناک‌گلد',
+            'card11.excerpt': 'معاملهٔ آنلاین طلا و نقره',
+            'card11.detail': 'پلتفرم معاملهٔ طلا و نقره برای بازار ایران: قیمت لحظه‌ای، کیف‌پول نقد و فلز، سفارش محدود، چند درگاه پرداخت، احراز هویت و تحویل فیزیکی شمش—به‌همراه پنل ادمین و شعب برای چرخاندن عملیات.',
+            'card12.title': 'پلتفرم گارانتی و مالکیت سریال',
+            'card12.excerpt': 'سریال، کارت گارانتی و انتقال مالکیت',
+            'card12.detail': 'سیستم مدیریت پوشش و مالکیت محصول در شبکه فروش: استعلام عمومی سریال (از جمله لینک RFID)، صدور و وارد کردن کارت گارانتی، تاریخچه انتقال مالکیت، گزارش مفقودی/سرقت، و دسترسی نقش‌محور برای کارکنان، توزیع‌کنندگان و نمایندگان.',
+            'ctaProject.title': 'بگو چه می‌خواهی به دست بیاوری، نه با چه تکنولوژی',
+            'ctaProject.body': 'چند خط کافی است: امروز چه چیزی گیر کرده یا کم است؟ به کی فشار می‌آورد (مشتری، تیم، شریک)؟ «تمام شد» از نظر تو چه شکلی است—زمان، حجم یا یک عدد مشخص. رک و راست می‌گویم آیا به هم می‌خوریم، تقریباً چطور جلو می‌رویم، و قدم بعدی چیست.',
+            'ctaProject.whatsappCta': 'تو واتساپ پیام بده',
+            'ctaProject.button': 'بیا حرف بزنیم',
+            'cta.title': 'به‌راحتی یک سایت قشنگ و واکنش‌گرا مثل همین بساز.',
+            'cta.button': 'خرید Slick',
+            'cta.noRisk': 'بدون ریسک',
+            'cta.noRiskDesc': 'تا ۱۰ روز پولت را برمی‌گردانیم.',
+            'cta.noSubs': 'بدون اشتراک ماهانه',
+            'cta.noSubsDesc': 'یک‌بار پرداخت کن؛ چرا هر ماه بدهی؟',
+            'cta.unlimited': 'سایت نامحدود',
+            'cta.unlimitedDesc': 'لایسنس مادام‌العمر. هرچقدر سایت بخواهی، بدون هزینهٔ اضافه.',
+            'cta.builder': 'سازندهٔ Drag & Drop',
+            'cta.builderBtn': 'Generator را امتحان کن',
+            'cta.blocks': '۱۷۲ بلوک آماده',
+            'cta.blocksBtn': 'بلوک‌ها را ببین',
+            'contact.heading': 'بیا دربارهٔ مسئله‌ات حرف بزنیم',
+            'contact.formName': 'نام',
+            'contact.formEmail': 'ایمیل',
+            'contact.formMessage': 'پیامت',
+            'contact.formSubmit': 'بفرست',
+            'contact.formSuccess': 'رسید! به‌زودی جوابت را می‌دهم.',
+            'contact.formError': 'اوپس—ارسال نشد. یک‌بار دیگر امتحان کن.',
+            'contact.email': 'ایمیل',
+            'contact.linkedIn': 'لینکدین',
+            'contact.whatsapp': 'واتساپ',
+            'footer.pages': 'صفحات',
+            'footer.blocks': 'همه بلوک‌ها',
+            'footer.components': 'کامپوننت‌ها',
+            'footer.sitemap': 'نقشه سایت',
+            'footer.generator': 'Generator',
+            'footer.purchase': 'خرید',
+            'footer.copyright': '© ۲۰۲۶ حامد یارندی.'
           }
         };
 
@@ -1082,15 +1491,19 @@
           });
         }
 
-        function setLang(lang) {
-          if (!labelEl || !langMap[lang]) return;
-          document.documentElement.lang = lang === 'de' ? 'de' : 'en-US';
-          document.documentElement.setAttribute('dir', 'ltr');
-          labelEl.textContent = langMap[lang];
+        function setLang(lang, persist) {
+          if (!langMap[lang]) return;
+          if (persist === undefined) persist = true;
+          var attrs = langAttrs[lang] || langAttrs.en;
+          document.documentElement.lang = attrs.lang;
+          document.documentElement.setAttribute('dir', attrs.dir);
+          if (labelEl) labelEl.textContent = langMap[lang];
           options.forEach(function (opt) {
             opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
           });
-          try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+          if (persist) {
+            try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+          }
           applyLang(lang);
           var langParent = document.getElementById('navbarLangDropdown');
           if (langParent) langParent.closest('.nav-item.dropdown').classList.remove('open');
@@ -1099,18 +1512,95 @@
         options.forEach(function (opt) {
           opt.addEventListener('click', function (e) {
             e.preventDefault();
-            setLang(opt.getAttribute('data-lang'));
+            setLang(opt.getAttribute('data-lang'), true);
           });
         });
 
+        function browserPrefersPersian() {
+          var langs = [];
+          try {
+            if (navigator.languages && navigator.languages.length) {
+              langs = Array.prototype.slice.call(navigator.languages);
+            } else if (navigator.language) {
+              langs = [navigator.language];
+            }
+          } catch (e) {}
+          return langs.some(function (l) {
+            return String(l || '').toLowerCase().indexOf('fa') === 0;
+          });
+        }
+
+        function detectIranAndApply() {
+          var done = false;
+          var pending = 0;
+          var confirmedNonIr = false;
+
+          function finish(lang) {
+            if (done) return;
+            done = true;
+            setLang(lang, false);
+          }
+
+          function settleIfIdle() {
+            if (done || pending > 0) return;
+            if (confirmedNonIr) finish('en');
+            else finish(browserPrefersPersian() ? 'fa' : 'en');
+          }
+
+          function tryEndpoint(url, parseCountry) {
+            pending += 1;
+            var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+            var timer = setTimeout(function () {
+              if (controller) try { controller.abort(); } catch (e) {}
+            }, 3500);
+            fetch(url, {
+              method: 'GET',
+              credentials: 'omit',
+              signal: controller ? controller.signal : undefined
+            }).then(function (res) {
+              clearTimeout(timer);
+              if (!res.ok) throw new Error('geo failed');
+              return res.json();
+            }).then(function (data) {
+              pending -= 1;
+              var code = String(parseCountry(data) || '').toUpperCase();
+              if (code === 'IR') {
+                finish('fa');
+                return;
+              }
+              confirmedNonIr = true;
+              settleIfIdle();
+            }).catch(function () {
+              clearTimeout(timer);
+              pending -= 1;
+              settleIfIdle();
+            });
+          }
+
+          tryEndpoint('https://api.country.is/', function (d) { return d && d.country; });
+          tryEndpoint('https://get.geojs.io/v1/ip/country.json', function (d) { return d && d.country; });
+          tryEndpoint('https://ipapi.co/json/', function (d) { return d && d.country_code; });
+
+          setTimeout(function () {
+            if (!done) finish(confirmedNonIr ? 'en' : (browserPrefersPersian() ? 'fa' : 'en'));
+          }, 4000);
+        }
+
         var saved = null;
         try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-        if (saved && langMap[saved]) setLang(saved);
-        else applyLang('en');
+        if (saved && langMap[saved]) {
+          setLang(saved, true);
+        } else {
+          applyLang('en');
+          detectIranAndApply();
+        }
 
         window.i18nGet = function (key) {
           try {
-            var lang = localStorage.getItem(STORAGE_KEY) || 'en';
+            var lang = localStorage.getItem(STORAGE_KEY) || document.documentElement.lang;
+            if (lang === 'fa' || lang === 'fa-IR') lang = 'fa';
+            else if (lang === 'de' || lang.indexOf('de') === 0) lang = 'de';
+            else if (!langMap[lang]) lang = 'en';
             return (t[lang] && t[lang][key] != null) ? t[lang][key] : (t.en[key] != null ? t.en[key] : key);
           } catch (e) { return key; }
         };
