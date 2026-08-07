@@ -1140,14 +1140,33 @@ var popoverInit = function popoverInit() {
 
 
 var preloaderInit = function preloaderInit() {
-  var bodyElement = document.querySelector('body');
-  window.imagesLoaded(bodyElement, function () {
+  var hide = function hide() {
+    if (typeof window.__hidePreloader === 'function') {
+      window.__hidePreloader();
+      return;
+    }
     var preloader = document.querySelector('[data-preloader]');
-    preloader === null || preloader === void 0 ? void 0 : preloader.classList.add('loaded');
+    if (!preloader || preloader.getAttribute('data-done') === '1') return;
+    preloader.setAttribute('data-done', '1');
+    preloader.classList.add('loaded');
     setTimeout(function () {
       preloader === null || preloader === void 0 ? void 0 : preloader.remove();
     }, 900);
-  });
+  };
+
+  // Never block the UI if images hang (no load/error) on slow or filtered networks
+  var failsafe = setTimeout(hide, 2500);
+
+  var bodyElement = document.querySelector('body');
+  if (window.imagesLoaded) {
+    window.imagesLoaded(bodyElement, function () {
+      clearTimeout(failsafe);
+      hide();
+    });
+  } else {
+    clearTimeout(failsafe);
+    hide();
+  }
 };
 /* --------------------------------------------------------------------------
 |                                 Rellax js

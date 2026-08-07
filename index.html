@@ -677,6 +677,22 @@
         </div>
       </div>
     </div>
+    <!-- Inline failsafe: hide spinner even if vendor JS/images hang (common on filtered networks) -->
+    <script>
+      (function () {
+        function hidePreloader() {
+          var el = document.getElementById('preloader');
+          if (!el || el.getAttribute('data-done') === '1') return;
+          el.setAttribute('data-done', '1');
+          el.classList.add('loaded');
+          setTimeout(function () {
+            if (el && el.parentNode) el.parentNode.removeChild(el);
+          }, 400);
+        }
+        window.__hidePreloader = hidePreloader;
+        setTimeout(hidePreloader, 2500);
+      })();
+    </script>
     <nav class="navbar navbar-slick navbar-expand-lg navbar-dark fixed-top py-2" data-navbar-dark-on-scroll="data-navbar-dark-on-scroll">
       <div class="container container-wide-xl"><a class="navbar-brand ls-2 p-0 me-4 fw-semibold text-white text-decoration-none" href="index.html">Hamed Yarandi</a><button class="navbar-toggler hamburger hamburger--emphatic" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNavbarCollapse" aria-controls="primaryNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button>
         <div class="collapse navbar-collapse" id="primaryNavbarCollapse">
