@@ -186,11 +186,12 @@
         display: flex;
         gap: 1rem;
         width: max-content;
+        position: relative;
         animation: marquee-card 60s linear infinite;
       }
       @keyframes marquee-card {
         0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+        100% { transform: translateX(calc(-1 * var(--marquee-distance, 50%))); }
       }
       /* Keep marquee mechanics LTR so RTL page dir does not expand scroll width */
       html[dir="rtl"] .marquee-card-track-wrapper,
@@ -813,7 +814,7 @@
         2. Give it the next card number (card9, card10, …).
         3. Add one or more <img loading="lazy" decoding="async"> in marquee-card-img-wrap (first = default).
         4. Add cardN.title, cardN.excerpt, cardN.detail to t.en, t.de and t.fa in <script>.
-        5. Duplicate the same block again after "duplicate set" for seamless marquee loop.
+        5. Do not duplicate cards in HTML — JS clones the set so the last project stays visible in the loop.
       -->
       <section class="py-5 py-lg-6 overflow-hidden" id="cards-carousel-section">
         <div class="container container-wide-xl mb-4">
@@ -978,6 +979,24 @@
               </div>
             </div>
             <!-- Project 10: Medical Office Manager (END) -->
+
+            <!-- Project 13: Veterinary Office Manager (BEGIN) -->
+            <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
+              <div class="marquee-card-img-wrap">
+                <img src="assets/img/projects/project-placeholder.svg" alt="Veterinary Office Manager" class="img-fluid" loading="lazy" decoding="async">
+              </div>
+              <div class="card-body position-relative p-3">
+                <h5 class="card-title fw-semibold mb-1 small" data-i18n="card13.title">Veterinary Office Manager</h5>
+                <p class="card-text text-700 small mb-1" data-i18n="card13.excerpt">Clinic site, pet-owner &amp; vet portals</p>
+                <p class="card-text text-700 small mb-0 d-none d-md-block" data-i18n="card13.detail">
+                  A single platform for the public clinic site, pet-owner self-service (pets, bookings, records, prescriptions, invoices), veterinarian workflows (schedules, vaccinations, labs, documentation), and admin operations—with vaccination due tracking, role-based access, and an optional assistant trained on clinic-specific content.
+                </p>
+              </div>
+              <div class="card-detail-overlay">
+                <p class="mb-0 small" data-i18n="card13.detail">A single platform for the public clinic site, pet-owner self-service (pets, bookings, records, prescriptions, invoices), veterinarian workflows (schedules, vaccinations, labs, documentation), and admin operations—with vaccination due tracking, role-based access, and an optional assistant trained on clinic-specific content.</p>
+              </div>
+            </div>
+            <!-- Project 13: Veterinary Office Manager (END) -->
 
             <!-- Project 1: Nownava (BEGIN) -->
             <div class="marquee-card marquee-card--same-size card-hover-detail project-card">
@@ -1395,6 +1414,9 @@
             'card12.title': 'Coverage / Serial Ownership Platform',
             'card12.excerpt': 'Serials, warranty cards & ownership transfers',
             'card12.detail': 'Full-stack coverage management for product serials and ownership across a retail network: public serial verification (including RFID deep links), tools to issue and import coverage cards, ownership transfer history, lost/stolen reporting, and permission-based access for staff, distributors, and agents.',
+            'card13.title': 'Veterinary Office Manager',
+            'card13.excerpt': 'Clinic site, pet-owner & vet portals',
+            'card13.detail': 'A single platform for the public clinic site, pet-owner self-service (pets, bookings, records, prescriptions, invoices), veterinarian workflows (schedules, vaccinations, labs, documentation), and admin operations—with vaccination due tracking, role-based access, and an optional assistant trained on clinic-specific content.',
             'ctaProject.title': 'Describe the outcome, not the stack',
             'ctaProject.body': 'In a short note: what is broken or missing today, who it affects (customers, staff, partners), and what “done” looks like—timeline, volume, or a metric you want to move. I’ll reply with a straight answer on fit, rough approach, and sensible next steps.',
             'ctaProject.whatsappCta': 'Message on WhatsApp',
@@ -1491,6 +1513,9 @@
             'card12.title': 'Coverage- & Seriennummern-Plattform',
             'card12.excerpt': 'Seriennummern, Garantiekarten & Eigentumsübertragung',
             'card12.detail': 'Coverage-Management für Produkt-Seriennummern und Eigentum im Vertriebsnetz: öffentliche Serienprüfung (inkl. RFID-Deep-Links), Ausgabe und Import von Coverage-Karten, Übertragungsverlauf, Meldung verlorener/gestohlener Karten sowie rollenbasierter Zugriff für Personal, Distributoren und Agenten.',
+            'card13.title': 'Veterinary Office Manager',
+            'card13.excerpt': 'Klinik-Website, Tierhalter- & Tierarztportale',
+            'card13.detail': 'Eine Plattform für die öffentliche Klinik-Website, Selbstbedienung für Tierhalter (Tiere, Termine, Akten, Rezepte, Rechnungen), tierärztliche Abläufe (Pläne, Impfungen, Labor, Dokumentation) und Verwaltung—mit Impferinnerungen, rollenbasiertem Zugriff und optional einem Assistenten mit klinikspezifischem Kontext.',
             'ctaProject.title': 'Beschreiben Sie das Ergebnis, nicht den Stack',
             'ctaProject.body': 'Kurz: Was fehlt oder funktioniert heute nicht, wen betrifft es (Kund:innen, Team, Partner), und wann sind Sie „fertig“—Zeitrahmen, Volumen oder eine Kennzahl. Ich antworte mit einer ehrlichen Einschätzung zu Fit, grobem Vorgehen und sinnvollen nächsten Schritten.',
             'ctaProject.whatsappCta': 'Nachricht per WhatsApp',
@@ -1587,6 +1612,9 @@
             'card12.title': 'پلتفرم گارانتی و مالکیت سریال',
             'card12.excerpt': 'سریال، کارت گارانتی و انتقال مالکیت',
             'card12.detail': 'سیستم مدیریت پوشش و مالکیت محصول در شبکه فروش: استعلام عمومی سریال (از جمله لینک RFID)، صدور و وارد کردن کارت گارانتی، تاریخچه انتقال مالکیت، گزارش مفقودی/سرقت، و دسترسی نقش‌محور برای کارکنان، توزیع‌کنندگان و نمایندگان.',
+            'card13.title': 'مدیریت کلینیک دامپزشکی',
+            'card13.excerpt': 'سایت کلینیک + پرتال صاحب حیوان و دامپزشک',
+            'card13.detail': 'همه‌چیز یک‌جا: سایت کلینیک، حیوان‌ها و نوبت و پرونده و نسخه و فاکتور برای صاحب حیوان، برنامه و واکسن و آزمایشگاه برای دامپزشک، کار اداری با دسترسی نقش‌محور، پیگیری واکسن‌های سررسید، و در صورت نیاز دستیار هوشمند مخصوص همان کلینیک.',
             'ctaProject.title': 'بگو چه می‌خواهی به دست بیاوری، نه با چه تکنولوژی',
             'ctaProject.body': 'چند خط کافی است: امروز چه چیزی گیر کرده یا کم است؟ به کی فشار می‌آورد (مشتری، تیم، شریک)؟ «تمام شد» از نظر تو چه شکلی است—زمان، حجم یا یک عدد مشخص. رک و راست می‌گویم آیا به هم می‌خوریم، تقریباً چطور جلو می‌رویم، و قدم بعدی چیست.',
             'ctaProject.whatsappCta': 'تو واتساپ پیام بده',
@@ -1747,6 +1775,27 @@
         };
       })();
       (function () {
+        var track = document.getElementById('marqueeCardTrack');
+        if (track && !track.dataset.marqueeCloned) {
+          var originals = Array.prototype.slice.call(track.children);
+          originals.forEach(function (card) {
+            var clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            track.appendChild(clone);
+          });
+          track.dataset.marqueeCloned = '1';
+          function setMarqueeDistance() {
+            var firstClone = track.children[originals.length];
+            if (!originals.length || !firstClone) return;
+            var distance = firstClone.offsetLeft - originals[0].offsetLeft;
+            if (distance > 0) {
+              track.style.setProperty('--marquee-distance', distance + 'px');
+            }
+          }
+          setMarqueeDistance();
+          window.addEventListener('resize', setMarqueeDistance);
+        }
+
         var galleries = document.querySelectorAll('.marquee-card .marquee-card-img-wrap');
         galleries.forEach(function (wrap) {
           var imgs = wrap.querySelectorAll('img');
